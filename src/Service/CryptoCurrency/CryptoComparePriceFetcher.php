@@ -108,7 +108,7 @@ class CryptoComparePriceFetcher implements PriceFetchInterface
         }
 
         if ($response->getStatusCode() === self::HTTP_STATUS_OK) {
-            return $this->formatResponse($response->getBody());
+            return $this->formatResponse($response->getBody()->getContents());
         }
 
         return [];

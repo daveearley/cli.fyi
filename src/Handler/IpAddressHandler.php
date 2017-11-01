@@ -21,6 +21,8 @@ class IpAddressHandler extends AbstractHandler
         parent::__construct($cache);
 
         $this->ipInfoService = $ipService;
+
+        $this->disableCache();
     }
 
     /**

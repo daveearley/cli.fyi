@@ -10,7 +10,7 @@ use CliFyi\Transformer\TransformerInterface;
 
 abstract class AbstractHandler
 {
-    protected const CACHE_TTL_IN_SECONDS = 60 * 15;
+    protected const DEFAULT_CACHE_TTL_IN_SECONDS = 60 * 15;
 
     /** @var TransformerInterface */
     private $transformer;
@@ -20,6 +20,12 @@ abstract class AbstractHandler
 
     /** @var CacheInterface */
     private $cache;
+
+    /** @var int */
+    private $cacheTtlInSeconds = self::DEFAULT_CACHE_TTL_IN_SECONDS;
+
+    /** @var bool */
+    private $cacheEnabled = true;
 
     /**
      * @param CacheInterface $cache
@@ -57,7 +63,7 @@ abstract class AbstractHandler
      */
     public function getData(): array
     {
-        if ($cachedValue = $this->cache->get($this->getCacheKey())) {
+        if ($this->cacheEnabled && $cachedValue = $this->cache->get($this->getCacheKey())) {
             return $cachedValue;
         }
 
@@ -95,7 +101,25 @@ abstract class AbstractHandler
      */
     protected function getCacheTtl(): int
     {
-        return self::CACHE_TTL_IN_SECONDS;
+        return $this->cacheTtlInSeconds;
+    }
+
+    /**
+     * @param int $cacheTtl
+     *
+     * @return int
+     */
+    protected function setCacheTtl(int $cacheTtl): int
+    {
+        $this->cacheTtlInSeconds = $cacheTtl;
+    }
+
+    /**
+     * @return void
+     */
+    protected function disableCache(): void
+    {
+        $this->cacheEnabled = false;
     }
 
     /**
@@ -103,18 +127,21 @@ abstract class AbstractHandler
      */
     private function getCacheKey(): string
     {
-        return sha1($this->searchTerm);
+        return md5($this->searchTerm);
     }
 
     /**
      * @param $data
+     *
      * @throws InvalidArgumentException
      *
      * @return mixed
      */
     private function cacheAndReturn(array $data): array
     {
-        $this->cache->set($this->getCacheKey(), $data, $this->getCacheTtl());
+        if ($this->cacheEnabled) {
+            $this->cache->set($this->getCacheKey(), $data, $this->getCacheTtl());
+        }
 
         return $data;
     }
