@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+$countries = json_decode(file_get_contents(__DIR__  . '/../vendor/mledoze/countries/dist/countries.json'), true);
+
+$formattedArray = [];
+foreach ($countries as $country) {
+    $formattedArray[strtolower($country['name']['common'])] = $country;
+}
+
+file_put_contents(
+    __DIR__ . '/../data/countries_data.php',
+    sprintf('<?php /* This file is auto-generated */ return %s;', var_export($formattedArray, true))
+);
+
+echo 'Generating countries data complete.' . PHP_EOL;

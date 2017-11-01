@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+$response = json_decode(file_get_contents('https://min-api.cryptocompare.com/data/all/coinlist'), true);
+
+if (isset($response['Response']) && $response['Response'] === 'Success') {
+
+    $cryptoCurrencies = [];
+
+    foreach ($response['Data'] as $currency) {
+        $cryptoCurrencies[(string)$currency['Symbol']] = $currency['FullName'];
+    }
+
+    ksort($cryptoCurrencies);
+
+    file_put_contents(
+        __DIR__ . '/../data/crypto_currency_data.php',
+        sprintf('<?php /* This file is auto-generated */ return %s;', var_export($cryptoCurrencies, true))
+    );
+
+    echo 'Generating crypto currency data complete.' . PHP_EOL;
+} else {
+    exit('Failed to retrieve successful response CryptoCompare API');
+}

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if [[ ! ":$PWD:" == *"/development"* ]]; then
+    cd ./development
+fi
+
+URL="http://geolite.maxmind.com/download/geoip/database/"
+
+wget -nv "${URL}GeoLite2-City.tar.gz";
+wget -nv "${URL}GeoLite2-ASN.tar.gz";
+wget -nv "${URL}GeoLite2-Country.tar.gz";
+
+ls Geo*.tar.gz | xargs -n1 tar -xzf
+cp ./GeoLite*/*.mmdb ./../data/geoip/ && rm -rf ./Geo*
+
+if [ ! -f ./../data/geoip/GeoLite2-ASN.mmdb ] || [ ! -f ./../data/geoip/GeoLite2-City.mmdb ] || [ ! -f ./../data/geoip/GeoLite2-Country.mmdb ]; then
+    echo "Failed to download GeoIp all files!"
+else
+    echo "Successfully downloaded GeoIP files"
+fi
