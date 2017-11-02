@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CliFyi\Controller;
 
-use CliFyi\Exception\CannotParseQueryException;
-use CliFyi\Exception\ErrorWhileParsingQuery;
+use CliFyi\Exception\NoAvailableHandlerException;
+use CliFyi\Exception\ErrorParsingQueryException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use CliFyi\Builder\ResponseBuilder;
@@ -53,8 +53,8 @@ class ApiController
      * @param RequestInterface $request
      * @param ResponseInterface $response
      *
-     * @throws CannotParseQueryException
-     * @throws ErrorWhileParsingQuery
+     * @throws NoAvailableHandlerException
+     * @throws ErrorParsingQueryException
      * @throws \Psr\SimpleCache\InvalidArgumentException
      *
      * @return ResponseInterface
@@ -72,7 +72,7 @@ class ApiController
             }
         }
 
-        throw new CannotParseQueryException(sprintf(self::UNABLE_TO_PARSE_MESSAGE, $this->searchQuery));
+        throw new NoAvailableHandlerException(sprintf(self::UNABLE_TO_PARSE_MESSAGE, $this->searchQuery));
     }
 
     /**
@@ -91,7 +91,7 @@ class ApiController
 
     /**
      * @throws \Psr\SimpleCache\InvalidArgumentException
-     * @throws ErrorWhileParsingQuery
+     * @throws ErrorParsingQueryException
      *
      * @return array
      */
@@ -110,7 +110,7 @@ class ApiController
     }
 
     /**
-     * @throws ErrorWhileParsingQuery
+     * @throws ErrorParsingQueryException
      * @throws \Psr\SimpleCache\InvalidArgumentException
      *
      * @return array
@@ -122,7 +122,7 @@ class ApiController
         } catch (Throwable $e) {
             $this->logger->critical('Failed to render response', [$e]);
 
-            throw new ErrorWhileParsingQuery(sprintf(self::ERROR_WHILE_PARSING_MESSAGE, $this->searchQuery));
+            throw new ErrorParsingQueryException(sprintf(self::ERROR_WHILE_PARSING_MESSAGE, $this->searchQuery));
         }
     }
 

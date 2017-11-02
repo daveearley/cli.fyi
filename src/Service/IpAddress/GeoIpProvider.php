@@ -48,7 +48,7 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
      */
     public function getCity(): ?string
     {
-        return $this->getCityRecord('city');
+        return (string)$this->getCityRecord('city');
     }
 
     /**
@@ -56,7 +56,7 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
      */
     public function getCountry(): ?string
     {
-        return $this->getCityRecord('country');
+        return (string)$this->getCityRecord('country');
     }
 
     /**
@@ -64,7 +64,7 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
      */
     public function getLatitude(): ?string
     {
-        return $this->getCityRecord('latitude');
+        return (string)$this->getCityRecord('latitude');
     }
 
     /**
@@ -72,7 +72,7 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
      */
     public function getLongitude(): ?string
     {
-        return $this->getCityRecord('longitude');
+        return (string)$this->getCityRecord('longitude');
     }
 
     /**
@@ -80,7 +80,7 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
      */
     public function getContinent(): ?string
     {
-        return $this->getCityRecord('continent');
+        return (string)$this->getCityRecord('continent');
     }
 
     /**
@@ -126,15 +126,15 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
 
         switch ($recordType) {
             case 'latitude':
-                return $record->location->latitude;
+                return (string)$record->location->latitude;
             case 'longitude':
-                return $record->location->longitude;
+                return (string)$record->location->longitude;
             case 'country':
-                return $record->country->name;
+                return (string)$record->country->name;
             case 'city':
-                return $record->city->name;
+                return (string)$record->city->name;
             case 'continent':
-                return $record->continent->name;
+                return (string)$record->continent->name;
             default:
                 return null;
         }

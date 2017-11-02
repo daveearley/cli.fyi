@@ -4,13 +4,13 @@ namespace CliFyi\Exception;
 
 use Exception;
 
-class ErrorWhileParsingQuery extends Exception implements ApiExceptionInterface
+class NoAvailableHandlerException extends Exception implements ApiExceptionInterface
 {
     /**
      * @return int
      */
     public function getStatusCode(): int
     {
-        return 500;
+        return 404;
     }
 }

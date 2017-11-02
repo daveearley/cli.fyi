@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CliFyi\Factory;
 
+use CliFyi\Handler\DateTimeHandler;
 use CliFyi\Handler\IpAddressHandler;
 use CliFyi\Service\IpAddress\GeoIpProvider;
 use EmailValidation\EmailValidatorFactory;
@@ -30,6 +31,7 @@ class HandlerFactory
 {
     /** @var array */
     private static $availableHandlers = [
+        DateTimeHandler::class,
         ClientInformationHandler::class,
         CryptoCurrencyHandler::class,
         ProgrammingLanguageHandler::class,
@@ -87,6 +89,8 @@ class HandlerFactory
                 return new ClientInformationHandler(new GeoIpProvider(), $this->cache);
             case IpAddressHandler::class:
                 return new IpAddressHandler(new GeoIpProvider(), $this->cache);
+            case DateTimeHandler::class:
+                return new DateTimeHandler($this->cache);
         }
 
         throw new InvalidHandlerException(sprintf('%s is not a valid handler name'));
