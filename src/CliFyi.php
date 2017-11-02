@@ -24,7 +24,7 @@ class CliFyi extends App
     /**
      * @param ContainerBuilder $builder
      */
-    protected function configureContainer(ContainerBuilder $builder)
+    protected function configureContainer(ContainerBuilder $builder): void
     {
         $builder->addDefinitions($this->appConfig);
     }

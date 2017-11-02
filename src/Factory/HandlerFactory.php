@@ -26,6 +26,7 @@ use CliFyi\Transformer\CountryDataTransformer;
 use CliFyi\Transformer\DomainNameDataTransformer;
 use CliFyi\Transformer\EmailDataTransformer;
 use CliFyi\Transformer\MediaDataTransformer;
+use WhichBrowser\Parser;
 
 class HandlerFactory
 {
@@ -86,7 +87,7 @@ class HandlerFactory
             case CryptoCurrencyHandler::class:
                 return new CryptoCurrencyHandler($this->cache, new CryptoComparePriceFetcher(new Client()));
             case ClientInformationHandler::class:
-                return new ClientInformationHandler(new GeoIpProvider(), $this->cache);
+                return new ClientInformationHandler(new Parser(), new GeoIpProvider(), $this->cache);
             case IpAddressHandler::class:
                 return new IpAddressHandler(new GeoIpProvider(), $this->cache);
             case DateTimeHandler::class:

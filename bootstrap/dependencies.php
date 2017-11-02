@@ -1,5 +1,6 @@
 <?php
 
+use CliFyi\ErrorHandler\ErrorHandler;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 use Predis\Client;
@@ -24,7 +25,6 @@ return [
     RedisAdapter::class => \DI\object(RedisAdapter::class)->constructor(\DI\get(Client::class)),
     CacheInterface::class => \DI\object(RedisAdapter::class),
     HandlerFactory::class => \DI\object()->constructor(\DI\get(CacheInterface::class)),
-    'errorHandler' => function() {
-        return new CliFyi\ErrorHandler\ErrorHandler();
-    }
+    'errorHandler' => \DI\object(ErrorHandler::class)
+        ->constructor(\DI\get(LoggerInterface::class))
 ];

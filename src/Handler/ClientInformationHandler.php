@@ -6,6 +6,7 @@ namespace CliFyi\Handler;
 
 use CliFyi\Service\IpAddress\IpAddressInfoProviderInterface;
 use Psr\SimpleCache\CacheInterface;
+use WhichBrowser\Parser;
 
 class ClientInformationHandler extends AbstractHandler
 {
@@ -17,10 +18,22 @@ class ClientInformationHandler extends AbstractHandler
     /** @var IpAddressInfoProviderInterface */
     private $ipInfoService;
 
-    public function __construct(IpAddressInfoProviderInterface $ipAddressInfoProvider, CacheInterface $cache)
-    {
+    /** @var Parser */
+    private $userAgentParser;
+
+    /**
+     * @param Parser $userAgentParser
+     * @param IpAddressInfoProviderInterface $ipAddressInfoProvider
+     * @param CacheInterface $cache
+     */
+    public function __construct(
+        Parser $userAgentParser,
+        IpAddressInfoProviderInterface $ipAddressInfoProvider,
+        CacheInterface $cache
+    ) {
         parent::__construct($cache);
 
+        $this->userAgentParser = $userAgentParser;
         $this->ipInfoService = $ipAddressInfoProvider;
 
         $this->disableCache();
@@ -51,16 +64,20 @@ class ClientInformationHandler extends AbstractHandler
      */
     public function processSearchTerm(string $searchTerm): array
     {
+        $this->userAgentParser->analyse($_SERVER['HTTP_USER_AGENT']);
+
         $data = [
             'User Agent' => $_SERVER['HTTP_USER_AGENT'],
             'IP Address' => $_SERVER['REMOTE_ADDR'],
+            'Browser' => $this->userAgentParser->browser->toString(),
+            'Operating System' => $this->userAgentParser->os->toString()
         ];
 
         if ($ipInfo = $this->getIpInfo()) {
             $data['IP Address Info'] = $ipInfo;
         }
 
-        return $data;
+        return array_filter($data);
     }
 
     /**

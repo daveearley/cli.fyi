@@ -3,21 +3,42 @@
 namespace CliFyi\ErrorHandler;
 
 use CliFyi\Exception\ApiExceptionInterface;
-use Exception;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
+use Slim\Http\Response;
+use Throwable;
 
 class ErrorHandler
 {
+    const GENERIC_ERROR_MESSAGE = 'Something has gone wrong on our server! We will look into it ASAP';
+    const HTTP_INTERNAL_SERVER_ERROR = 500;
+
+    /** @var LoggerInterface */
+    private $logger;
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     /**
      * @param RequestInterface $request
-     * @param ResponseInterface $response
-     * @param $exception
+     * @param ResponseInterface|Response $response
+     * @param Throwable $exception
      *
-     * @return mixed
+     * @return ResponseInterface
      */
-    public function __invoke(RequestInterface $request, ResponseInterface $response, Exception $exception)
-    {
+    public function __invoke(
+        RequestInterface $request,
+        ResponseInterface $response,
+        Throwable $exception
+    ): ResponseInterface {
+        $this->logException($exception);
+
         if ($exception instanceof ApiExceptionInterface) {
             return $response
                 ->withStatus($exception->getStatusCode())
@@ -25,9 +46,25 @@ class ErrorHandler
         }
 
 
-        return $response
-            ->withStatus(500)
-            ->withHeader('Content-Type', 'text/html')
-            ->withBody('Something went wrong!');
+        $response = $response
+            ->withStatus(self::HTTP_INTERNAL_SERVER_ERROR)
+            ->withHeader('Content-Type', 'text/html');
+
+        $response->getBody()->write(self::GENERIC_ERROR_MESSAGE);
+
+        return $response;
+    }
+
+    /**
+     * @param Throwable $exception
+     */
+    private function logException(Throwable $exception): void
+    {
+        $this->logger->critical($exception->getMessage(), [
+            'message' => $exception->getMessage(),
+            'file' => $exception->getFile() . ':' . $exception->getLine(),
+            'exceptionType' => get_class($exception),
+            'trace' => $exception->getTrace()
+        ]);
     }
 }

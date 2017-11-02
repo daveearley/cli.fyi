@@ -48,7 +48,7 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
      */
     public function getCity(): ?string
     {
-        return (string)$this->getCityRecord('city');
+        return $this->getCityRecord('city');
     }
 
     /**
@@ -56,7 +56,7 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
      */
     public function getCountry(): ?string
     {
-        return (string)$this->getCityRecord('country');
+        return $this->getCityRecord('country');
     }
 
     /**
@@ -64,7 +64,7 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
      */
     public function getLatitude(): ?string
     {
-        return (string)$this->getCityRecord('latitude');
+        return $this->getCityRecord('latitude');
     }
 
     /**
@@ -72,7 +72,7 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
      */
     public function getLongitude(): ?string
     {
-        return (string)$this->getCityRecord('longitude');
+        return $this->getCityRecord('longitude');
     }
 
     /**
@@ -80,7 +80,7 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
      */
     public function getContinent(): ?string
     {
-        return (string)$this->getCityRecord('continent');
+        return $this->getCityRecord('continent');
     }
 
     /**

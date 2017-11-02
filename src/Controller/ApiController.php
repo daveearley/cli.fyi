@@ -119,9 +119,7 @@ class ApiController
     {
         try {
             return $this->handler->setSearchTerm($this->searchQuery)->getData();
-        } catch (Throwable $e) {
-            $this->logger->critical('Failed to render response', [$e]);
-
+        } catch (Throwable $exception) {
             throw new ErrorParsingQueryException(sprintf(self::ERROR_WHILE_PARSING_MESSAGE, $this->searchQuery));
         }
     }
