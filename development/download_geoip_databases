@@ -14,7 +14,7 @@ ls Geo*.tar.gz | xargs -n1 tar -xzf
 cp ./GeoLite*/*.mmdb ./../data/geoip/ && rm -rf ./Geo*
 
 if [ ! -f ./../data/geoip/GeoLite2-ASN.mmdb ] || [ ! -f ./../data/geoip/GeoLite2-City.mmdb ] || [ ! -f ./../data/geoip/GeoLite2-Country.mmdb ]; then
-    echo "Failed to download GeoIp all files!"
+    echo "Failed to download all GeoIp files!"
 else
     echo "Successfully downloaded GeoIP files"
 fi
