@@ -72,7 +72,7 @@ class ApiController
             }
         }
 
-        throw new NoAvailableHandlerException(sprintf(self::UNABLE_TO_PARSE_MESSAGE, $this->searchQuery));
+        throw new NoAvailableHandlerException(sprintf(self::UNABLE_TO_PARSE_MESSAGE, urldecode($this->searchQuery)));
     }
 
     /**
@@ -120,7 +120,10 @@ class ApiController
         try {
             return $this->handler->setSearchTerm($this->searchQuery)->getData();
         } catch (Throwable $exception) {
-            throw new ErrorParsingQueryException(sprintf(self::ERROR_WHILE_PARSING_MESSAGE, $this->searchQuery));
+            throw new ErrorParsingQueryException(
+                sprintf(self::ERROR_WHILE_PARSING_MESSAGE, urldecode($this->searchQuery)),
+                $exception
+            );
         }
     }
 

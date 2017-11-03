@@ -1,4 +1,7 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
 namespace CliFyi\Cache;
 
 use Predis\Client;
@@ -37,15 +40,21 @@ class RedisAdapter implements CacheInterface
      * @param mixed $value
      * @param int|null $ttl
      *
-     * @return bool|void
+     * @return int
      */
     public function set($key, $value, $ttl = null)
     {
-        $this->redis->setex($key, $ttl, serialize($value));
+        return $this->redis->setex($key, $ttl, serialize($value));
     }
 
+    /**
+     * @param string $key
+     *
+     * @return bool|int
+     */
     public function delete($key)
     {
+        return $this->redis->del($key);
     }
 
     public function clear()

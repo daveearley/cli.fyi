@@ -6,6 +6,9 @@ test:
 docker-up:
 	docker-compose up -d --force-recreate --build
 
+docker-logs:
+	docker-compose logs -f
+
 generate-data:
 	run-parts ./development
 

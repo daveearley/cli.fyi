@@ -14,16 +14,15 @@ class EmailDataTransformer implements TransformerInterface
     public function transform(array $data): array
     {
         $transformed = [
-            'valid_format' => $data['valid_format'],
-            'valid_mx_records' => $data['valid_mx_records'],
-            'free_email_provider' => $data['free_email_provider'],
-            'disposable_email_provider' => $data['disposable_email_provider'],
-            'role_or_business_email' => $data['role_or_business_email'],
-            'valid_host' => $data['valid_host']
+            'Valid MX Records' => $data['valid_mx_records'],
+            'Free Provider' => $data['free_email_provider'],
+            'Disposable Email' => $data['disposable_email_provider'],
+            'Business/Role Email' => $data['role_or_business_email'],
+            'Valid Host' => $data['valid_host']
         ];
 
         if ($data['possible_email_correction']) {
-            $transformed['possible_email_correction'] = $data['possible_email_correction'];
+            $transformed['Possible Spelling Correction'] = $data['possible_email_correction'];
         }
 
         return $transformed;

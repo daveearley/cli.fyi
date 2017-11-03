@@ -3,6 +3,7 @@
 namespace CliFyi\ErrorHandler;
 
 use CliFyi\Exception\ApiExceptionInterface;
+use CliFyi\Exception\NoAvailableHandlerException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
@@ -37,14 +38,16 @@ class ErrorHandler
         ResponseInterface $response,
         Throwable $exception
     ): ResponseInterface {
+
         $this->logException($exception);
 
         if ($exception instanceof ApiExceptionInterface) {
             return $response
                 ->withStatus($exception->getStatusCode())
                 ->withJson(['error' => $exception->getMessage()]);
-        }
 
+
+        }
 
         $response = $response
             ->withStatus(self::HTTP_INTERNAL_SERVER_ERROR)
@@ -57,14 +60,29 @@ class ErrorHandler
 
     /**
      * @param Throwable $exception
+     *
+     * @return array
      */
-    private function logException(Throwable $exception): void
+    private function getFormattedExceptionData(Throwable $exception): array
     {
-        $this->logger->critical($exception->getMessage(), [
+        return [
             'message' => $exception->getMessage(),
             'file' => $exception->getFile() . ':' . $exception->getLine(),
             'exceptionType' => get_class($exception),
-            'trace' => $exception->getTrace()
-        ]);
+            'trace' => $exception->getTrace(),
+            'previous' => $exception->getPrevious()
+        ];
+    }
+
+    /**
+     * @param Throwable $exception
+     */
+    private function logException(Throwable $exception): void
+    {
+        if ($exception instanceof NoAvailableHandlerException) {
+            $this->logger->notice($exception->getMessage(), $this->getFormattedExceptionData($exception));
+        } else {
+            $this->logger->critical($exception->getMessage(), $this->getFormattedExceptionData($exception));
+        }
     }
 }

@@ -5,7 +5,10 @@ return [
         'documentation' => 'http://php.net/docs.php',
         'links' => [
             'Awesome PHP' => 'https://github.com/ziadoz/awesome-php',
-            'PHP The Right Way' => 'http://www.phptherightway.com'
+            'PHP The Right Way' => 'http://www.phptherightway.com',
+            'Docker Repository' => 'https://hub.docker.com/_/php/',
+            'PHP Fig' => 'http://www.php-fig.org/',
+            'PHP Security' => 'http://phpsecurity.readthedocs.io/en/latest/index.html'
         ]
     ],
     'java' => [

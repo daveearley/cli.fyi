@@ -19,15 +19,15 @@ class CryptoComparePriceFetcher implements PriceFetchInterface
     /** @var array */
     private static $availableFiatCurrencies = [
         'USD' => '$',
+        'EUR' => '€',
+        'GBP' => '£',
         'AUD' => '$',
-        'BRL' => 'R$',
         'CAD' => '$',
+        'BRL' => 'R$',
         'CHF' => 'CHF',
         'CLP' => '$',
         'CNY' => '¥',
         'DKK' => 'kr',
-        'EUR' => '€',
-        'GBP' => '£',
         'HKD' => '$',
         'INR' => '₹',
         'ISK' => 'kr',

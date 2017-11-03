@@ -1,0 +1,143 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.terminal {
+    background-color: transparent;
+    text-align: left;
+    padding: 0;
+}
+
+.terminal code {
+    border-radius: 5px;
+    padding-left: 20px;
+}
+
+.logo {
+    color: #ffffff;
+}
+
+.custom-hero {
+    background-image: none;
+    background-color: #0b2c36d9;
+    color: #ffffff;
+}
+
+.custom-hero .navbar-item {
+    color: #ffffff;
+    font-size: .9em;
+}
+
+.custom-hero .navbar-item:hover {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #0b2c36;
+}
+.custom-hero .title, .subtitle {
+    color: #ffffff;
+}
+
+.custom-hero .title {
+    font-size: 2.5em;
+}
+
+.custom-hero .button {
+    background-color: #0b2c36;
+    color:  #ffffff;
+    border: none;
+}
+
+.main {
+    padding-top: 30px;
+}
+
+.main .menu-list li {
+    font-size: .85em;
+}
+
+.main .highlight.shell b {
+    color: #ffffff;
+}
+
+
+.main .bash {
+    color: #ffffff;
+}
+
+.main .toggle-sidebar {
+    display: block;
+    text-align: center;
+    padding: 10px;
+}
+
+.main .shell .hljs-meta {
+    color: #00b89c;
+}
+
+.main p {
+    margin: 10px 0;
+}
+
+.main h1 {
+    font-size: 1.8em;
+}
+.main h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+.main h3 {
+    font-size: 1.2em;
+}
+.main h4 {
+    font-size: 1.1em;
+}
+
+.main .codesnip {
+    background: #eaf2f5;
+    padding: 0 .25rem;
+    display: inline-block;
+    border-radius: 3px;
+    color: #072e3c;
+    font-size: calc(1rem - 2px);
+}
+
+.main code {
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.main .main-content, .main aside {
+    padding: 0 20px;
+}
+
+section.command-section {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ededed;
+}
+
+@media screen and (min-width: 1216px) {
+    .container {
+        max-width: 960px;
+        width: 960px;
+    }
+}
+
+.sidebar{
+    will-change: min-height;
+}
+
+.sidebar__inner{
+    transform: translate(0, 0);
+    transform: translate3d(0, 0, 0);
+    will-change: position, transform;
+}
+
+@media screen and (max-width: 759px) {
+    aside {
+        display: none;
+    }
+
+    .toggle-sidebar {
+        display: block;
+    }
+}

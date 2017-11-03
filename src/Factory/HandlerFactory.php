@@ -8,7 +8,7 @@ use CliFyi\Handler\DateTimeHandler;
 use CliFyi\Handler\IpAddressHandler;
 use CliFyi\Service\IpAddress\GeoIpProvider;
 use EmailValidation\EmailValidatorFactory;
-use GuzzleHttp\Client;
+use Psr\Container\ContainerInterface;
 use Psr\SimpleCache\CacheInterface;
 use CliFyi\Exception\InvalidHandlerException;
 use CliFyi\Handler\AbstractHandler;
@@ -47,17 +47,26 @@ class HandlerFactory
     /** @var CacheInterface */
     private $cache;
 
+    /** @var ContainerInterface */
+    private $container;
+
     /**
-     * HandlerFactory constructor.
-     * @param CacheInterface $cache
+     * @param ContainerInterface $container
+     *
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function __construct(CacheInterface $cache)
+    public function __construct(ContainerInterface $container)
     {
-        $this->cache = $cache;
+        $this->container = $container;
+        $this->cache = $container->get(CacheInterface::class);
     }
 
     /**
      * @param string $handlerName
+     *
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      *
      * @return AbstractHandler
      */
@@ -67,29 +76,30 @@ class HandlerFactory
             case EmailHandler::class:
                 return new EmailHandler(
                     $this->cache,
-                    new EmailDataTransformer(),
-                    new EmailValidatorFactory()
+                    $this->container->get(EmailDataTransformer::class),
+                    $this->container->get(EmailValidatorFactory::class)
                 );
             case CountryHandler::class:
-                return new CountryHandler($this->cache, new CountryDataTransformer());
+                return new CountryHandler($this->cache, $this->container->get(CountryDataTransformer::class));
             case DomainNameHandler::class:
-                return new DomainNameHandler($this->cache, new DomainNameDataTransformer());
+                return new DomainNameHandler($this->cache, $this->container->get(DomainNameDataTransformer::class));
             case MediaHandler::class:
                 return new MediaHandler(
                     $this->cache,
-                    new MediaDataTransformer(),
-                    new MediaExtractor()
+                    $this->container->get(MediaDataTransformer::class),
+                    $this->container->get(MediaExtractor::class)
                 );
             case EmojiHandler::class:
                 return new EmojiHandler($this->cache);
             case ProgrammingLanguageHandler::class:
                 return new ProgrammingLanguageHandler($this->cache);
             case CryptoCurrencyHandler::class:
-                return new CryptoCurrencyHandler($this->cache, new CryptoComparePriceFetcher(new Client()));
+                return new CryptoCurrencyHandler($this->cache, $this->container->get(CryptoComparePriceFetcher::class));
             case ClientInformationHandler::class:
-                return new ClientInformationHandler(new Parser(), new GeoIpProvider(), $this->cache);
+                return new ClientInformationHandler($this->container->get(Parser::class),
+                    $this->container->get(GeoIpProvider::class), $this->cache);
             case IpAddressHandler::class:
-                return new IpAddressHandler(new GeoIpProvider(), $this->cache);
+                return new IpAddressHandler($this->container->get(GeoIpProvider::class), $this->cache);
             case DateTimeHandler::class:
                 return new DateTimeHandler($this->cache);
         }

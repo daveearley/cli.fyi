@@ -7,8 +7,18 @@ namespace CliFyi\Handler;
 class DomainNameHandler extends AbstractHandler
 {
     private const DOMAIN_REGEX = '/^(?!\-)(?:[a-zA-Z\d\-]{0,62}[a-zA-Z\d]\.){1,126}(?!\d+)[a-zA-Z\d]{1,63}$/';
-    private const DIG_QUERY = 'dig +nocmd %s ANY +multiline +noall +answer';
+    private const DIG_QUERY = 'dig +nocmd %s %s +multiline +noall +answer';
     private const WHOIS_QUERY = 'whois %s';
+
+    private const DNS_TYPES = [
+        'DNSKEY',
+        'MX',
+        'A',
+        'AAAA',
+        'NS',
+        'SOA',
+        'TXT',
+    ];
 
     /**
      * @return string
@@ -35,10 +45,24 @@ class DomainNameHandler extends AbstractHandler
      */
     public function processSearchTerm(string $searchQuery): array
     {
-        $escapedQuery = escapeshellarg(trim($searchQuery));
-        $data['whois'] = explode(PHP_EOL, shell_exec(sprintf(self::WHOIS_QUERY, $escapedQuery)));
-        $data['dns'] =  shell_exec(sprintf(self::DIG_QUERY, $escapedQuery));
+        $data['whois'] = explode(PHP_EOL, shell_exec(sprintf(self::WHOIS_QUERY, escapeshellarg(trim($searchQuery)))));
+        $data['dns'] =  $this->fetchDnsRecords($searchQuery);
 
         return $data;
+    }
+
+    /**
+     * @param string $domain
+     *
+     * @return array
+     */
+    private function fetchDnsRecords(string $domain): array
+    {
+        $data = [];
+        foreach (self::DNS_TYPES as $dnsType) {
+            $data[] =  shell_exec(sprintf(self::DIG_QUERY, escapeshellarg(trim($domain)), $dnsType));
+        }
+
+        return explode(PHP_EOL, implode('', $data));
     }
 }

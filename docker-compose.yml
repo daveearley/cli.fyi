@@ -6,6 +6,7 @@ services:
             - "8880:80"
         volumes:
             - ./Docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./:/web
         links:
             - php
     php:

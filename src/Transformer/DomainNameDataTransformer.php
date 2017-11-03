@@ -21,8 +21,16 @@ class DomainNameDataTransformer implements TransformerInterface
             return !empty($whoisLine);
         }));
 
+        $dnsData = array_map(function ($dnsLine) {
+            return trim($dnsLine);
+        }, $data['dns']);
+
+        $dnsData = array_values(array_filter($dnsData, function ($dnsLine) {
+            return !empty($dnsLine);
+        }));
+
         return [
-            'dns' => $data['dns'],
+            'dns' => $dnsData,
             'whois' => $whoisData
         ];
     }
