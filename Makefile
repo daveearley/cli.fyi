@@ -1,7 +1,7 @@
 .PHONY:test docker-up generate-data php-cs-fix deploy
 
-test:
-	docker-compose exec php ./vendor/bin/phpunit
+phpunit:
+	docker-compose exec php ./vendor/bin/phpunit $(ARGS)
 
 docker-up:
 	docker-compose up -d --force-recreate --build

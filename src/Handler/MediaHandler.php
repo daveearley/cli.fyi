@@ -70,6 +70,6 @@ class MediaHandler extends AbstractHandler
      */
     private function setHandlerName(string $providerName): void
     {
-        $this->handlerName = ucwords($providerName) . ' Url';
+        $this->handlerName = ucwords($providerName) . ' URL';
     }
 }

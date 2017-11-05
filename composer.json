@@ -27,7 +27,9 @@
     },
     "autoload": {
         "psr-4": {
-            "CliFyi\\": "src/"        }
+            "CliFyi\\": "src/",
+            "Test\\": "tests/unit"
+        }
     },
     "license": "GPLv2",
     "authors": [

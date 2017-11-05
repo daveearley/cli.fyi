@@ -18,7 +18,7 @@ class CountryHandlerTest extends BaseHandlerTestCase
 
     public function testGetName()
     {
-        $this->assertSame('Country', $this->countryHandler->getName());
+        $this->assertSame('Country Query', $this->countryHandler->getHandlerName());
     }
 
     public function testIsEligibleCountryForValidCountry()
