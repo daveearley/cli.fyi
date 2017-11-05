@@ -82,7 +82,7 @@ class ResponseBuilder
         return $this->response->withJson(
             $this->jsonArray,
             $this->statusCode,
-            JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+            JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_LINE_TERMINATORS
         );
     }
 

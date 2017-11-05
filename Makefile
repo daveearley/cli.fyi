@@ -16,4 +16,4 @@ php-cs-fix:
 	./vendor/bin/php-cs-fixer fix --allow-risky yes --show-progress run-in
 
 deploy:
-	dep deploy
+	dep --parallel deploy
