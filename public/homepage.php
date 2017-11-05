@@ -414,7 +414,7 @@
                         </p>
 
                         <h3>Example Request</h3>
-                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>google.com</b></code></pre>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>emojis</b></code></pre>
 
                         <h3>Example Response</h3>
                         <pre class="highlight json"><code>{
