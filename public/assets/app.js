@@ -38,10 +38,7 @@ $('a').on('click', function (e) {
 
 $(function () {
     if ($(document).width() >= 960) {
-        $('aside').stickySidebar({
-            topSpacing: 60,
-            bottomSpacing: 60
-        });
+        $('aside').stickySidebar();
     }
 
     $('.toggle-sidebar').on('click', function (e) {

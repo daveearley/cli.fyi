@@ -4,11 +4,10 @@ namespace Test\Handler;
 
 use Essence\Essence;
 use Mockery;
-use PHPUnit\Framework\TestCase;
 use CliFyi\Handler\MediaHandler;
 use CliFyi\Transformer\MediaDataTransformer;
 
-class MediaHandlerTest extends TestCase
+class MediaHandlerTest extends BaseHandlerTestCase
 {
     /** @var Essence|Mockery */
     private $mediaExtractor;
@@ -21,6 +20,9 @@ class MediaHandlerTest extends TestCase
 
     protected function setUp()
     {
+        parent::setUp();
+
+
         $this->mediaExtractor = Mockery::mock(Essence::class);
         $this->mediaTransformer = Mockery::mock(MediaDataTransformer::class);
         $this->mediaHandler = new MediaHandler($this->mediaExtractor, $this->mediaTransformer);
@@ -40,9 +42,8 @@ class MediaHandlerTest extends TestCase
     {
         return [
             ['https://www.youtube.com/watch?v=bgmiLMVAG7g', true],
-            ['https://youtu.be/meCZ5hWNRFU', true],
-            []
-        ]
+            ['https://youtu.be/meCZ5hWNRFU', true]
+            ];
     }
 
 

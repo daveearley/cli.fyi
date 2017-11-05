@@ -47,14 +47,15 @@
             <div class="columns">
                 <div class="column is-two-thirds">
                     <h1 class="title is-spaced">
-                        A potentially useful, open-source & _______ command line query tool
+                        A Potentially Useful Command Line Query Tool
                     </h1>
                     <h2 class="subtitle">
-                        <b>cli.fyi</b> allows you to quickly get information about emails, IP addresses, URLs and lots more
+                        <b>cli.fyi</b> allows you to quickly get information about emails, IP addresses, URLs and lots
+                        more
                         from the command line (or Browser)
                     </h2>
                     <div class="buttons">
-                        <span class="button is-dark">Available Commands</span>
+                        <a href="#available-commands" class="button is-dark">Available Commands</a>
                     </div>
                 </div>
                 <div class="column is-one-third">
@@ -158,7 +159,8 @@
 }</code></pre>
 
                         <p>
-                            <span class="codesnip">BTC</span> can be replaced with almost any crypto currency symbol. Data is provided by
+                            <span class="codesnip">BTC</span> can be replaced with almost any crypto currency symbol.
+                            Data is provided by
                             <a href="https://www.cryptocompare.com/" target="_blank">CryptoCompare.com</a>.
                         </p>
                     </section>
@@ -433,11 +435,17 @@
 
                     </section>
                     <section class="command-section" id="about">
-                    <h2>About</h2>
+                        <h2>About</h2>
+                        <h3>Why</h3>
                         <p>
-                            Cli.fyi was developed
+                            <b>cli.fyi</b>'s goal is to create a quick an easy way to fetch information
+                            about IPs, emails, domains etc. directly from the command line. The code is
+                            fully open source with the hope of
                         </p>
-
+                        <h3>Who</h3>
+                        <p>
+                            <b>cli.fyi</b> is developed by <a href="mailto:dave+cli.fyi@earley.email">Dave Earley</a>
+                        </p>
 
                     </section>
                 </div>
@@ -445,6 +453,9 @@
         </div>
     </div>
 </div>
+<a class="toTop" href="#available-commands">
+    ^ Back To Top
+</a>
 </body>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
@@ -452,5 +463,4 @@
 <script src="/assets/vendor/zepto.min.js"></script>
 <script src="/assets/vendor/jquery.sticky-sidebar.min.js"></script>
 <script src="/assets/app.js"></script>
-
 </html>

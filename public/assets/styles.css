@@ -31,8 +31,9 @@ body {
 .custom-hero .navbar-item:hover {
     font-weight: bold;
     color: #ffffff;
-    background-color: #0b2c36;
+    background-color: transparent;
 }
+
 .custom-hero .title, .subtitle {
     color: #ffffff;
 }
@@ -43,7 +44,7 @@ body {
 
 .custom-hero .button {
     background-color: #0b2c36;
-    color:  #ffffff;
+    color: #ffffff;
     border: none;
 }
 
@@ -59,13 +60,12 @@ body {
     color: #ffffff;
 }
 
-
 .main .bash {
     color: #ffffff;
 }
 
 .main .toggle-sidebar {
-    display: block;
+    display: none;
     text-align: center;
     padding: 10px;
 }
@@ -81,13 +81,16 @@ body {
 .main h1 {
     font-size: 1.8em;
 }
+
 .main h2 {
     font-size: 1.5em;
     margin-top: 20px;
 }
+
 .main h3 {
     font-size: 1.2em;
 }
+
 .main h4 {
     font-size: 1.1em;
 }
@@ -115,6 +118,22 @@ section.command-section {
     border-bottom: 2px solid #ededed;
 }
 
+section.command-section:last-of-type {
+    border: none;
+}
+
+.toTop {
+    display: none;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    padding: 4px;
+    background-color: #0b2c3626;
+    border-radius: 4px;
+    font-size: .6em;
+    color: #000;
+}
+
 @media screen and (min-width: 1216px) {
     .container {
         max-width: 960px;
@@ -122,22 +141,27 @@ section.command-section {
     }
 }
 
-.sidebar{
-    will-change: min-height;
-}
-
-.sidebar__inner{
-    transform: translate(0, 0);
-    transform: translate3d(0, 0, 0);
-    will-change: position, transform;
-}
-
 @media screen and (max-width: 759px) {
+    .toTop {
+        display: block;
+    }
+
     aside {
         display: none;
     }
 
     .toggle-sidebar {
-        display: block;
+        display: block !important;
+    }
+
+    .sidebar .menu-label:not(:last-child), .sidebar .menu-list {
+        text-align: center;
     }
 }
+
+@media screen and (max-width: 1023px) {
+    .navbar-menu {
+        background-color: #0b2c36;
+    }
+}
+

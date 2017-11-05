@@ -2,17 +2,18 @@
 
 namespace Test\Handler;
 
-use PHPUnit\Framework\TestCase;
 use CliFyi\Handler\CountryHandler;
 
-class CountryHandlerTest extends TestCase
+class CountryHandlerTest extends BaseHandlerTestCase
 {
     /** @var CountryHandler */
     private $countryHandler;
 
     protected function setUp()
     {
-       $this->countryHandler = new CountryHandler();
+        parent::setUp();
+
+       $this->countryHandler = new CountryHandler($this->cache);
     }
 
     public function testGetName()
@@ -32,7 +33,7 @@ class CountryHandlerTest extends TestCase
 
     public function testGetData()
     {
-        $data = $this->countryHandler->getData('Ireland');
+        $data = $this->countryHandler->processSearchTerm('Ireland');
         $this->assertArrayHasKey('name', $data);
     }
 }
