@@ -27,6 +27,8 @@ return [
     CacheInterface::class => \DI\object(RedisAdapter::class),
     CryptoComparePriceFetcher::class => \DI\object()->constructor(\DI\get(HttpClient::class)),
     'errorHandler' => \DI\object(ErrorHandler::class)
-        ->constructor(\DI\get(LoggerInterface::class))
+        ->constructor(\DI\get(LoggerInterface::class), getenv('DEBUG_MODE')),
+    'phpErrorHandler' =>  \DI\object(ErrorHandler::class)
+        ->constructor(\DI\get(LoggerInterface::class), getenv('DEBUG_MODE'))
 
 ];

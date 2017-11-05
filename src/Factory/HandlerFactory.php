@@ -96,8 +96,11 @@ class HandlerFactory
             case CryptoCurrencyHandler::class:
                 return new CryptoCurrencyHandler($this->cache, $this->container->get(CryptoComparePriceFetcher::class));
             case ClientInformationHandler::class:
-                return new ClientInformationHandler($this->container->get(Parser::class),
-                    $this->container->get(GeoIpProvider::class), $this->cache);
+                return new ClientInformationHandler(
+                    $this->container->get(Parser::class),
+                    $this->container->get(GeoIpProvider::class),
+                    $this->cache
+                );
             case IpAddressHandler::class:
                 return new IpAddressHandler($this->container->get(GeoIpProvider::class), $this->cache);
             case DateTimeHandler::class:

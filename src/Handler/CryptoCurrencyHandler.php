@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CliFyi\Handler;
 
+use Prophecy\Exception\Prediction\FailedPredictionException;
 use Psr\SimpleCache\CacheInterface;
 use CliFyi\Service\CryptoCurrency\PriceFetchInterface;
 
@@ -25,6 +26,7 @@ class CryptoCurrencyHandler extends AbstractHandler
     {
         parent::__construct($cache);
 
+        throw new FailedPredictionException('fdfd');
         $this->priceFetcher = $priceFetch;
     }
 
