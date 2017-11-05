@@ -21,6 +21,12 @@ class CountryHandlerTest extends BaseHandlerTestCase
         $this->assertSame('Country Query', $this->countryHandler->getHandlerName());
     }
 
+    public function testProcessSearchTerm()
+    {
+        $data = $this->countryHandler->processSearchTerm('Ireland');
+        $this->assertSame('Ireland', $data['name']['common']);
+    }
+
     public function testIsEligibleCountryForValidCountry()
     {
         $this->assertTrue(CountryHandler::isHandlerEligible('Ireland'));
