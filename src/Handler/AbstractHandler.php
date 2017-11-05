@@ -67,13 +67,13 @@ abstract class AbstractHandler
             return $cachedValue;
         }
 
-        $data = $this->processSearchTerm($this->getSearchTerm());
+        $data = $this->cacheAndReturn($this->processSearchTerm($this->getSearchTerm()));
 
         if ($this->transformer) {
             $data = $this->transformer->transform($data);
         }
 
-        return $this->cacheAndReturn($data);
+        return $data;
     }
 
     /**
