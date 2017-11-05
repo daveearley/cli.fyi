@@ -11,7 +11,7 @@ class MediaDataTransformer implements TransformerInterface
      *
      * @return array
      */
-    public function transform($data): array
+    public function transform(array $data): array
     {
         return array_filter($data, function ($value) {
             return !empty($value);
