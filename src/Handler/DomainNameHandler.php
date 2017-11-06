@@ -60,9 +60,21 @@ class DomainNameHandler extends AbstractHandler
     {
         $data = [];
         foreach (self::DNS_TYPES as $dnsType) {
-            $data[] =  shell_exec(sprintf(self::DIG_QUERY, escapeshellarg(trim($domain)), $dnsType));
+            $data[] =  $this->replaceTabs(
+                shell_exec(sprintf(self::DIG_QUERY, escapeshellarg(trim($domain)), $dnsType))
+            );
         }
 
         return explode(PHP_EOL, implode('', $data));
+    }
+
+    /**
+     * @param string $content
+     *
+     * @return string
+     */
+    private function replaceTabs(string $content): string
+    {
+        return preg_replace('/[ ]{2,}|[\t]/', ' -- ', $content);
     }
 }
