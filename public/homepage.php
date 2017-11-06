@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cli.Fyi -  A Potentially Useful Command Line Query Tool</title>
+    <title>Cli.Fyi - A Potentially Useful Command Line Query Tool</title>
     <meta name="description" content="Quickly get information about emails, IP addresses, URLs and lots  more
     from the command line (or Browser)">
 
@@ -111,10 +111,10 @@
                         <li><a href="#ip-address">IP Address Information</a></li>
                         <li><a href="#media-information">Media/URL Information</a></li>
                         <li><a href="#client-information">Client Information</a></li>
+                        <li><a href="#domain-name-information">Domain Name Information</a></li>
                         <li><a href="#datatime-information">Date/Time Information</a></li>
                         <li><a href="#programming-lang-information">Programming Language Links</a></li>
                         <li><a href="#country-information">Country Information</a></li>
-                        <li><a href="#domain-name-information">Domain Name Information</a></li>
                         <li><a href="#popular-emojis">Popular Emojis</a></li>
                     </ul>
                     <p class="menu-label">
@@ -255,24 +255,21 @@
                     <pre class="highlight json"><code>{
     "type": "Vimeo Url",
     "data": {
-        "title": "Low Earth Orbit",
-        "description": "Orbital drone movements are theorbits...",
-        "url": "https://vimeo.com/231191863",
-        "type": "video",
-        "tags": [
-            "Drone"
-            ...
-        ],
-        "image": "https://i.vimeocdn.com/video/651947838_640.jpg",
-        "imageWidth": 640,
-        "imageHeight": 360,
-        "code": "[embed code...]",
-        "width": 640,
-        "height": 360,
-        "authorName": "Visual Suspect",
-        "authorUrl": "https://vimeo.com/vsuspect",
-        "providerName": "Vimeo",
-        "providerUrl": "https://vimeo.com/",
+        "Title": "Low Earth Orbit",
+        "Description": "Orbital drone movements are theorbits...",
+        "Url": "https://vimeo.com/231191863",
+        "Type": "video",
+        "Tags": "Drone",
+        "Image": "https://i.vimeocdn.com/video/651947838_640.jpg",
+        "Image Width": 640,
+        "Image Height": 360,
+        "Code": "[embed code...]",
+        "Width": 640,
+        "Height": 360,
+        "Author Name": "Visual Suspect",
+        "Author Url": "https://vimeo.com/vsuspect",
+        "Provider Name": "Vimeo",
+        "Provider Url": "https://vimeo.com/",
         .......
 }</code></pre>
                 </section>
@@ -292,12 +289,13 @@
     "type": "Client Query",
     "data": {
         "User Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36",
-        "IP Address": "172.23.0.1",
+        "IP Address": "109.255.10.10",
         "Browser": "Chrome Dev 62.0.3202.75",
         "Operating System": "Linux",
         "IP Address Information": {
             "Organisation": "Liberty Global Operations B.V.",
             "Country": "Ireland",
+            "City": "Dublin",
             "Continent": "Europe",
             "Latitude": "53.3472",
             "Longitude": "-6.2439"
@@ -306,10 +304,51 @@
 }</code></pre>
 
                 </section>
+                <section class="command-section" id="domain-name-information">
+                    <h2>Domain Whois / DNS information</h2>
+
+                    <p>
+                        Returns whois and DNS information for a given domain.
+                    </p>
+
+                    <h3>Example Request</h3>
+                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>github.com</b></code></pre>
+
+                    <h3>Example Response</h3>
+                    <pre class="highlight json"><code>{
+    "type": "Domain Name",
+    "data": {
+        "DNS": [
+            "github.com.  3600 IN MX 5 ALT2.ASPMX.L.GOOGLE.com.",
+            "github.com.  3600 IN MX 5 ALT1.ASPMX.L.GOOGLE.com.",
+            "github.com.  40 IN A 192.30.253.113",
+            "github.com.  40 IN A 192.30.253.112",
+            "github.com.  651 IN NS ns-520.awsdns-01.net.",
+            "github.com.  651 IN NS ns-421.awsdns-52.com.",
+            "github.com.  651 IN NS ns-1283.awsdns-32.org.",
+            "github.com.  900 IN SOA ns-1707.awsdns-21.co.uk. awsdns-hostmaster.amazon.com. (",
+            "    1          ; serial",
+            "    7200       ; refresh (2 hours)",
+            "    900        ; retry (15 minutes)",
+            "    1209600    ; expire (2 weeks)",
+            "    86400      ; minimum (1 day)",
+            "    )",
+            "github.com.  2350 IN TXT \"docusign=087098e3-3d46-47b7-9b4e-8a23028154cd\"",
+            "github.com.  2350 IN TXT \"v=spf1 ip4:192.30.252.0/22 ip4:208.74.204.0/22 ip4:46.19.168.0/23 include:_spf.google.com include:esp.github.com include:_spf.createsend.com include:mail.zendesk.com include:servers.mcsv.net ~all\""
+        ],
+        "Whois": [
+            "Domain Name: GITHUB.COM",
+            "Registry Domain ID: 1264983250_DOMAIN_COM-VRSN",
+            "Registrar WHOIS Server: whois.markmonitor.com",
+            "Registrar URL: http://www.markmonitor.com",
+          	....
+        ]
+    }
+}</code></pre>
+
+                </section>
                 <section class="command-section" id="datatime-information">
-
                     <h2>Date/Time Information</h2>
-
                     <p>
                         Returns information about the current <span class="codesnip">UTC</span> date and time.
                     </p>
@@ -371,41 +410,6 @@
 
                     <h3>Example Request</h3>
                     <pre class="highlight shell"><code>$ curl cli.fyi/<b>Ireland</b></code></pre>
-
-                    <h3>Example Response</h3>
-                    <pre class="highlight json"><code>{
-    "type": "Country Query",
-    "data": {
-        "Common Name": "Ireland",
-        "Official Name": "Republic of Ireland",
-        "Top Level Domain": ".ie",
-        "Currency": "EUR",
-        "Calling Code": "+353",
-        "CapitalCity": "Dublin",
-        "Region": "Europe",
-        "Sub Region": "Northern Europe",
-        "Latitude": 53,
-        "Longitude": -8,
-        "Demonym": "Irish",
-        "Is Landlocked?": "No",
-        "Area km²": 70273,
-        "Official Languages": [
-            "English",
-            "Irish"
-        ]
-    }
-}</code></pre>
-
-                </section>
-                <section class="command-section" id="domain-name-information">
-                    <h2>Domain Whois / DNS information</h2>
-
-                    <p>
-                        Returns whois and DNS information for a given domain.
-                    </p>
-
-                    <h3>Example Request</h3>
-                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>google.com</b></code></pre>
 
                     <h3>Example Response</h3>
                     <pre class="highlight json"><code>{
