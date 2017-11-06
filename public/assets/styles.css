@@ -10,7 +10,7 @@ body {
 
 .terminal code {
     border-radius: 5px;
-    padding-left: 20px;
+    padding: 20px;
 }
 
 .logo {
@@ -19,7 +19,7 @@ body {
 
 .custom-hero {
     background-image: none;
-    background-color: #0b2c36d9;
+    background-color: #2a4c55;
     color: #ffffff;
 }
 
