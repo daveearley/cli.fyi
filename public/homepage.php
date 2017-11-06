@@ -141,7 +141,8 @@
                 </aside>
             </div>
             <div class="column is-three-quarters">
-                <p class="main-content">
+                <div class="main-content">
+
                 <h1>Available Commands</h1>
                 <section class="command-section" id="crypto-currency-prices">
 
@@ -523,6 +524,7 @@
                         the accuracy of data provided by the service.
                     </p>
                 </section>
+                </div>
             </div>
         </div>
     </div>
