@@ -22,7 +22,7 @@ class DomainNameDataTransformer implements TransformerInterface
         }));
 
         $dnsData = array_map(function ($dnsLine) {
-            return trim($dnsLine);
+            return str_replace("\t", " ", $dnsLine);
         }, $data['dns']);
 
         $dnsData = array_values(array_filter($dnsData, function ($dnsLine) {
@@ -30,8 +30,8 @@ class DomainNameDataTransformer implements TransformerInterface
         }));
 
         return [
-            'dns' => $dnsData,
-            'whois' => $whoisData
+            'DNS' => $dnsData,
+            'Whois' => $whoisData
         ];
     }
 }
