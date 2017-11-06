@@ -63,7 +63,7 @@
                         A Potentially Useful Command Line Query Tool
                     </h1>
                     <h2 class="subtitle">
-                        <b>cli.fyi</b> allows you to quickly get information about emails, IP addresses, URLs and lots
+                        <b>cli.fyi</b> lets you to quickly retrieve information about emails, IP addresses, URLs and lots
                         more
                         from the command line (or Browser)
                     </h2>
