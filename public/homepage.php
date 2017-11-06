@@ -98,7 +98,7 @@
                     </a>
                 </div>
                 <aside class="menu sidebar">
-                    <p class="menu-label" id="available-commands">
+                    <p class="menu-label">
                         Available Commands
                     </p>
                     <ul class="menu-list">
@@ -139,7 +139,7 @@
             <div class="column is-three-quarters">
                 <div class="main-content">
 
-                    <h1>Available Commands</h1>
+                    <h1 id="available-commands">Available Commands</h1>
                     <section class="command-section" id="crypto-currency-prices">
 
                         <h2>Crypto Currency Prices</h2>
