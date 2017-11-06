@@ -21,11 +21,7 @@
     <meta name="msapplication-config" content="/assets/icons/browserconfig.xml">
     <meta name="theme-color" content="#2a4c55">
 
-    <?php
-    if (file_exists(__DIR__ . '/analytics.php')) {
-        include __DIR__ . '/analytics.php';
-    }
-    ?>
+    <?php include __DIR__ . '/analytics.php'; ?>
 </head>
 <body>
 <section class="hero is-medium custom-hero">
@@ -143,20 +139,20 @@
             <div class="column is-three-quarters">
                 <div class="main-content">
 
-                <h1>Available Commands</h1>
-                <section class="command-section" id="crypto-currency-prices">
+                    <h1>Available Commands</h1>
+                    <section class="command-section" id="crypto-currency-prices">
 
-                    <h2>Crypto Currency Prices</h2>
+                        <h2>Crypto Currency Prices</h2>
 
-                    <p>
-                        Returns the latest prices for 1000+ cryto currencies.
-                    </p>
+                        <p>
+                            Returns the latest prices for 1000+ cryto currencies.
+                        </p>
 
-                    <h3>Example Request</h3>
-                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>BTC</b></code></pre>
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>BTC</b></code></pre>
 
-                    <h3>Example Response</h3>
-                    <pre class="highlight json"><code>{
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
     "type": "Bitcoin (BTC) Prices",
     "data": {
         "USD ($)": 7299.97,
@@ -184,25 +180,25 @@
     }
 }</code></pre>
 
-                    <p>
-                        <span class="codesnip">BTC</span> can be replaced with almost any crypto currency symbol.
-                        Data is provided by
-                        <a href="https://www.cryptocompare.com/" target="_blank">CryptoCompare.com</a>.
-                    </p>
-                </section>
-                <section class="command-section" id="email-address">
+                        <p>
+                            <span class="codesnip">BTC</span> can be replaced with almost any crypto currency symbol.
+                            Data is provided by
+                            <a href="https://www.cryptocompare.com/" target="_blank">CryptoCompare.com</a>.
+                        </p>
+                    </section>
+                    <section class="command-section" id="email-address">
 
-                    <h2>Email Address Information</h2>
+                        <h2>Email Address Information</h2>
 
-                    <p>
-                        Returns information about an email address
-                    </p>
+                        <p>
+                            Returns information about an email address
+                        </p>
 
-                    <h3>Example Request</h3>
-                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>john.doe@10minutemail.com</b></code></pre>
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>john.doe@10minutemail.com</b></code></pre>
 
-                    <h3>Example Response</h3>
-                    <pre class="highlight json"><code>{
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
     "type": "Email Query",
     "data": {
         "Valid MX Records": true,
@@ -214,20 +210,20 @@
 }
 </code></pre>
 
-                </section>
-                <section class="command-section" id="ip-address">
+                    </section>
+                    <section class="command-section" id="ip-address">
 
-                    <h2>IP Address Information </h2>
+                        <h2>IP Address Information </h2>
 
-                    <p>
-                        Returns geo-location and ASN/Organisation information related to an IP address.
-                    </p>
+                        <p>
+                            Returns geo-location and ASN/Organisation information related to an IP address.
+                        </p>
 
-                    <h3>Example Request</h3>
-                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>8.8.8.8</b></code></pre>
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>8.8.8.8</b></code></pre>
 
-                    <h3>Example Response</h3>
-                    <pre class="highlight json"><code>{
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
     "type": "IP Address",
     "data": {
         "Organisation": "Google Inc.",
@@ -239,21 +235,21 @@
     }
 }</code></pre>
 
-                </section>
-                <section class="command-section" id="media-information">
+                    </section>
+                    <section class="command-section" id="media-information">
 
-                    <h2>Media/URL Information</h2>
+                        <h2>Media/URL Information</h2>
 
-                    <p>
-                        Returns detailed information about virtually any URL. Supports extracting data
-                        from oEmbed, TwitterCards, OpenGraph, LinkPulse, Sailthru Meta-data, HTML and Dublin Core.
-                    </p>
+                        <p>
+                            Returns detailed information about virtually any URL. Supports extracting data
+                            from oEmbed, TwitterCards, OpenGraph, LinkPulse, Sailthru Meta-data, HTML and Dublin Core.
+                        </p>
 
-                    <h3>Example Request</h3>
-                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>https://vimeo.com/231191863</b></code></pre>
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>https://vimeo.com/231191863</b></code></pre>
 
-                    <h3>Example Response</h3>
-                    <pre class="highlight json"><code>{
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
     "type": "Vimeo Url",
     "data": {
         "Title": "Low Earth Orbit",
@@ -273,20 +269,20 @@
         "Provider Url": "https://vimeo.com/",
         .......
 }</code></pre>
-                </section>
-                <section class="command-section" id="client-information">
+                    </section>
+                    <section class="command-section" id="client-information">
 
-                    <h2>Client Information</h2>
+                        <h2>Client Information</h2>
 
-                    <p>
-                        Returns information about the person/machine making the request.
-                    </p>
+                        <p>
+                            Returns information about the person/machine making the request.
+                        </p>
 
-                    <h3>Example Request</h3>
-                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>me</b></code></pre>
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>me</b></code></pre>
 
-                    <h3>Example Response</h3>
-                    <pre class="highlight json"><code>{
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
     "type": "Client Query",
     "data": {
         "User Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36",
@@ -304,19 +300,19 @@
     }
 }</code></pre>
 
-                </section>
-                <section class="command-section" id="domain-name-information">
-                    <h2>Domain Whois / DNS information</h2>
+                    </section>
+                    <section class="command-section" id="domain-name-information">
+                        <h2>Domain Whois / DNS information</h2>
 
-                    <p>
-                        Returns whois and DNS information for a given domain.
-                    </p>
+                        <p>
+                            Returns whois and DNS information for a given domain.
+                        </p>
 
-                    <h3>Example Request</h3>
-                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>github.com</b></code></pre>
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>github.com</b></code></pre>
 
-                    <h3>Example Response</h3>
-                    <pre class="highlight json"><code>{
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
     "type": "Domain Name",
     "data": {
         "DNS": [
@@ -347,18 +343,18 @@
     }
 }</code></pre>
 
-                </section>
-                <section class="command-section" id="datatime-information">
-                    <h2>Date/Time Information</h2>
-                    <p>
-                        Returns information about the current <span class="codesnip">UTC</span> date and time.
-                    </p>
+                    </section>
+                    <section class="command-section" id="datatime-information">
+                        <h2>Date/Time Information</h2>
+                        <p>
+                            Returns information about the current <span class="codesnip">UTC</span> date and time.
+                        </p>
 
-                    <h3>Example Request</h3>
-                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>time</b></code></pre>
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>time</b></code></pre>
 
-                    <h3>Example Response</h3>
-                    <pre class="highlight json"><code>{
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
     "type": "Date/Time Information (UTC)",
     "data": {
         "Day": "03",
@@ -375,19 +371,19 @@
     }
 }</code></pre>
 
-                </section>
-                <section class="command-section" id="programming-lang-information">
-                    <h2>Programming Language Links</h2>
+                    </section>
+                    <section class="command-section" id="programming-lang-information">
+                        <h2>Programming Language Links</h2>
 
-                    <p>
-                        Returns useful and up-to-date links for programming languages.
-                    </p>
+                        <p>
+                            Returns useful and up-to-date links for programming languages.
+                        </p>
 
-                    <h3>Example Request</h3>
-                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>PHP</b></code></pre>
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>PHP</b></code></pre>
 
-                    <h3>Example Response</h3>
-                    <pre class="highlight json"><code>{
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
     "type": "PHP Query",
     "data": {
         "documentation": "http://php.net/docs.php",
@@ -401,19 +397,19 @@
     }
 }</code></pre>
 
-                </section>
-                <section class="command-section" id="country-information">
-                    <h2>Country Information</h2>
+                    </section>
+                    <section class="command-section" id="country-information">
+                        <h2>Country Information</h2>
 
-                    <p>
-                        Returns useful information about a given country.
-                    </p>
+                        <p>
+                            Returns useful information about a given country.
+                        </p>
 
-                    <h3>Example Request</h3>
-                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>Ireland</b></code></pre>
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>Ireland</b></code></pre>
 
-                    <h3>Example Response</h3>
-                    <pre class="highlight json"><code>{
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
     "type": "Country Query",
     "data": {
         "Common Name": "Ireland",
@@ -436,19 +432,19 @@
     }
 }</code></pre>
 
-                </section>
-                <section class="command-section" id="popular-emojis">
-                    <h2>Popular Emojis</h2>
+                    </section>
+                    <section class="command-section" id="popular-emojis">
+                        <h2>Popular Emojis</h2>
 
-                    <p>
-                        Returns a selection of popular unicode emojis
-                    </p>
+                        <p>
+                            Returns a selection of popular unicode emojis
+                        </p>
 
-                    <h3>Example Request</h3>
-                    <pre class="highlight shell"><code>$ curl cli.fyi/<b>emojis</b></code></pre>
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>emojis</b></code></pre>
 
-                    <h3>Example Response</h3>
-                    <pre class="highlight json"><code>{
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
     "type": "Emoji",
     "data": {
         "Hugging face": "🤗",
@@ -463,67 +459,67 @@
     }
 }</code></pre>
 
-                </section>
-                <h1>General Information</h1>
-                <section class="command-section" id="faq">
-                    <h2>FAQ</h2>
-                    <h3>Why?</h3>
-                    <p>
-                        <b>cli.fyi</b>'s goal is to create a quick an easy way to fetch information
-                        about IPs, emails, domains etc. directly from the command line.
-                    </p>
-                    <h3>Colourised Output?</h3>
-                    <p>
-                        Unfortunately Curl currently doesn't support colourised output<sup>1</sup>.
-                        <a href="https://github.com/jakubroztocil/httpie" target="_blank">HTTPie</a>
-                        is a good alternative which does support colour output.
-                    </p>
+                    </section>
+                    <h1>General Information</h1>
+                    <section class="command-section" id="faq">
+                        <h2>FAQ</h2>
+                        <h3>Why?</h3>
+                        <p>
+                            <b>cli.fyi</b>'s goal is to create a quick an easy way to fetch information
+                            about IPs, emails, domains etc. directly from the command line.
+                        </p>
+                        <h3>Colourised Output?</h3>
+                        <p>
+                            Unfortunately Curl currently doesn't support colourised output<sup>1</sup>.
+                            <a href="https://github.com/jakubroztocil/httpie" target="_blank">HTTPie</a>
+                            is a good alternative which does support colour output.
+                        </p>
 
-                    <h3>Rate Limits?</h3>
-                    <p>
-                        There is no rate limit, however we will block any IP which is abusing the service. If you
-                        need to make a significant number of requests you can always
-                        <a target="_blank" href="https://github.com/daveearley/cli.fyi">host your own version</a>.
-                    </p>
-                    <h3>Who?</h3>
-                    <p>
-                        <b>cli.fyi</b> is developed by <a href="mailto:dave+cli.fyi@earley.email">Dave Earley</a>
-                    </p>
+                        <h3>Rate Limits?</h3>
+                        <p>
+                            There is no rate limit, however we will block any IP which is abusing the service. If you
+                            need to make a significant number of requests you can always
+                            <a target="_blank" href="https://github.com/daveearley/cli.fyi">host your own version</a>.
+                        </p>
+                        <h3>Who?</h3>
+                        <p>
+                            <b>cli.fyi</b> is developed by <a href="mailto:dave+cli.fyi@earley.email">Dave Earley</a>
+                        </p>
 
-                    <p class="is-size-7">
-                        <sup>1</sup> To the best of my knowledge, please
-                        <a href="mailto:dave+cli.fyi@earley.email">correct me</a> if I'm wrong.
-                    </p>
-                </section>
-                <section class="command-section" id="credits">
-                    <h2>Credits</h2>
-                    <p>
-                        <b>Cli.fyi</b> relies on the following services & projects for its data:
-                    </p>
-                    <p>
-                    <ul>
-                        <li>
-                            <a target="_blank" href="https://github.com/mledoze/countries">Country Data</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://www.maxmind.com/en/geoip2-isp-database">IP Data</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://github.com/oscarotero/Embed">Media/URL Data</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="http://cryptocompare.com/">Crypto Currency Data</a>
-                        </li>
-                    </ul>
-                    </p>
-                </section>
-                <section class="command-section" id="terms-of-use">
-                    <h2>Terms of Service</h2>
-                    <p>
-                        Cli.fyi is provided as-is. Cli.fyi makes no guarantees about the quality of the service or
-                        the accuracy of data provided by the service.
-                    </p>
-                </section>
+                        <p class="is-size-7">
+                            <sup>1</sup> To the best of my knowledge, please
+                            <a href="mailto:dave+cli.fyi@earley.email">correct me</a> if I'm wrong.
+                        </p>
+                    </section>
+                    <section class="command-section" id="credits">
+                        <h2>Credits</h2>
+                        <p>
+                            <b>Cli.fyi</b> relies on the following services & projects for its data:
+                        </p>
+                        <p>
+                        <ul>
+                            <li>
+                                <a target="_blank" href="https://github.com/mledoze/countries">Country Data</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://www.maxmind.com/en/geoip2-isp-database">IP Data</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://github.com/oscarotero/Embed">Media/URL Data</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="http://cryptocompare.com/">Crypto Currency Data</a>
+                            </li>
+                        </ul>
+                        </p>
+                    </section>
+                    <section class="command-section" id="terms-of-use">
+                        <h2>Terms of Service</h2>
+                        <p>
+                            Cli.fyi is provided as-is. Cli.fyi makes no guarantees about the quality of the service or
+                            the accuracy of data provided by the service.
+                        </p>
+                    </section>
                 </div>
             </div>
         </div>
