@@ -131,7 +131,7 @@ section.command-section:last-of-type {
     display: none;
     position: fixed;
     bottom: 5px;
-    right: 5px;
+    right: 10px;
     padding: 4px;
     background-color: #0b2c3626;
     border-radius: 4px;
