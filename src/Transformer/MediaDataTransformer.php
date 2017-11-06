@@ -13,8 +13,16 @@ class MediaDataTransformer implements TransformerInterface
      */
     public function transform(array $data): array
     {
-        return array_filter($data, function ($value) {
+        $data = array_filter($data, function ($value) {
             return !empty($value);
         });
+
+        unset($data['linkedData'], $data['providerIcons']);
+
+        if (isset($data['tags'])) {
+            $data['Tags'] = implode(', ', $data['tags']);
+        }
+
+        return $data;
     }
 }
