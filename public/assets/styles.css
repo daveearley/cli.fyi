@@ -114,8 +114,7 @@ body {
 }
 
 section.command-section {
-    margin-bottom: 30px;
-    border-bottom: 2px solid #ededed;
+    margin-bottom: 40px;
 }
 
 section.command-section:last-of-type {

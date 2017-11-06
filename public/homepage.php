@@ -21,7 +21,6 @@
     <meta name="msapplication-config" content="/assets/icons/browserconfig.xml">
     <meta name="theme-color" content="#2a4c55">
 
-
     <?php
     if (file_exists(__DIR__ . '/analytics.php')) {
         include __DIR__ . '/analytics.php';
@@ -48,11 +47,11 @@
                         <a href="#available-commands" class="navbar-item">
                             Available Commands
                         </a>
-                        <a class="navbar-item">
+                        <a href="#faq" class="navbar-item">
                             About
                         </a>
-                        <a class="navbar-item">
-                            Source Code
+                        <a target="_blank" href="https://github.com/daveearley/cli.fyi" class="navbar-item">
+                            GitHub
                         </a>
 
                     </div>
@@ -487,7 +486,8 @@
                     </p>
 
                     <p class="is-size-7">
-                        <sup>1</sup> To the best of my knowledge, please correct me if I'm wrong.
+                        <sup>1</sup> To the best of my knowledge, please
+                        <a href="mailto:dave+cli.fyi@earley.email">correct me</a> if I'm wrong.
                     </p>
                 </section>
                 <section class="command-section" id="credits">
@@ -510,11 +510,6 @@
                             <a target="_blank" href="http://cryptocompare.com/">Crypto Currency Data</a>
                         </li>
                     </ul>
-
-                    <p>
-                        This product includes GeoLite2 data created by MaxMind, available from
-                        <a href="http://www.maxmind.com">http://www.maxmind.com</a>.
-                    </p>
                     </p>
                 </section>
                 <section class="command-section" id="terms-of-use">
