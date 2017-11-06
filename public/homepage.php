@@ -3,12 +3,25 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cli.Fyi - Command Line Search Tool</title>
+    <title>Cli.Fyi -  A Potentially Useful Command Line Query Tool</title>
+    <meta name="description" content="Quickly get information about emails, IP addresses, URLs and lots  more
+    from the command line (or Browser)">
 
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="/assets/vendor/bulma.min.css">
     <link rel="stylesheet" href="/assets/vendor/highlightjs.theme.css">
     <link rel="stylesheet" href="/assets/styles.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/icons/manifest.json">
+    <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#2a4c55">
+    <link rel="shortcut icon" href="/assets/icons/favicon.ico">
+    <meta name="msapplication-config" content="/assets/icons/browserconfig.xml">
+    <meta name="theme-color" content="#2a4c55">
+
+
     <?php
     if (file_exists(__DIR__ . '/analytics.php')) {
         include __DIR__ . '/analytics.php';
@@ -22,7 +35,7 @@
             <div class="container">
                 <div class="navbar-brand">
                     <a class="navbar-item logo" href="../">
-                        $ cli.fyi/...
+                        <img src="/assets/logo.png" alt="Cli.fyi"/>
                     </a>
                     <span class="navbar-burger burger" data-target="navbarMenu">
                         <span></span>
@@ -111,9 +124,21 @@
                     <ul class="menu-list">
                         <li><a href="#faq">FAQ</a></li>
                         <li><a href="#credits">Credits</a></li>
-                        <li><a href="https://github.com/daveearley/cli.fyi">GitHub</a></li>
+                        <li><a target="_blank" href="https://github.com/daveearley/cli.fyi">GitHub</a></li>
                     </ul>
+                    <div class="sharing-buttons">
+                        <!-- AddToAny BEGIN -->
+                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                            <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                            <a class="a2a_button_twitter"></a>
+                            <a class="a2a_button_facebook"></a>
+                            <a class="a2a_button_reddit"></a>
+                            <a class="a2a_button_hacker_news"></a>
+                        </div>
+                        <script async src="https://static.addtoany.com/menu/page.js"></script>
+                        <!-- AddToAny END -->
 
+                    </div>
                 </aside>
             </div>
             <div class="column is-three-quarters">

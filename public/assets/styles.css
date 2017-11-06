@@ -122,6 +122,12 @@ section.command-section:last-of-type {
     border: none;
 }
 
+.sharing-buttons {
+    margin-top: 15px;
+    zoom: 0.8;
+    overflow: hidden;
+}
+
 .toTop {
     display: none;
     position: fixed;
