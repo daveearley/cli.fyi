@@ -11,6 +11,6 @@ if ($googleAnalyticsId = getenv('GOOGLE_ANALYTICS_ID')) { ?>
 
         gtag('js', new Date());
 
-        gtag('config', <?=$googleAnalyticsId?>);
+        gtag('config', '<?=$googleAnalyticsId?>');
     </script>
 <?php } ?>
