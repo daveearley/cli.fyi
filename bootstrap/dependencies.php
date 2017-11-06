@@ -21,7 +21,7 @@ return [
     },
     LoggerInterface::class => function () {
         return (new Logger('Cli.Fyi Log'))
-            ->pushHandler(new RotatingFileHandler(__DIR__ . '/../logs/logs.log', 30, Logger::DEBUG));
+            ->pushHandler(new RotatingFileHandler(__DIR__ . '/../logs/logs.log', 30, Logger::INFO));
     },
     RedisAdapter::class => \DI\object(RedisAdapter::class)->constructor(\DI\get(Client::class)),
     CacheInterface::class => \DI\object(RedisAdapter::class),
