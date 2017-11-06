@@ -7,7 +7,7 @@ use Psr\SimpleCache\CacheInterface;
 
 class DateTimeHandler extends AbstractHandler
 {
-    private const KEYWORDS = [
+    const KEYWORDS = [
       'time',
       'date',
       'datetime'

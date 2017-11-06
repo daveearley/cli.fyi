@@ -33,7 +33,7 @@ class EmailHandler extends AbstractHandler
      */
     public function getHandlerName(): string
     {
-        return 'Email Query';
+        return 'Email Address Query';
     }
 
     /**

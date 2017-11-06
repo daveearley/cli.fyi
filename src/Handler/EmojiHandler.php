@@ -18,7 +18,7 @@ class EmojiHandler extends AbstractHandler
      */
     public function getHandlerName(): string
     {
-        return 'Emoji';
+        return 'Popular Emojis';
     }
 
     /**
