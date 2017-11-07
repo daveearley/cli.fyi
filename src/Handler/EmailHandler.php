@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CliFyi\Handler;
 
+use CliFyi\Transformer\TransformerInterface;
 use EmailValidation\EmailValidatorFactory as EmailDataExtractor;
 use Psr\SimpleCache\CacheInterface;
-use CliFyi\Transformer\TransformerInterface;
 
 class EmailHandler extends AbstractHandler
 {

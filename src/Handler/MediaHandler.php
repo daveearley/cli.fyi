@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CliFyi\Handler;
 
-use Psr\SimpleCache\CacheInterface;
 use CliFyi\Service\Media\MediaExtractorInterface;
 use CliFyi\Transformer\TransformerInterface;
+use Psr\SimpleCache\CacheInterface;
 
 class MediaHandler extends AbstractHandler
 {

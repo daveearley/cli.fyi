@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace CliFyi\Controller;
 
-use CliFyi\Exception\NoAvailableHandlerException;
-use CliFyi\Exception\ErrorParsingQueryException;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use CliFyi\Builder\ResponseBuilder;
+use CliFyi\Exception\ErrorParsingQueryException;
+use CliFyi\Exception\NoAvailableHandlerException;
 use CliFyi\Factory\HandlerFactory;
 use CliFyi\Handler\AbstractHandler;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 

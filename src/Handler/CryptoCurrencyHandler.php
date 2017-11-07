@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CliFyi\Handler;
 
-use Psr\SimpleCache\CacheInterface;
 use CliFyi\Service\CryptoCurrency\PriceFetchInterface;
+use Psr\SimpleCache\CacheInterface;
 
 class CryptoCurrencyHandler extends AbstractHandler
 {

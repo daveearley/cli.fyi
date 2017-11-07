@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CliFyi\Handler;
 
+use CliFyi\Transformer\TransformerInterface;
 use Psr\SimpleCache\CacheInterface;
 use Psr\SimpleCache\InvalidArgumentException;
-use CliFyi\Transformer\TransformerInterface;
 
 abstract class AbstractHandler
 {

@@ -4,30 +4,30 @@ declare(strict_types=1);
 
 namespace CliFyi\Factory;
 
-use CliFyi\Handler\DateTimeHandler;
-use CliFyi\Handler\IpAddressHandler;
-use CliFyi\Service\Client\ClientParser;
-use CliFyi\Service\DomainName\DomainNameServiceProvider;
-use CliFyi\Service\IpAddress\GeoIpProvider;
-use EmailValidation\EmailValidatorFactory;
-use Psr\Container\ContainerInterface;
-use Psr\SimpleCache\CacheInterface;
 use CliFyi\Exception\InvalidHandlerException;
 use CliFyi\Handler\AbstractHandler;
+use CliFyi\Handler\ClientInformationHandler;
 use CliFyi\Handler\CountryHandler;
 use CliFyi\Handler\CryptoCurrencyHandler;
-use CliFyi\Handler\ClientInformationHandler;
+use CliFyi\Handler\DateTimeHandler;
 use CliFyi\Handler\DomainNameHandler;
 use CliFyi\Handler\EmailHandler;
 use CliFyi\Handler\EmojiHandler;
+use CliFyi\Handler\IpAddressHandler;
 use CliFyi\Handler\MediaHandler;
 use CliFyi\Handler\ProgrammingLanguageHandler;
+use CliFyi\Service\Client\ClientParser;
 use CliFyi\Service\CryptoCurrency\CryptoComparePriceFetcher;
+use CliFyi\Service\DomainName\DomainNameServiceProvider;
+use CliFyi\Service\IpAddress\GeoIpProvider;
 use CliFyi\Service\Media\MediaExtractor;
 use CliFyi\Transformer\CountryDataTransformer;
 use CliFyi\Transformer\DomainNameDataTransformer;
 use CliFyi\Transformer\EmailDataTransformer;
 use CliFyi\Transformer\MediaDataTransformer;
+use EmailValidation\EmailValidatorFactory;
+use Psr\Container\ContainerInterface;
+use Psr\SimpleCache\CacheInterface;
 
 class HandlerFactory
 {

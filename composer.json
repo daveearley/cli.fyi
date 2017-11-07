@@ -1,6 +1,6 @@
 {
-    "name": "daveearley/what",
-    "description": "TBD",
+    "name": "daveearley/cli.fyi",
+    "description": "A Potentially Useful Command Line Query Tool",
     "type": "project",
     "require": {
         "slim/slim": "^3.8",
@@ -33,7 +33,7 @@
             "Test\\": "tests/unit"
         }
     },
-    "license": "GPLv2",
+    "license": "MIT",
     "authors": [
         {
             "name": "Dave Earley",
