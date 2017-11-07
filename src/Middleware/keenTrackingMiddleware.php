@@ -44,8 +44,8 @@ class keenTrackingMiddleware
                 'query',
                 [
                     'term' => ltrim($request->getRequestTarget(), '/'),
-                    'user_agent' => $_SERVER['HTTP_USER_AGENT'],
-                    'ip' => $_SERVER['REMOTE_ADDR']
+                    'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?: 'Unknown',
+                    'ip' => $_SERVER['REMOTE_ADDR'] ?: 'Unknown'
                 ]
             );
         }
