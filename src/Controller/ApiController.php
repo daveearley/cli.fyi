@@ -16,7 +16,7 @@ use Throwable;
 
 class ApiController
 {
-    const UNABLE_TO_PARSE_MESSAGE = '😢 Sorry, we don\'t know how to parse \'%s\' at this time';
+    const UNABLE_TO_PARSE_MESSAGE = 'Sorry, we don\'t know how to parse \'%s\' at this time';
     const ERROR_WHILE_PARSING_MESSAGE = 'Sorry, we encountered an error while parsing \'%s\'';
 
     /** @var string */
