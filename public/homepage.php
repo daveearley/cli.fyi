@@ -492,12 +492,12 @@
                         </p>
                         <h3>Who?</h3>
                         <p>
-                            <b>cli.fyi</b> is developed by <a href="mailto:dave+cli.fyi@earley.email">Dave Earley</a>
+                            <b>cli.fyi</b> is developed by <a href="mailto:dave@earley.email">Dave Earley</a>
                         </p>
 
                         <p class="is-size-7">
                             <sup>1</sup> To the best of my knowledge, please
-                            <a href="mailto:dave+cli.fyi@earley.email">correct me</a> if I'm wrong.
+                            <a href="mailto:dave@earley.email">correct me</a> if I'm wrong.
                         </p>
                     </section>
                     <section class="command-section" id="credits">
