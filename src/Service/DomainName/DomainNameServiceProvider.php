@@ -31,7 +31,8 @@ class DomainNameServiceProvider implements DomainNameServiceProviderInterface
             }
         }
 
-        return explode(PHP_EOL, implode('', $data));    }
+        return explode(PHP_EOL, implode('', $data));
+    }
 
     /**
      * @param string $hostName

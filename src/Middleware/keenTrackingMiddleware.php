@@ -40,7 +40,9 @@ class keenTrackingMiddleware
                 'writeKey' => getenv('KEEN_WRITE_ID')
             ]);
 
-            $client->addEvent('query', [
+            $client->addEvent(
+                'query',
+                [
                     'term' => ltrim($request->getRequestTarget(), '/'),
                     'user_agent' => $_SERVER['HTTP_USER_AGENT'],
                     'ip' => $_SERVER['REMOTE_ADDR']
