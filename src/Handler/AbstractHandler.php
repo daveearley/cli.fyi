@@ -131,7 +131,7 @@ abstract class AbstractHandler
     }
 
     /**
-     * @param $data
+     * @param array $data
      *
      * @throws InvalidArgumentException
      *
