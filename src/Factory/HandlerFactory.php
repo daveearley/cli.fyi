@@ -6,6 +6,8 @@ namespace CliFyi\Factory;
 
 use CliFyi\Handler\DateTimeHandler;
 use CliFyi\Handler\IpAddressHandler;
+use CliFyi\Service\DomainName\DomainNameServiceProvider;
+use CliFyi\Service\DomainName\DomainNameServiceProviderInterface;
 use CliFyi\Service\IpAddress\GeoIpProvider;
 use EmailValidation\EmailValidatorFactory;
 use Psr\Container\ContainerInterface;
@@ -82,7 +84,11 @@ class HandlerFactory
             case CountryHandler::class:
                 return new CountryHandler($this->cache, $this->container->get(CountryDataTransformer::class));
             case DomainNameHandler::class:
-                return new DomainNameHandler($this->cache, $this->container->get(DomainNameDataTransformer::class));
+                return new DomainNameHandler(
+                    $this->container->get(DomainNameServiceProvider::class),
+                    $this->cache,
+                    $this->container->get(DomainNameDataTransformer::class)
+                );
             case MediaHandler::class:
                 return new MediaHandler(
                     $this->cache,

@@ -30,5 +30,4 @@ return [
         ->constructor(\DI\get(LoggerInterface::class), getenv('DEBUG_MODE')),
     'phpErrorHandler' =>  \DI\object(ErrorHandler::class)
         ->constructor(\DI\get(LoggerInterface::class), getenv('DEBUG_MODE'))
-
 ];

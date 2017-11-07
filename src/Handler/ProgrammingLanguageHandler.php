@@ -8,7 +8,7 @@ class ProgrammingLanguageHandler extends AbstractHandler
 {
     const PROGRAMMING_LANGUAGE_DATA_LOCATION = __DIR__ . '/../../data/programming_language_data.php';
 
-    private $handlerName = 'Programming Language';
+    private $handlerName = 'Programming Language Links';
 
     /**
      * @return string

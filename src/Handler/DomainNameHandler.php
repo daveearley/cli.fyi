@@ -4,28 +4,38 @@ declare(strict_types=1);
 
 namespace CliFyi\Handler;
 
+use CliFyi\Service\DomainName\DomainNameServiceProviderInterface;
+use CliFyi\Transformer\TransformerInterface;
+use Psr\SimpleCache\CacheInterface;
+
 class DomainNameHandler extends AbstractHandler
 {
     private const DOMAIN_REGEX = '/^(?!\-)(?:[a-zA-Z\d\-]{0,62}[a-zA-Z\d]\.){1,126}(?!\d+)[a-zA-Z\d]{1,63}$/';
-    private const DIG_QUERY = 'dig +nocmd %s %s +multiline +noall +answer';
-    private const WHOIS_QUERY = 'whois %s';
 
-    private const DNS_TYPES = [
-        'DNSKEY',
-        'MX',
-        'A',
-        'AAAA',
-        'NS',
-        'SOA',
-        'TXT',
-    ];
+    /** @var DomainNameServiceProviderInterface */
+    private $domainNameServiceProvider;
+
+    /**
+     * @param DomainNameServiceProviderInterface $domainNameServiceProvider
+     * @param CacheInterface $cache
+     * @param TransformerInterface $transformer
+     */
+    public function __construct(
+        DomainNameServiceProviderInterface $domainNameServiceProvider,
+        CacheInterface $cache,
+        TransformerInterface $transformer
+    ) {
+        parent::__construct($cache, $transformer);
+
+        $this->domainNameServiceProvider = $domainNameServiceProvider;
+    }
 
     /**
      * @return string
      */
     public function getHandlerName(): string
     {
-        return 'Domain Name';
+        return 'Domain Name Information';
     }
 
     /**
@@ -45,24 +55,9 @@ class DomainNameHandler extends AbstractHandler
      */
     public function processSearchTerm(string $searchQuery): array
     {
-        $data['whois'] = explode(PHP_EOL, shell_exec(sprintf(self::WHOIS_QUERY, escapeshellarg(trim($searchQuery)))));
-        $data['dns'] =  $this->fetchDnsRecords($searchQuery);
+        $data['whois'] = $this->domainNameServiceProvider->getWhoisData($searchQuery);
+        $data['dns'] =  $this->domainNameServiceProvider->getDnsData($searchQuery);
 
         return $data;
-    }
-
-    /**
-     * @param string $domain
-     *
-     * @return array
-     */
-    private function fetchDnsRecords(string $domain): array
-    {
-        $data = [];
-        foreach (self::DNS_TYPES as $dnsType) {
-            $data[] =  shell_exec(sprintf(self::DIG_QUERY, escapeshellarg(trim($domain)), $dnsType));
-        }
-
-        return explode(PHP_EOL, implode('', $data));
     }
 }
