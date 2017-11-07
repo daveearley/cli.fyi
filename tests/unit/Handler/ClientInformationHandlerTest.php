@@ -26,8 +26,11 @@ class ClientInformationHandlerTest extends BaseHandlerTestCase
 
         $this->clientParser = Mockery::mock(ClientParserInterface::class);
         $this->ipInfoService = Mockery::mock(IpAddressInfoProviderInterface::class);
-        $this->clientInfoHandler = new ClientInformationHandler($this->clientParser, $this->ipInfoService,
-            $this->cache);
+        $this->clientInfoHandler = new ClientInformationHandler(
+            $this->clientParser,
+            $this->ipInfoService,
+            $this->cache
+        );
     }
 
     public function testGetHandlerName()

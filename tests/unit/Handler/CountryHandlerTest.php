@@ -13,7 +13,7 @@ class CountryHandlerTest extends BaseHandlerTestCase
     {
         parent::setUp();
 
-       $this->countryHandler = new CountryHandler($this->cache);
+        $this->countryHandler = new CountryHandler($this->cache);
     }
 
     public function testGetName()

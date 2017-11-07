@@ -39,7 +39,6 @@ class HandlerFactoryTest extends TestCase
 
         $this->container = Mockery::mock(ContainerInterface::class);
         $this->handlerFactory = new HandlerFactory($this->container);
-
     }
 
     /**
@@ -53,7 +52,6 @@ class HandlerFactoryTest extends TestCase
      */
     public function testCreate($objectName, $expectedArguments)
     {
-
         foreach ($expectedArguments as $expectedArgument) {
             $mock = Mockery::mock($expectedArgument);
             $this->container

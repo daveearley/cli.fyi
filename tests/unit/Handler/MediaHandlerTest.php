@@ -2,10 +2,10 @@
 
 namespace Test\Handler;
 
-use CliFyi\Service\Media\MediaExtractorInterface;
-use Mockery;
 use CliFyi\Handler\MediaHandler;
+use CliFyi\Service\Media\MediaExtractorInterface;
 use CliFyi\Transformer\MediaDataTransformer;
+use Mockery;
 
 class MediaHandlerTest extends BaseHandlerTestCase
 {
