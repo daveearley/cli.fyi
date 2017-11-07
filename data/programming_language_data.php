@@ -21,14 +21,13 @@ return [
             'Useful Links' => 'https://github.com/Vedenin/useful-java-links'
         ]
     ],
-    'c++' => [],
-    'ruby' => [],
-    'javascript' => [],
-    'hack' => [],
-    'css' => [],
-    'c#' => [
-        'documentation' => [
-            'd'
+    'javascript' => [
+        'links' => [
+            'Mozilla JS Reference' => 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+            'React' => [
+                'Documentation' => 'https://reactjs.org/docs/hello-world.html',
+                'React patterns, tips & tricks' => 'https://github.com/vasanthk/react-bits'
+            ]
         ]
-    ]
+    ],
 ];

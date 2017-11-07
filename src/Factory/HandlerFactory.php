@@ -28,7 +28,6 @@ use CliFyi\Transformer\CountryDataTransformer;
 use CliFyi\Transformer\DomainNameDataTransformer;
 use CliFyi\Transformer\EmailDataTransformer;
 use CliFyi\Transformer\MediaDataTransformer;
-use WhichBrowser\Parser;
 
 class HandlerFactory
 {

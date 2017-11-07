@@ -2,7 +2,6 @@
 
 namespace CliFyi\Handler;
 
-use CliFyi\Transformer\TransformerInterface;
 use Psr\SimpleCache\CacheInterface;
 
 class DateTimeHandler extends AbstractHandler
