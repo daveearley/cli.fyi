@@ -145,7 +145,7 @@
                         <h2>Crypto Currency Prices</h2>
 
                         <p>
-                            Returns the latest prices for 1000+ cryto currencies.
+                            Returns the latest prices for 1000+ crypto currencies.
                         </p>
 
                         <h3>Example Request</h3>
@@ -191,7 +191,7 @@
                         <h2>Email Address Information</h2>
 
                         <p>
-                            Returns information about an email address
+                            Returns information about an email address.
                         </p>
 
                         <h3>Example Request</h3>
@@ -213,7 +213,7 @@
                     </section>
                     <section class="command-section" id="ip-address">
 
-                        <h2>IP Address Information </h2>
+                        <h2>IP Address Information</h2>
 
                         <p>
                             Returns geo-location and ASN/Organisation information related to an IP address.
@@ -379,6 +379,11 @@
                             Returns useful and up-to-date links for programming languages.
                         </p>
 
+                        <p>
+                            <span class="codesnip">PHP</span>, <span class="codesnip">Javascript</span> &amp;
+                            <span class="codesnip">Java</span> currently supported.
+                        </p>
+
                         <h3>Example Request</h3>
                         <pre class="highlight shell"><code>$ curl cli.fyi/<b>PHP</b></code></pre>
 
@@ -437,7 +442,7 @@
                         <h2>Popular Emojis</h2>
 
                         <p>
-                            Returns a selection of popular unicode emojis
+                            Returns a selection of popular unicode emojis.
                         </p>
 
                         <h3>Example Request</h3>
@@ -475,9 +480,13 @@
                             is a good alternative which does support colour output.
                         </p>
 
+                        <p>The <a href="https://github.com/callumlocke/json-formatter" target="_blank">JSON-Formatter</a>
+                        Chrome extension is a good solution for in-browser JSON formatting.
+                        </p>
+
                         <h3>Rate Limits?</h3>
                         <p>
-                            There is no rate limit, however we will block any IP which is abusing the service. If you
+                            There are no rate limits, however we will block any IP which is abusing the service. If you
                             need to make a significant number of requests you can always
                             <a target="_blank" href="https://github.com/daveearley/cli.fyi">host your own version</a>.
                         </p>
