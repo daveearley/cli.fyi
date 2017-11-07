@@ -25,7 +25,7 @@ class ProgrammingLanguageHandler extends AbstractHandler
      */
     public static function isHandlerEligible(string $searchQuery): bool
     {
-        return isset(self::getProgrammingLanguageData()[trim($searchQuery)]);
+        return isset(self::getProgrammingLanguageData()[trim(strtolower($searchQuery))]);
     }
 
     /**
@@ -37,7 +37,7 @@ class ProgrammingLanguageHandler extends AbstractHandler
     {
         $this->handlerName = strtoupper($searchQuery) . ' Query';
 
-        return self::getProgrammingLanguageData()[trim($searchQuery)];
+        return self::getProgrammingLanguageData()[trim(strtolower($searchQuery))];
     }
 
     /**
