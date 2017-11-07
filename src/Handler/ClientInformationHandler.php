@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CliFyi\Handler;
 
+use CliFyi\Service\Client\ClientParserInterface;
 use CliFyi\Service\IpAddress\IpAddressInfoProviderInterface;
 use Psr\SimpleCache\CacheInterface;
-use WhichBrowser\Parser;
 
 class ClientInformationHandler extends AbstractHandler
 {
@@ -18,22 +18,22 @@ class ClientInformationHandler extends AbstractHandler
     /** @var IpAddressInfoProviderInterface */
     private $ipInfoService;
 
-    /** @var Parser */
-    private $userAgentParser;
+    /** @var ClientParserInterface */
+    private $clientParser;
 
     /**
-     * @param Parser $userAgentParser
+     * @param ClientParserInterface $clientParser
      * @param IpAddressInfoProviderInterface $ipAddressInfoProvider
      * @param CacheInterface $cache
      */
     public function __construct(
-        Parser $userAgentParser,
+        ClientParserInterface $clientParser,
         IpAddressInfoProviderInterface $ipAddressInfoProvider,
         CacheInterface $cache
     ) {
         parent::__construct($cache);
 
-        $this->userAgentParser = $userAgentParser;
+        $this->clientParser = $clientParser;
         $this->ipInfoService = $ipAddressInfoProvider;
 
         $this->disableCache();
@@ -44,7 +44,7 @@ class ClientInformationHandler extends AbstractHandler
      */
     public function getHandlerName(): string
     {
-        return 'Client Query';
+        return 'Client Information Query';
     }
 
     /**
@@ -64,13 +64,11 @@ class ClientInformationHandler extends AbstractHandler
      */
     public function processSearchTerm(string $searchTerm): array
     {
-        $this->userAgentParser->analyse($_SERVER['HTTP_USER_AGENT']);
-
         $data = [
-            'User Agent' => $_SERVER['HTTP_USER_AGENT'],
-            'IP Address' => $_SERVER['REMOTE_ADDR'],
-            'Browser' => $this->userAgentParser->browser->toString(),
-            'Operating System' => $this->userAgentParser->os->toString()
+            'User Agent' => $this->clientParser->getUserAgent(),
+            'IP Address' => $this->clientParser->getIpAddress(),
+            'Browser' => $this->clientParser->getBrowserName(),
+            'Operating System' => $this->clientParser->getOperatingSystemName()
         ];
 
         if ($ipInfo = $this->getIpInfo()) {
@@ -85,7 +83,7 @@ class ClientInformationHandler extends AbstractHandler
      */
     private function getIpInfo(): ?array
     {
-        $this->ipInfoService->setIpAddress($_SERVER['REMOTE_ADDR']);
+        $this->ipInfoService->setIpAddress($this->clientParser->getIpAddress());
 
         return array_filter([
             'Organisation' => $this->ipInfoService->getOrganisation(),

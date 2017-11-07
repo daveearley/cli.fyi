@@ -14,6 +14,7 @@ services:
         volumes:
           - ./:/web
         working_dir: /web
+
     redis:
         restart: always
         image: redis:latest

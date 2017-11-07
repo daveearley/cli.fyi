@@ -9,6 +9,8 @@ use Psr\SimpleCache\CacheInterface;
 
 class IpAddressHandler extends AbstractHandler
 {
+    const IP_VALIDATION_FLAGS = FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6;
+
     /** @var IpAddressInfoProviderInterface */
     private $ipInfoService;
 
@@ -32,7 +34,7 @@ class IpAddressHandler extends AbstractHandler
      */
     public static function isHandlerEligible(string $ipAddress): bool
     {
-        return filter_var($ipAddress, FILTER_VALIDATE_IP) !== false;
+        return filter_var($ipAddress, FILTER_VALIDATE_IP, self::IP_VALIDATION_FLAGS) !== false;
     }
 
     /**

@@ -6,8 +6,8 @@ namespace CliFyi\Factory;
 
 use CliFyi\Handler\DateTimeHandler;
 use CliFyi\Handler\IpAddressHandler;
+use CliFyi\Service\Client\ClientParser;
 use CliFyi\Service\DomainName\DomainNameServiceProvider;
-use CliFyi\Service\DomainName\DomainNameServiceProviderInterface;
 use CliFyi\Service\IpAddress\GeoIpProvider;
 use EmailValidation\EmailValidatorFactory;
 use Psr\Container\ContainerInterface;
@@ -46,9 +46,6 @@ class HandlerFactory
         IpAddressHandler::class
     ];
 
-    /** @var CacheInterface */
-    private $cache;
-
     /** @var ContainerInterface */
     private $container;
 
@@ -61,7 +58,6 @@ class HandlerFactory
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->cache = $container->get(CacheInterface::class);
     }
 
     /**
@@ -77,43 +73,52 @@ class HandlerFactory
         switch ($handlerName) {
             case EmailHandler::class:
                 return new EmailHandler(
-                    $this->cache,
+                    $this->container->get(CacheInterface::class),
                     $this->container->get(EmailDataTransformer::class),
                     $this->container->get(EmailValidatorFactory::class)
                 );
             case CountryHandler::class:
-                return new CountryHandler($this->cache, $this->container->get(CountryDataTransformer::class));
+                return new CountryHandler(
+                    $this->container->get(CacheInterface::class),
+                    $this->container->get(CountryDataTransformer::class)
+                );
             case DomainNameHandler::class:
                 return new DomainNameHandler(
                     $this->container->get(DomainNameServiceProvider::class),
-                    $this->cache,
+                    $this->container->get(CacheInterface::class),
                     $this->container->get(DomainNameDataTransformer::class)
                 );
             case MediaHandler::class:
                 return new MediaHandler(
-                    $this->cache,
+                    $this->container->get(CacheInterface::class),
                     $this->container->get(MediaDataTransformer::class),
                     $this->container->get(MediaExtractor::class)
                 );
             case EmojiHandler::class:
-                return new EmojiHandler($this->cache);
+                return new EmojiHandler($this->container->get(CacheInterface::class));
             case ProgrammingLanguageHandler::class:
-                return new ProgrammingLanguageHandler($this->cache);
+                return new ProgrammingLanguageHandler($this->container->get(CacheInterface::class));
             case CryptoCurrencyHandler::class:
-                return new CryptoCurrencyHandler($this->cache, $this->container->get(CryptoComparePriceFetcher::class));
+                return new CryptoCurrencyHandler(
+                    $this->container->get(CacheInterface::class),
+                    $this->container->get(CryptoComparePriceFetcher::class)
+                );
             case ClientInformationHandler::class:
                 return new ClientInformationHandler(
-                    $this->container->get(Parser::class),
+                    $this->container->get(ClientParser::class),
                     $this->container->get(GeoIpProvider::class),
-                    $this->cache
+                    $this->container->get(CacheInterface::class)
                 );
             case IpAddressHandler::class:
-                return new IpAddressHandler($this->container->get(GeoIpProvider::class), $this->cache);
+                return new IpAddressHandler(
+                    $this->container->get(GeoIpProvider::class),
+                    $this->container->get(CacheInterface::class)
+                );
             case DateTimeHandler::class:
-                return new DateTimeHandler($this->cache);
+                return new DateTimeHandler($this->container->get(CacheInterface::class));
         }
 
-        throw new InvalidHandlerException(sprintf('%s is not a valid handler name'));
+        throw new InvalidHandlerException(sprintf('%s is not a valid handler name', $handlerName));
     }
 
     /**

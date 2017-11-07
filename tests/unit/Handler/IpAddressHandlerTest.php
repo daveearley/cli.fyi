@@ -65,9 +65,11 @@ class IpAddressHandlerTest extends BaseHandlerTestCase
     public function eligibleHandlerDataProvider()
     {
         return [
-            ['192.168.2.1', true],
             ['8.8.8.8', true],
+            ['109.123.1.102', true],
             ['127.0.0.1', true],
+            ['192.168.2.1', false],
+            ['10.0.0.1', false],
             ['123.2.3', false],
             ['hello.12.3.3', false],
             [12, false]

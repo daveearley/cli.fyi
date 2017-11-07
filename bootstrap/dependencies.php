@@ -6,13 +6,16 @@ use GuzzleHttp\Client as HttpClient;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 use Predis\Client;
-use Psr\Container\ContainerInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;
 use CliFyi\Cache\RedisAdapter;
 
 return [
-    Client::class => function (ContainerInterface $container) {
+    RequestInterface::class => \DI\get('request'),
+    ResponseInterface::class => \DI\get('response'),
+    Client::class => function () {
         return new Client([
             'scheme' => 'tcp',
             'host' => getenv('REDIS_HOST'),
