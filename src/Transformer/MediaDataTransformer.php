@@ -17,11 +17,12 @@ class MediaDataTransformer implements TransformerInterface
             return !empty($value);
         });
 
-        unset($data['linkedData'], $data['providerIcons']);
 
         if (isset($data['tags'])) {
-            $data['Tags'] = implode(', ', $data['tags']);
+            $data['tags'] = implode(', ', $data['tags']);
         }
+
+        unset($data['linkedData'], $data['providerIcons']);
 
         return $data;
     }
