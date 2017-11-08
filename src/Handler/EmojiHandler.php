@@ -39,15 +39,15 @@ class EmojiHandler extends AbstractHandler
     public function processSearchTerm(string $searchQuery): array
     {
         return [
-            'Hugging face' => '🤗',
-            'Tears of joy' => '😂',
-            'Grinning Face' => '😀',
-            'ROFL' => '🤣',
-            'Smiling' => '😊',
-            'Tongue out' => '😋',
-            'Kissing Face' => '😘',
-            'Thinking' => '🤔',
-            'Neutral Face' => '😐'
+            'huggingFace' => '🤗',
+            'tearsOfJoy' => '😂',
+            'grinningFace' => '😀',
+            'rofl' => '🤣',
+            'smiling' => '😊',
+            'tongueOut' => '😋',
+            'kissingFace' => '😘',
+            'thinking' => '🤔',
+            'neutralFace' => '😐'
         ];
     }
 }

@@ -207,11 +207,11 @@
                         <pre class="highlight json"><code>{
     "type": "Email Query",
     "data": {
-        "Valid MX Records": true,
-        "Free Provider": false,
-        "Disposable Email": true,
-        "Business/Role Email": false,
-        "Valid Host": true
+        "validMxRecords": true,
+        "freeProvider": false,
+        "disposableEmail": true,
+        "businessOrRoleEmail": false,
+        "validHost": true
     }
 }
 </code></pre>
@@ -232,12 +232,12 @@
                         <pre class="highlight json"><code>{
     "type": "IP Address",
     "data": {
-        "Organisation": "Google Inc.",
-        "Country": "United States",
-        "City": "Mountain View, California",
-        "Continent": "North America",
-        "Latitude": "37.751",
-        "Longitude": "-97.822"
+        "organisation": "Google Inc.",
+        "country": "United States",
+        "city": "Mountain View, California",
+        "continent": "North America",
+        "latitude": "37.751",
+        "longitude": "-97.822"
     }
 }</code></pre>
 
@@ -258,21 +258,21 @@
                         <pre class="highlight json"><code>{
     "type": "Vimeo Url",
     "data": {
-        "Title": "Low Earth Orbit",
-        "Description": "Orbital drone movements are theorbits...",
-        "Url": "https://vimeo.com/231191863",
-        "Type": "video",
-        "Tags": "Drone",
-        "Image": "https://i.vimeocdn.com/video/651947838_640.jpg",
-        "Image Width": 640,
-        "Image Height": 360,
-        "Code": "[embed code...]",
-        "Width": 640,
-        "Height": 360,
-        "Author Name": "Visual Suspect",
-        "Author Url": "https://vimeo.com/vsuspect",
-        "Provider Name": "Vimeo",
-        "Provider Url": "https://vimeo.com/",
+        "title": "Low Earth Orbit",
+        "description": "Orbital drone movements are theorbits...",
+        "url": "https://vimeo.com/231191863",
+        "type": "video",
+        "tags": "Drone",
+        "image": "https://i.vimeocdn.com/video/651947838_640.jpg",
+        "imageWidth": 640,
+        "imageHeight": 360,
+        "code": "[embed code...]",
+        "width": 640,
+        "height": 360,
+        "authorName": "Visual Suspect",
+        "authorUrl": "https://vimeo.com/vsuspect",
+        "providerName": "Vimeo",
+        "providerUrl": "https://vimeo.com/",
         .......
 }</code></pre>
                     </section>
@@ -291,17 +291,17 @@
                         <pre class="highlight json"><code>{
     "type": "Client Query",
     "data": {
-        "User Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36",
-        "IP Address": "109.255.10.10",
-        "Browser": "Chrome Dev 62.0.3202.75",
-        "Operating System": "Linux",
-        "IP Address Information": {
-            "Organisation": "Liberty Global Operations B.V.",
-            "Country": "Ireland",
-            "City": "Dublin",
-            "Continent": "Europe",
-            "Latitude": "53.3472",
-            "Longitude": "-6.2439"
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36",
+        "iPAddress": "109.255.10.10",
+        "browser": "Chrome Dev 62.0.3202.75",
+        "operatingSystem": "Linux",
+        "iPAddressInformation": {
+            "organisation": "Liberty Global Operations B.V.",
+            "country": "Ireland",
+            "city": "Dublin",
+            "continent": "Europe",
+            "latitude": "53.3472",
+            "longitude": "-6.2439"
         }
     }
 }</code></pre>
@@ -321,7 +321,7 @@
                         <pre class="highlight json"><code>{
     "type": "Domain Name",
     "data": {
-        "DNS": [
+        "dns": [
             "github.com.  3600 IN MX 5 ALT2.ASPMX.L.GOOGLE.com.",
             "github.com.  3600 IN MX 5 ALT1.ASPMX.L.GOOGLE.com.",
             "github.com.  40 IN A 192.30.253.113",
@@ -339,7 +339,7 @@
             "github.com.  2350 IN TXT \"docusign=087098e3-3d46-47b7-9b4e-8a23028154cd\"",
             "github.com.  2350 IN TXT \"v=spf1 ip4:192.30.252.0/22 ip4:208.74.204.0/22 ip4:46.19.168.0/23 include:_spf.google.com include:esp.github.com include:_spf.createsend.com include:mail.zendesk.com include:servers.mcsv.net ~all\""
         ],
-        "Whois": [
+        "whois": [
             "Domain Name: GITHUB.COM",
             "Registry Domain ID: 1264983250_DOMAIN_COM-VRSN",
             "Registrar WHOIS Server: whois.markmonitor.com",
@@ -363,17 +363,17 @@
                         <pre class="highlight json"><code>{
     "type": "Date/Time Information (UTC)",
     "data": {
-        "Day": "03",
-        "Month": "11",
-        "Year": "2017",
-        "Hour": "16",
-        "Minutes": "11",
-        "Seconds": "22",
-        "Day Name": "Friday",
-        "Month Name": "November",
-        "AM/PM": "pm",
-        "Unix Epoch": 1509728122,
-        "Formatted Date": "Fri, 03 Nov 2017 16:55:22 +0000"
+        "day": "03",
+        "month": "11",
+        "year": "2017",
+        "hour": "16",
+        "minutes": "11",
+        "seconds": "22",
+        "dayName": "Friday",
+        "MonthName": "November",
+        "amOrPm": "pm",
+        "unixEpoch": 1509728122,
+        "formattedDate": "Fri, 03 Nov 2017 16:55:22 +0000"
     }
 }</code></pre>
 
@@ -423,22 +423,20 @@
                         <pre class="highlight json"><code>{
     "type": "Country Query",
     "data": {
-        "Common Name": "United States",
-        "Official Name": "United States of America",
-        "Top Level Domain": ".us",
-        "Currency": "USD",
-        "Calling Code": "+1",
-        "CapitalCity": "Washington D.C.",
-        "Region": "Americas",
-        "Sub Region": "Northern America",
-        "Latitude": 38,
-        "Longitude": -97,
-        "Demonym": "American",
-        "Is Landlocked?": "No",
-        "Area km²": 9372610,
-        "Official Languages": [
-            "English"
-        ]
+        "commonName": "United States",
+        "officialName": "United States of America",
+        "topLevelDomain": ".us",
+        "currency": "USD",
+        "calling Code": "+1",
+        "capitalCity": "Washington D.C.",
+        "region": "Americas",
+        "subRegion": "Northern America",
+        "latitude": 38,
+        "longitude": -97,
+        "demonym": "American",
+        "isLandlocked": "No",
+        "areaKm": 9372610,
+        "officialLanguages": "English"
     }
 }</code></pre>
 
@@ -457,15 +455,15 @@
                         <pre class="highlight json"><code>{
     "type": "Emoji",
     "data": {
-        "Hugging face": "🤗",
-        "Tears of joy": "😂",
-        "Grinning Face": "😀",
-        "ROFL": "🤣",
-        "Smiling": "😊",
-        "Tongue out": "😋",
-        "Kissing Face": "😘",
-        "Thinking": "🤔",
-        "Neutral Face": "😐"
+        "huggingFace": "🤗",
+        "tearsOfJoy": "😂",
+        "grinningFace": "😀",
+        "rofl": "🤣",
+        "smiling": "😊",
+        "tongueOut": "😋",
+        "kissingFace": "😘",
+        "thinking": "🤔",
+        "neutralFace": "😐"
     }
 }</code></pre>
 

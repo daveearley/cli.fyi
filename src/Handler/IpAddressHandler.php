@@ -55,12 +55,12 @@ class IpAddressHandler extends AbstractHandler
         $this->ipInfoService->setIpAddress($searchQuery);
 
         return array_filter([
-            'Organisation' => $this->ipInfoService->getOrganisation(),
-            'Country' => $this->ipInfoService->getCountry(),
-            'City' => $this->ipInfoService->getCity(),
-            'Continent' => $this->ipInfoService->getContinent(),
-            'Latitude' => $this->ipInfoService->getLatitude(),
-            'Longitude' => $this->ipInfoService->getLongitude()
+            'organisation' => $this->ipInfoService->getOrganisation(),
+            'country' => $this->ipInfoService->getCountry(),
+            'city' => $this->ipInfoService->getCity(),
+            'continent' => $this->ipInfoService->getContinent(),
+            'latitude' => $this->ipInfoService->getLatitude(),
+            'longitude' => $this->ipInfoService->getLongitude()
         ]);
     }
 }

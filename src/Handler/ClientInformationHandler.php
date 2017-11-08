@@ -65,14 +65,14 @@ class ClientInformationHandler extends AbstractHandler
     public function processSearchTerm(string $searchTerm): array
     {
         $data = [
-            'User Agent' => $this->clientParser->getUserAgent(),
-            'IP Address' => $this->clientParser->getIpAddress(),
-            'Browser' => $this->clientParser->getBrowserName(),
-            'Operating System' => $this->clientParser->getOperatingSystemName()
+            'userAgent' => $this->clientParser->getUserAgent(),
+            'iPAddress' => $this->clientParser->getIpAddress(),
+            'browser' => $this->clientParser->getBrowserName(),
+            'operatingSystem' => $this->clientParser->getOperatingSystemName()
         ];
 
         if ($ipInfo = $this->getIpInfo()) {
-            $data['IP Address Info'] = $ipInfo;
+            $data['iPAddressInfo'] = $ipInfo;
         }
 
         return array_filter($data);
@@ -86,12 +86,12 @@ class ClientInformationHandler extends AbstractHandler
         $this->ipInfoService->setIpAddress($this->clientParser->getIpAddress());
 
         return array_filter([
-            'Organisation' => $this->ipInfoService->getOrganisation(),
-            'Country' => $this->ipInfoService->getCountry(),
-            'City' => $this->ipInfoService->getCity(),
-            'Continent' => $this->ipInfoService->getContinent(),
-            'Latitude' => $this->ipInfoService->getLatitude(),
-            'Longitude' => $this->ipInfoService->getLongitude()
+            'organisation' => $this->ipInfoService->getOrganisation(),
+            'country' => $this->ipInfoService->getCountry(),
+            'city' => $this->ipInfoService->getCity(),
+            'continent' => $this->ipInfoService->getContinent(),
+            'latitude' => $this->ipInfoService->getLatitude(),
+            'longitude' => $this->ipInfoService->getLongitude()
         ]);
     }
 }

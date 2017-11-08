@@ -37,7 +37,7 @@ class EmailHandlerTest extends BaseHandlerTestCase
     public function testProcessSearchTerms()
     {
         $expected = [
-            'Valid Email' => true
+            'validEmail' => true
         ];
 
         $emailValidator = Mockery::mock(EmailValidator::class);

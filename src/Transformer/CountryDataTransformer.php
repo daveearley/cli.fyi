@@ -14,20 +14,20 @@ class CountryDataTransformer implements TransformerInterface
     public function transform(array $data): array
     {
         return [
-            'Common Name' => $data['name']['common'],
-            'Official Name' => $data['name']['official'],
-            'Top Level Domain' => $data['tld'][0],
-            'Currency' => $data['currency'][0],
-            'Calling Code' => '+' . $data['callingCode'][0],
-            'CapitalCity' => $data['capital'],
-            'Region' => $data['region'],
-            'Sub Region' => $data['subregion'],
-            'Latitude' => $data['latlng'][0],
-            'Longitude' => $data['latlng'][1],
-            'Demonym' => $data['demonym'],
-            'Is Landlocked?' => $data['landlocked'] ? 'Yes' : 'No',
-            'Area km²' => $data['area'],
-            'Official Languages' => array_values($data['languages'])
+            'commonName' => $data['name']['common'],
+            'officialName' => $data['name']['official'],
+            'topLevelDomain' => $data['tld'][0],
+            'currency' => $data['currency'][0],
+            'callingCode' => '+' . $data['callingCode'][0],
+            'capitalCity' => $data['capital'],
+            'region' => $data['region'],
+            'subRegion' => $data['subregion'],
+            'latitude' => $data['latlng'][0],
+            'longitude' => $data['latlng'][1],
+            'demonym' => $data['demonym'],
+            'isLandlocked' => $data['landlocked'] ? 'Yes' : 'No',
+            'areaKm' => $data['area'],
+            'officialLanguages' => implode(',', array_values($data['languages']))
         ];
     }
 }

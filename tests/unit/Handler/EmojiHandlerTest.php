@@ -38,6 +38,6 @@ class EmojiHandlerTest extends BaseHandlerTestCase
     public function testProcessSearchTerm()
     {
         $data = $this->emojiHandler->processSearchTerm('emoji');
-        $this->assertArrayHasKey('ROFL', $data);
+        $this->assertArrayHasKey('rofl', $data);
     }
 }
