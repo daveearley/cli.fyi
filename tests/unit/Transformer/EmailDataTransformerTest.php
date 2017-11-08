@@ -18,11 +18,11 @@ class EmailDataTransformerTest extends TestCase
         $data['valid_host'] = true;
 
         $expected = [
-            'Valid MX Records' => $data['valid_mx_records'],
-            'Free Provider' => $data['free_email_provider'],
-            'Disposable Email' => $data['disposable_email_provider'],
-            'Business/Role Email' => $data['role_or_business_email'],
-            'Valid Host' => $data['valid_host']
+            'validMxRecords' => $data['valid_mx_records'],
+            'freeProvider' => $data['free_email_provider'],
+            'disposableEmail' => $data['disposable_email_provider'],
+            'businessOrRoleEmail' => $data['role_or_business_email'],
+            'validHost' => $data['valid_host']
         ];
 
         $actual = (new EmailDataTransformer())->transform($data);

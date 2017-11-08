@@ -48,17 +48,17 @@ class DateTimeHandler extends AbstractHandler
     public function processSearchTerm(string $searchTerm): array
     {
         return [
-            'Day' => date('d'),
-            'Month' => date('m'),
-            'Year' => date('Y'),
-            'Hour' => date('H'),
-            'Minutes' => date('i'),
-            'Seconds' => date('s'),
-            'Day Name' => date('l'),
-            'Month Name' => date('F'),
-            'AM/PM' => date('a'),
-            'Unix Epoch' => time(),
-            'Formatted Date' => date('r')
+            'day' => date('d'),
+            'month' => date('m'),
+            'year' => date('Y'),
+            'hour' => date('H'),
+            'minutes' => date('i'),
+            'seconds' => date('s'),
+            'dayName' => date('l'),
+            'monthName' => date('F'),
+            'amOrPm' => date('a'),
+            'unixEpoch' => time(),
+            'formattedDate' => date('r')
         ];
     }
 }

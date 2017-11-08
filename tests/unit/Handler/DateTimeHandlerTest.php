@@ -38,6 +38,6 @@ class DateTimeHandlerTest extends BaseHandlerTestCase
     public function testProcessSearchTerm()
     {
         $data = $this->dateTimeHandler->processSearchTerm('time');
-        $this->assertArrayHasKey('Day', $data);
+        $this->assertArrayHasKey('day', $data);
     }
 }

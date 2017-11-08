@@ -50,12 +50,12 @@ class IpAddressHandlerTest extends BaseHandlerTestCase
         $this->ipAddressService->shouldReceive('getLongitude')->andReturn('123');
 
         $this->assertSame([
-            'Organisation' => 'Google',
-            'Country' => 'Ireland',
-            'City' => 'Dublin',
-            'Continent' => 'Europe',
-            'Latitude' => '123',
-            'Longitude' => '123'
+            'organisation' => 'Google',
+            'country' => 'Ireland',
+            'city' => 'Dublin',
+            'continent' => 'Europe',
+            'latitude' => '123',
+            'longitude' => '123'
         ], $this->ipHandler->processSearchTerm('8.8.8.8'));
     }
 

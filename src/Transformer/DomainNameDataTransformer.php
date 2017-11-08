@@ -30,8 +30,8 @@ class DomainNameDataTransformer implements TransformerInterface
         }));
 
         return [
-            'DNS' => $dnsData,
-            'Whois' => $whoisData
+            'dns' => $dnsData,
+            'whois' => $whoisData
         ];
     }
 }
