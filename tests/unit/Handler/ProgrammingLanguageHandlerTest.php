@@ -23,7 +23,7 @@ class ProgrammingLanguageHandlerTest extends BaseHandlerTestCase
 
     public function testIsHandlerEligibleForValidKeywords()
     {
-        foreach (['php', 'java', 'javascript'] as $keyword) {
+        foreach (['PhP', 'php', 'java', 'javascript', 'JAVAscRipt'] as $keyword) {
             $this->assertTrue(ProgrammingLanguageHandler::isHandlerEligible($keyword));
         }
     }

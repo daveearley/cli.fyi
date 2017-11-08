@@ -75,6 +75,7 @@ class DomainNameHandlerTest extends BaseHandlerTestCase
         return [
             ['dave.com', true],
             ['cli.fyi', true],
+            ['CAPS.com', true],
             ['cli.fyi.com', true],
             ['dave+hello@yahoo.com', false],
             ['@notanemail.com', false],

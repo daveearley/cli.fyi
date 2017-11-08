@@ -69,6 +69,7 @@ class MediaHandlerTest extends BaseHandlerTestCase
         return [
             ['https://www.youtube.com/watch?v=bgmiLMVAG7g', true],
             ['https://youtu.be/meCZ5hWNRFU', true],
+            ['https://YOUTUBE.me/meCZ5hWNRFU', true],
             ['https://vimeo.com/213421', true],
             ['vimeo.com/213421', false],
             ['not good', false],

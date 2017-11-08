@@ -32,6 +32,11 @@ class CountryHandlerTest extends BaseHandlerTestCase
         $this->assertTrue(CountryHandler::isHandlerEligible('Ireland'));
     }
 
+    public function testIsEligibleCountryForValidCountryWithSpaces()
+    {
+        $this->assertTrue(CountryHandler::isHandlerEligible('UNITED-STATES'));
+    }
+
     public function testIsEligibleCountryForInvalidCountry()
     {
         $this->assertFalse(CountryHandler::isHandlerEligible('Magicland'));

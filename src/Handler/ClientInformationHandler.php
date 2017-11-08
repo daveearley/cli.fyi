@@ -54,7 +54,7 @@ class ClientInformationHandler extends AbstractHandler
      */
     public static function isHandlerEligible(string $searchQuery): bool
     {
-        return in_array($searchQuery, self::KEYWORDS, true);
+        return in_array(strtolower($searchQuery), self::KEYWORDS, true);
     }
 
     /**

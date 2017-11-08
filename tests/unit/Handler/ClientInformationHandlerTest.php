@@ -40,7 +40,7 @@ class ClientInformationHandlerTest extends BaseHandlerTestCase
 
     public function testIsHandlerEligibleForValidKeywords()
     {
-        foreach (['me', 'self'] as $keyword) {
+        foreach (['ME', 'me', 'self'] as $keyword) {
             $this->assertTrue(ClientInformationHandler::isHandlerEligible($keyword));
         }
     }

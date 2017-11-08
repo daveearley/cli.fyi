@@ -134,6 +134,6 @@ class ApiController
      */
     private function getSearchTerm(RequestInterface $request): string
     {
-        return ltrim($request->getRequestTarget(), '/');
+        return strtolower(trim(ltrim($request->getRequestTarget(), '/')));
     }
 }

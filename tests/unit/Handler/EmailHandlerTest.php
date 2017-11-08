@@ -83,6 +83,7 @@ class EmailHandlerTest extends BaseHandlerTestCase
         return [
             ['dave@email.com', true],
             ['email@something.ie', true],
+            ['CAPS@something.ie', true],
             ['dave+hello@yahoo.com', true],
             ['@notanemail.com', false],
             ['---^@ yahoo.com', false],
