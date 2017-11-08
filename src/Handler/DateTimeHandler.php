@@ -52,7 +52,7 @@ class DateTimeHandler extends AbstractHandler
             'Month' => date('m'),
             'Year' => date('Y'),
             'Hour' => date('H'),
-            'Minutes' => date('m'),
+            'Minutes' => date('i'),
             'Seconds' => date('s'),
             'Day Name' => date('l'),
             'Month Name' => date('F'),
