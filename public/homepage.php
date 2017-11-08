@@ -21,7 +21,7 @@
     <meta name="msapplication-config" content="/assets/icons/browserconfig.xml">
     <meta name="theme-color" content="#2a4c55">
 
-    <?php include __DIR__ . '/analytics.php'; ?>
+    <?php include __DIR__ . '/header-snippets.php'; ?>
 </head>
 <body>
 <section class="hero is-medium custom-hero">
@@ -63,11 +63,17 @@
                         A Potentially Useful Command Line Query Tool
                     </h1>
                     <h2 class="subtitle">
-                        <b>cli.fyi</b> lets you to quickly retrieve information about emails, IP addresses, URLs and lots
+                        <b>cli.fyi</b> lets you to quickly retrieve information about emails, IP addresses, URLs and
+                        lots
                         more
                         from the command line (or Browser)
                     </h2>
                     <div class="buttons">
+                        <div class="button">
+                            <a class="twitter-share-button"
+                               href="https://twitter.com/intent/tweet?text=Cli.fyi - A Useful Command Line Query Tool">
+                                Tweet</a>
+                        </div>
                         <a href="#available-commands" class="button is-dark">Available Commands</a>
                     </div>
                 </div>
@@ -479,8 +485,9 @@
                             is a good alternative which does support colour output.
                         </p>
 
-                        <p>The <a href="https://github.com/callumlocke/json-formatter" target="_blank">JSON-Formatter</a>
-                        Chrome extension is a good solution for in-browser JSON formatting.
+                        <p>The <a href="https://github.com/callumlocke/json-formatter"
+                                  target="_blank">JSON-Formatter</a>
+                            Chrome extension is a good solution for in-browser JSON formatting.
                         </p>
 
                         <h3>Rate Limits?</h3>
