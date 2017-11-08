@@ -55,9 +55,9 @@ class DomainNameHandler extends AbstractHandler
      */
     public function processSearchTerm(string $searchQuery): array
     {
-        $data['whois'] = $this->domainNameServiceProvider->getWhoisData($searchQuery);
-        $data['dns'] =  $this->domainNameServiceProvider->getDnsData($searchQuery);
-
-        return $data;
+        return [
+            'whois' => $this->domainNameServiceProvider->getWhoisData($searchQuery),
+            'dns' => $this->domainNameServiceProvider->getDnsData($searchQuery)
+        ];
     }
 }
