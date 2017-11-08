@@ -427,7 +427,7 @@
         "officialName": "United States of America",
         "topLevelDomain": ".us",
         "currency": "USD",
-        "calling Code": "+1",
+        "callingCode": "+1",
         "capitalCity": "Washington D.C.",
         "region": "Americas",
         "subRegion": "Northern America",
