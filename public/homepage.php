@@ -411,28 +411,27 @@
                         </p>
 
                         <h3>Example Request</h3>
-                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>Ireland</b></code></pre>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>united-states</b></code></pre>
 
                         <h3>Example Response</h3>
                         <pre class="highlight json"><code>{
     "type": "Country Query",
     "data": {
-        "Common Name": "Ireland",
-        "Official Name": "Republic of Ireland",
-        "Top Level Domain": ".ie",
-        "Currency": "EUR",
-        "Calling Code": "+353",
-        "CapitalCity": "Dublin",
-        "Region": "Europe",
-        "Sub Region": "Northern Europe",
-        "Latitude": 53,
-        "Longitude": -8,
-        "Demonym": "Irish",
+        "Common Name": "United States",
+        "Official Name": "United States of America",
+        "Top Level Domain": ".us",
+        "Currency": "USD",
+        "Calling Code": "+1",
+        "CapitalCity": "Washington D.C.",
+        "Region": "Americas",
+        "Sub Region": "Northern America",
+        "Latitude": 38,
+        "Longitude": -97,
+        "Demonym": "American",
         "Is Landlocked?": "No",
-        "Area km²": 70273,
+        "Area km²": 9372610,
         "Official Languages": [
-            "English",
-            "Irish"
+            "English"
         ]
     }
 }</code></pre>

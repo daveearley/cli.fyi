@@ -528,7 +528,7 @@
     ),
     'area' => 91,
   ),
-  'Åland islands' => 
+  'Åland-islands' => 
   array (
     'name' => 
     array (
@@ -918,7 +918,7 @@
     ),
     'area' => 468,
   ),
-  'united arab emirates' => 
+  'united-arab-emirates' => 
   array (
     'name' => 
     array (
@@ -1325,7 +1325,7 @@
     ),
     'area' => 29743,
   ),
-  'american samoa' => 
+  'american-samoa' => 
   array (
     'name' => 
     array (
@@ -1575,7 +1575,7 @@
     ),
     'area' => 14000000,
   ),
-  'french southern and antarctic lands' => 
+  'french-southern-and-antarctic-lands' => 
   array (
     'name' => 
     array (
@@ -1697,7 +1697,7 @@
     ),
     'area' => 7747,
   ),
-  'antigua and barbuda' => 
+  'antigua-and-barbuda' => 
   array (
     'name' => 
     array (
@@ -2651,7 +2651,7 @@
     ),
     'area' => 112622,
   ),
-  'burkina faso' => 
+  'burkina-faso' => 
   array (
     'name' => 
     array (
@@ -3306,7 +3306,7 @@
     ),
     'area' => 13943,
   ),
-  'bosnia and herzegovina' => 
+  'bosnia-and-herzegovina' => 
   array (
     'name' => 
     array (
@@ -3450,7 +3450,7 @@
     ),
     'area' => 51209,
   ),
-  'saint barthélemy' => 
+  'saint-barthélemy' => 
   array (
     'name' => 
     array (
@@ -4676,7 +4676,7 @@
     ),
     'area' => 38394,
   ),
-  'bouvet island' => 
+  'bouvet-island' => 
   array (
     'name' => 
     array (
@@ -4933,7 +4933,7 @@
     ),
     'area' => 582000,
   ),
-  'central african republic' => 
+  'central-african-republic' => 
   array (
     'name' => 
     array (
@@ -5208,7 +5208,7 @@
     ),
     'area' => 9984670,
   ),
-  'cocos (keeling) islands' => 
+  'cocos-(keeling)-islands' => 
   array (
     'name' => 
     array (
@@ -5770,7 +5770,7 @@
     ),
     'area' => 9706961,
   ),
-  'ivory coast' => 
+  'ivory-coast' => 
   array (
     'name' => 
     array (
@@ -6042,7 +6042,7 @@
     ),
     'area' => 475442,
   ),
-  'dr congo' => 
+  'dr-congo' => 
   array (
     'name' => 
     array (
@@ -6206,7 +6206,7 @@
     ),
     'area' => 2344858,
   ),
-  'republic of the congo' => 
+  'republic-of-the-congo' => 
   array (
     'name' => 
     array (
@@ -6352,7 +6352,7 @@
     ),
     'area' => 342000,
   ),
-  'cook islands' => 
+  'cook-islands' => 
   array (
     'name' => 
     array (
@@ -6763,7 +6763,7 @@
     ),
     'area' => 1862,
   ),
-  'cape verde' => 
+  'cape-verde' => 
   array (
     'name' => 
     array (
@@ -6892,7 +6892,7 @@
     ),
     'area' => 4033,
   ),
-  'costa rica' => 
+  'costa-rica' => 
   array (
     'name' => 
     array (
@@ -7277,7 +7277,7 @@
     ),
     'area' => 444,
   ),
-  'christmas island' => 
+  'christmas-island' => 
   array (
     'name' => 
     array (
@@ -7405,7 +7405,7 @@
     ),
     'area' => 135,
   ),
-  'cayman islands' => 
+  'cayman-islands' => 
   array (
     'name' => 
     array (
@@ -8345,7 +8345,7 @@
     ),
     'area' => 43094,
   ),
-  'dominican republic' => 
+  'dominican-republic' => 
   array (
     'name' => 
     array (
@@ -9023,7 +9023,7 @@
     ),
     'area' => 117600,
   ),
-  'western sahara' => 
+  'western-sahara' => 
   array (
     'name' => 
     array (
@@ -9857,7 +9857,7 @@
     ),
     'area' => 18272,
   ),
-  'falkland islands' => 
+  'falkland-islands' => 
   array (
     'name' => 
     array (
@@ -10113,7 +10113,7 @@
     ),
     'area' => 551695,
   ),
-  'faroe islands' => 
+  'faroe-islands' => 
   array (
     'name' => 
     array (
@@ -10494,7 +10494,7 @@
     ),
     'area' => 267668,
   ),
-  'united kingdom' => 
+  'united-kingdom' => 
   array (
     'name' => 
     array (
@@ -11633,7 +11633,7 @@
     ),
     'area' => 36125,
   ),
-  'equatorial guinea' => 
+  'equatorial-guinea' => 
   array (
     'name' => 
     array (
@@ -12278,7 +12278,7 @@
     ),
     'area' => 108889,
   ),
-  'french guiana' => 
+  'french-guiana' => 
   array (
     'name' => 
     array (
@@ -12665,7 +12665,7 @@
     ),
     'area' => 214969,
   ),
-  'hong kong' => 
+  'hong-kong' => 
   array (
     'name' => 
     array (
@@ -12790,7 +12790,7 @@
     ),
     'area' => 1104,
   ),
-  'heard island and mcdonald islands' => 
+  'heard-island-and-mcdonald-islands' => 
   array (
     'name' => 
     array (
@@ -13564,7 +13564,7 @@
     ),
     'area' => 1904569,
   ),
-  'isle of man' => 
+  'isle-of-man' => 
   array (
     'name' => 
     array (
@@ -13839,7 +13839,7 @@
     ),
     'area' => 3287590,
   ),
-  'british indian ocean territory' => 
+  'british-indian-ocean-territory' => 
   array (
     'name' => 
     array (
@@ -15969,7 +15969,7 @@
     ),
     'area' => 811,
   ),
-  'saint kitts and nevis' => 
+  'saint-kitts-and-nevis' => 
   array (
     'name' => 
     array (
@@ -16092,7 +16092,7 @@
     ),
     'area' => 261,
   ),
-  'south korea' => 
+  'south-korea' => 
   array (
     'name' => 
     array (
@@ -16989,7 +16989,7 @@
     ),
     'area' => 1759540,
   ),
-  'saint lucia' => 
+  'saint-lucia' => 
   array (
     'name' => 
     array (
@@ -17237,7 +17237,7 @@
     ),
     'area' => 160,
   ),
-  'sri lanka' => 
+  'sri-lanka' => 
   array (
     'name' => 
     array (
@@ -18028,7 +18028,7 @@
     ),
     'area' => 30,
   ),
-  'saint martin' => 
+  'saint-martin' => 
   array (
     'name' => 
     array (
@@ -18925,7 +18925,7 @@
     ),
     'area' => 1964375,
   ),
-  'marshall islands' => 
+  'marshall-islands' => 
   array (
     'name' => 
     array (
@@ -19828,7 +19828,7 @@
     ),
     'area' => 1564110,
   ),
-  'northern mariana islands' => 
+  'northern-mariana-islands' => 
   array (
     'name' => 
     array (
@@ -21166,7 +21166,7 @@
     ),
     'area' => 825615,
   ),
-  'new caledonia' => 
+  'new-caledonia' => 
   array (
     'name' => 
     array (
@@ -21418,7 +21418,7 @@
     ),
     'area' => 1267000,
   ),
-  'norfolk island' => 
+  'norfolk-island' => 
   array (
     'name' => 
     array (
@@ -22457,7 +22457,7 @@
     ),
     'area' => 21,
   ),
-  'new zealand' => 
+  'new-zealand' => 
   array (
     'name' => 
     array (
@@ -22981,7 +22981,7 @@
     ),
     'area' => 75417,
   ),
-  'pitcairn islands' => 
+  'pitcairn-islands' => 
   array (
     'name' => 
     array (
@@ -23506,7 +23506,7 @@
     ),
     'area' => 459,
   ),
-  'papua new guinea' => 
+  'papua-new-guinea' => 
   array (
     'name' => 
     array (
@@ -23774,7 +23774,7 @@
     ),
     'area' => 312679,
   ),
-  'puerto rico' => 
+  'puerto-rico' => 
   array (
     'name' => 
     array (
@@ -23905,7 +23905,7 @@
     ),
     'area' => 8870,
   ),
-  'north korea' => 
+  'north-korea' => 
   array (
     'name' => 
     array (
@@ -24423,7 +24423,7 @@
     ),
     'area' => 6220,
   ),
-  'french polynesia' => 
+  'french-polynesia' => 
   array (
     'name' => 
     array (
@@ -25210,7 +25210,7 @@
     ),
     'area' => 26338,
   ),
-  'saudi arabia' => 
+  'saudi-arabia' => 
   array (
     'name' => 
     array (
@@ -25749,7 +25749,7 @@
     ),
     'area' => 710,
   ),
-  'south georgia' => 
+  'south-georgia' => 
   array (
     'name' => 
     array (
@@ -25872,7 +25872,7 @@
     ),
     'area' => 3903,
   ),
-  'svalbard and jan mayen' => 
+  'svalbard-and-jan-mayen' => 
   array (
     'name' => 
     array (
@@ -25995,7 +25995,7 @@
     ),
     'area' => -1,
   ),
-  'solomon islands' => 
+  'solomon-islands' => 
   array (
     'name' => 
     array (
@@ -26117,7 +26117,7 @@
     ),
     'area' => 28896,
   ),
-  'sierra leone' => 
+  'sierra-leone' => 
   array (
     'name' => 
     array (
@@ -26242,7 +26242,7 @@
     ),
     'area' => 71740,
   ),
-  'el salvador' => 
+  'el-salvador' => 
   array (
     'name' => 
     array (
@@ -26374,7 +26374,7 @@
     ),
     'area' => 21041,
   ),
-  'san marino' => 
+  'san-marino' => 
   array (
     'name' => 
     array (
@@ -26634,7 +26634,7 @@
     ),
     'area' => 637657,
   ),
-  'saint pierre and miquelon' => 
+  'saint-pierre-and-miquelon' => 
   array (
     'name' => 
     array (
@@ -26892,7 +26892,7 @@
     ),
     'area' => 88361,
   ),
-  'south sudan' => 
+  'south-sudan' => 
   array (
     'name' => 
     array (
@@ -27020,7 +27020,7 @@
     ),
     'area' => 619745,
   ),
-  'são tomé and príncipe' => 
+  'são-tomé-and-príncipe' => 
   array (
     'name' => 
     array (
@@ -27792,7 +27792,7 @@
     ),
     'area' => 17364,
   ),
-  'sint maarten' => 
+  'sint-maarten' => 
   array (
     'name' => 
     array (
@@ -28190,7 +28190,7 @@
     ),
     'area' => 185180,
   ),
-  'turks and caicos islands' => 
+  'turks-and-caicos-islands' => 
   array (
     'name' => 
     array (
@@ -29379,7 +29379,7 @@
     ),
     'area' => 747,
   ),
-  'trinidad and tobago' => 
+  'trinidad-and-tobago' => 
   array (
     'name' => 
     array (
@@ -30425,7 +30425,7 @@
     ),
     'area' => 603500,
   ),
-  'united states minor outlying islands' => 
+  'united-states-minor-outlying-islands' => 
   array (
     'name' => 
     array (
@@ -30671,7 +30671,7 @@
     ),
     'area' => 181034,
   ),
-  'united states' => 
+  'united-states' => 
   array (
     'name' => 
     array (
@@ -30935,7 +30935,7 @@
     ),
     'area' => 447400,
   ),
-  'vatican city' => 
+  'vatican-city' => 
   array (
     'name' => 
     array (
@@ -31068,7 +31068,7 @@
     ),
     'area' => 0.44,
   ),
-  'saint vincent and the grenadines' => 
+  'saint-vincent-and-the-grenadines' => 
   array (
     'name' => 
     array (
@@ -31318,7 +31318,7 @@
     ),
     'area' => 916445,
   ),
-  'british virgin islands' => 
+  'british-virgin-islands' => 
   array (
     'name' => 
     array (
@@ -31441,7 +31441,7 @@
     ),
     'area' => 151,
   ),
-  'united states virgin islands' => 
+  'united-states-virgin-islands' => 
   array (
     'name' => 
     array (
@@ -31829,7 +31829,7 @@
     ),
     'area' => 12189,
   ),
-  'wallis and futuna' => 
+  'wallis-and-futuna' => 
   array (
     'name' => 
     array (
@@ -32209,7 +32209,7 @@
     ),
     'area' => 527968,
   ),
-  'south africa' => 
+  'south-africa' => 
   array (
     'name' => 
     array (

@@ -5,7 +5,8 @@ $countries = json_decode(file_get_contents(__DIR__  . '/../vendor/mledoze/countr
 
 $formattedArray = [];
 foreach ($countries as $country) {
-    $formattedArray[strtolower($country['name']['common'])] = $country;
+    $countryName = str_replace(' ', '-', strtolower($country['name']['common']));
+    $formattedArray[$countryName] = $country;
 }
 
 file_put_contents(
