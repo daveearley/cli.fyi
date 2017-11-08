@@ -8,6 +8,7 @@ This is the source-code for: https://cli.fyi
 **Cli.fyi** lets you to quickly retrieve information about emails, IP addresses, URLs and lots more from the command line (or Browser)
 
  [![Build Status](https://travis-ci.org/daveearley/cli.fyi.svg?branch=master)](https://travis-ci.org/daveearley/cli.fyi)
+ [![Maintainability](https://api.codeclimate.com/v1/badges/25ee700a43f2a199d98b/maintainability)](https://codeclimate.com/github/daveearley/cli.fyi/maintainability)
 ## Supported Queries
 - Crypto Currency Prices
 - Email Address Information
