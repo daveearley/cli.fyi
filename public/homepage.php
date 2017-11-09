@@ -234,7 +234,7 @@
     "data": {
         "organisation": "Google Inc.",
         "country": "United States",
-        "countryCode": "IE",
+        "countryCode": "US",
         "city": "Mountain View, California",
         "continent": "North America",
         "latitude": "37.751",
