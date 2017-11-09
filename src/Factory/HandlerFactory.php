@@ -13,6 +13,7 @@ use CliFyi\Handler\DateTimeHandler;
 use CliFyi\Handler\DomainNameHandler;
 use CliFyi\Handler\EmailHandler;
 use CliFyi\Handler\EmojiHandler;
+use CliFyi\Handler\HelpHandler;
 use CliFyi\Handler\IpAddressHandler;
 use CliFyi\Handler\MediaHandler;
 use CliFyi\Handler\ProgrammingLanguageHandler;
@@ -42,7 +43,8 @@ class HandlerFactory
         CountryHandler::class,
         DomainNameHandler::class,
         MediaHandler::class,
-        IpAddressHandler::class
+        IpAddressHandler::class,
+        HelpHandler::class
     ];
 
     /** @var ContainerInterface */
@@ -115,6 +117,8 @@ class HandlerFactory
                 );
             case DateTimeHandler::class:
                 return new DateTimeHandler($this->container->get(CacheInterface::class));
+            case HelpHandler::class:
+                return new HelpHandler($this->container->get(CacheInterface::class));
         }
 
         throw new InvalidHandlerException(sprintf('%s is not a valid handler name', $handlerName));

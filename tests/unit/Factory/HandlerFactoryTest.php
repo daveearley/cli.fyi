@@ -9,6 +9,7 @@ use CliFyi\Handler\CryptoCurrencyHandler;
 use CliFyi\Handler\DateTimeHandler;
 use CliFyi\Handler\DomainNameHandler;
 use CliFyi\Handler\EmojiHandler;
+use CliFyi\Handler\HelpHandler;
 use CliFyi\Handler\IpAddressHandler;
 use CliFyi\Handler\MediaHandler;
 use CliFyi\Handler\ProgrammingLanguageHandler;
@@ -121,6 +122,10 @@ class HandlerFactoryTest extends TestCase
             ],
             [
                 ProgrammingLanguageHandler::class,
+                [CacheInterface::class]
+            ],
+            [
+                HelpHandler::class,
                 [CacheInterface::class]
             ]
         ];
