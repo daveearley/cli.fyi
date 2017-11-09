@@ -1,8 +1,10 @@
 <?php
 
 use CliFyi\ErrorHandler\ErrorHandler;
+use CliFyi\Middleware\GoogleAnalyticsMiddleware;
 use CliFyi\Service\CryptoCurrency\CryptoComparePriceFetcher;
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\ClientInterface;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 use Predis\Client;
@@ -22,6 +24,7 @@ return [
             'port' => getenv('REDIS_PORT'),
         ]);
     },
+    ClientInterface::class => \DI\object(HttpClient::class),
     LoggerInterface::class => function () {
         return (new Logger('Cli.Fyi Log'))
             ->pushHandler(new RotatingFileHandler(__DIR__ . '/../logs/logs.log', 30, Logger::INFO));
@@ -32,5 +35,8 @@ return [
     'errorHandler' => \DI\object(ErrorHandler::class)
         ->constructor(\DI\get(LoggerInterface::class), getenv('DEBUG_MODE')),
     'phpErrorHandler' => \DI\object(ErrorHandler::class)
-        ->constructor(\DI\get(LoggerInterface::class), getenv('DEBUG_MODE'))
+        ->constructor(\DI\get(LoggerInterface::class), getenv('DEBUG_MODE')),
+    GoogleAnalyticsMiddleware::class => \DI\object()->constructor(
+        \DI\get(ClientInterface::class), \DI\get(LoggerInterface::class), getenv('GOOGLE_ANALYTICS_ID')
+    )
 ];
