@@ -118,6 +118,7 @@
                         <li><a href="#programming-lang-information">Programming Language Links</a></li>
                         <li><a href="#country-information">Country Information</a></li>
                         <li><a href="#popular-emojis">Popular Emojis</a></li>
+                        <li><a href="#help">Help</a></li>
                     </ul>
                     <p class="menu-label">
                         General
@@ -466,6 +467,37 @@
         "kissingFace": "😘",
         "thinking": "🤔",
         "neutralFace": "😐"
+    }
+}</code></pre>
+
+                    </section>
+                    <section class="command-section" id="help">
+                        <h2>Help</h2>
+
+                        <p>
+                            Returns all possible query types and example queries.
+                        </p>
+
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/<b>help</b></code></pre>
+
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
+    "type": "Help",
+    "data": {
+        "IP Address Query": {
+            "example": "https://cli.fyi/8.8.8.8"
+        },
+        "Media/Url Query": {
+            "example": "https://cli.fyi/https://google.com"
+        },
+        "Email Address Query": {
+            "example": "https://cli.fyi/test@10minutemail.com"
+        },
+        "Client (you) Query": {
+            "example": "https://cli.fyi/me"
+        },
+        ...
     }
 }</code></pre>
 
