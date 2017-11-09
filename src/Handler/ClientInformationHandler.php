@@ -88,6 +88,7 @@ class ClientInformationHandler extends AbstractHandler
         return array_filter([
             'organisation' => $this->ipInfoService->getOrganisation(),
             'country' => $this->ipInfoService->getCountry(),
+            'countryCode' => $this->ipInfoService->getCountryCode(),
             'city' => $this->ipInfoService->getCity(),
             'continent' => $this->ipInfoService->getContinent(),
             'latitude' => $this->ipInfoService->getLatitude(),

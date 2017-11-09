@@ -24,6 +24,11 @@ interface IpAddressInfoProviderInterface
     /**
      * @return null|string
      */
+    public function getCountryCode(): ?string;
+
+    /**
+     * @return null|string
+     */
     public function getContinent(): ?string;
 
     /**

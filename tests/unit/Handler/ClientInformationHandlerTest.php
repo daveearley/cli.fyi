@@ -62,6 +62,7 @@ class ClientInformationHandlerTest extends BaseHandlerTestCase
         $this->ipInfoService->shouldReceive('setIpAddress', '123.123.123.123')->andReturn();
         $this->ipInfoService->shouldReceive('getOrganisation')->andReturn('Acme');
         $this->ipInfoService->shouldReceive('getCountry')->andReturn('Ireland');
+        $this->ipInfoService->shouldReceive('getCountryCode')->andReturn('IE');
         $this->ipInfoService->shouldReceive('getCity')->andReturn('Dublin');
         $this->ipInfoService->shouldReceive('getContinent')->andReturn('Europe');
         $this->ipInfoService->shouldReceive('getLatitude')->andReturn('123');
@@ -75,6 +76,7 @@ class ClientInformationHandlerTest extends BaseHandlerTestCase
             'iPAddressInfo' => [
                 'organisation' => 'Acme',
                 'country' => 'Ireland',
+                'countryCode' => 'IE',
                 'city' => 'Dublin',
                 'continent' => 'Europe',
                 'latitude' => '123',

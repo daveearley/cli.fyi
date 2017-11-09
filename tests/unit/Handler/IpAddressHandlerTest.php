@@ -44,6 +44,7 @@ class IpAddressHandlerTest extends BaseHandlerTestCase
         $this->ipAddressService->shouldReceive('setIpAddress', '8.8.8.8')->andReturn();
         $this->ipAddressService->shouldReceive('getOrganisation')->andReturn('Google');
         $this->ipAddressService->shouldReceive('getCountry')->andReturn('Ireland');
+        $this->ipAddressService->shouldReceive('getCountryCode')->andReturn('IE');
         $this->ipAddressService->shouldReceive('getCity')->andReturn('Dublin');
         $this->ipAddressService->shouldReceive('getContinent')->andReturn('Europe');
         $this->ipAddressService->shouldReceive('getLatitude')->andReturn('123');
@@ -52,6 +53,7 @@ class IpAddressHandlerTest extends BaseHandlerTestCase
         $this->assertSame([
             'organisation' => 'Google',
             'country' => 'Ireland',
+            'countryCode' => 'IE',
             'city' => 'Dublin',
             'continent' => 'Europe',
             'latitude' => '123',

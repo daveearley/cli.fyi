@@ -62,6 +62,14 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
     /**
      * @return null|string
      */
+    public function getCountryCode(): ?string
+    {
+        return $this->getCityRecord('countryCode');
+    }
+
+    /**
+     * @return null|string
+     */
     public function getLatitude(): ?string
     {
         return $this->getCityRecord('latitude');
@@ -131,6 +139,8 @@ class GeoIpProvider implements IpAddressInfoProviderInterface
                 return (string)$record->location->longitude;
             case 'country':
                 return (string)$record->country->name;
+            case 'countryCode':
+                return (string)$record->country->isoCode;
             case 'city':
                 return (string)$record->city->name;
             case 'continent':
