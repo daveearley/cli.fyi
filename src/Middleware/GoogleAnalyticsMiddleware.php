@@ -12,6 +12,7 @@ use Slim\Http\Request;
 class GoogleAnalyticsMiddleware
 {
     const GOOGLE_URI = 'www.google-analytics.com/collect';
+    const HTTP_SUCCESSFUL_RESPONSE = 200;
 
     /** @var string */
     private $googleAnalyticsId;
@@ -22,14 +23,17 @@ class GoogleAnalyticsMiddleware
     /** @var ClientInterface */
     private $httpClient;
 
+    /**
+     * @param ClientInterface $httpClient
+     * @param LoggerInterface $logger
+     * @param string $googleAnalyticsId
+     */
     public function __construct(ClientInterface $httpClient, LoggerInterface $logger, string $googleAnalyticsId)
     {
         $this->googleAnalyticsId = $googleAnalyticsId;
         $this->logger = $logger;
         $this->httpClient = $httpClient;
     }
-
-    const HTTP_SUCCESSFUL_RESPONSE = 200;
 
     /**
      * @param RequestInterface|Request $request
@@ -43,7 +47,7 @@ class GoogleAnalyticsMiddleware
         /** @var ResponseInterface $response */
         $response = $next($request, $response);
 
-        if ($response->getStatusCode() === self::HTTP_SUCCESSFUL_RESPONSE) {
+        if ($this->shouldLogPageView($request, $response)) {
             try {
                 $this->httpClient->request('POST', self::GOOGLE_URI, [
                     'body' => $this->buildRequestBody($request)
@@ -56,7 +60,12 @@ class GoogleAnalyticsMiddleware
         return $response;
     }
 
-    private function buildRequestBody(Request $request)
+    /**
+     * @param Request $request
+     *
+     * @return string
+     */
+    private function buildRequestBody(Request $request): string
     {
         $ip = $request->getAttribute('ip_address') ?: $request->getServerParam('REMOTE_ADDR');
         $userAgent = $request->getServerParam('HTTP_USER_AGENT') ?: null;
@@ -76,5 +85,16 @@ class GoogleAnalyticsMiddleware
             't' => 'pageview',
             'dr' => $referer
         ]));
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     *
+     * @return bool
+     */
+    private function shouldLogPageView(RequestInterface $request, ResponseInterface$response): bool
+    {
+        return ($response->getStatusCode() === self::HTTP_SUCCESSFUL_RESPONSE) && $request->getRequestTarget() !== '/';
     }
 }
