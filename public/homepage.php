@@ -234,6 +234,7 @@
     "data": {
         "organisation": "Google Inc.",
         "country": "United States",
+        "countryCode": "IE",
         "city": "Mountain View, California",
         "continent": "North America",
         "latitude": "37.751",
@@ -298,6 +299,7 @@
         "iPAddressInformation": {
             "organisation": "Liberty Global Operations B.V.",
             "country": "Ireland",
+            "countryCode": "IE",
             "city": "Dublin",
             "continent": "Europe",
             "latitude": "53.3472",
