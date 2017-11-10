@@ -83,7 +83,8 @@ class GoogleAnalyticsMiddleware
             'uip' => $ip,
             'ua' => $userAgent,
             't' => 'pageview',
-            'dr' => $referer
+            'dr' => $referer,
+            'ds'=> 'web'
         ]));
     }
 
