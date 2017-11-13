@@ -2,6 +2,7 @@
 
 namespace CliFyi\Middleware;
 
+use CliFyi\Service\UuidGenerator;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\RequestInterface;
@@ -22,17 +23,27 @@ class GoogleAnalyticsMiddleware
 
     /** @var ClientInterface */
     private $httpClient;
+    /**
+     * @var UuidGenerator
+     */
+    private $uuidGenerator;
 
     /**
      * @param ClientInterface $httpClient
      * @param LoggerInterface $logger
+     * @param UuidGenerator $uuidGenerator
      * @param string $googleAnalyticsId
      */
-    public function __construct(ClientInterface $httpClient, LoggerInterface $logger, string $googleAnalyticsId)
-    {
+    public function __construct(
+        ClientInterface $httpClient,
+        LoggerInterface $logger,
+        UuidGenerator $uuidGenerator,
+        string $googleAnalyticsId
+    ) {
         $this->googleAnalyticsId = $googleAnalyticsId;
         $this->logger = $logger;
         $this->httpClient = $httpClient;
+        $this->uuidGenerator = $uuidGenerator;
     }
 
     /**
@@ -70,6 +81,8 @@ class GoogleAnalyticsMiddleware
         $ip = $request->getAttribute('ip_address') ?: $request->getServerParam('REMOTE_ADDR');
         $userAgent = $request->getServerParam('HTTP_USER_AGENT') ?: null;
         $referer = $request->getHeader('HTTP_REFERER') ? array_shift($request->getHeader('HTTP_REFERER')) : null;
+        $userIdentifier = $this->uuidGenerator->v5(md5($ip . $userAgent));
+
 
         $fullUri = $request->getUri()->getScheme()
             . '://' . $request->getUri()->getHost()
@@ -78,13 +91,13 @@ class GoogleAnalyticsMiddleware
         return http_build_query(array_filter([
             'v' => '1',
             'tid' => $this->googleAnalyticsId,
-            'uid' => md5($ip . $userAgent),
+            'cid' => $userIdentifier,
             'dl' => $fullUri,
             'uip' => $ip,
             'ua' => $userAgent,
             't' => 'pageview',
             'dr' => $referer,
-            'ds'=> 'web'
+            'ds' => 'web'
         ]));
     }
 
@@ -94,7 +107,7 @@ class GoogleAnalyticsMiddleware
      *
      * @return bool
      */
-    private function shouldLogPageView(RequestInterface $request, ResponseInterface$response): bool
+    private function shouldLogPageView(RequestInterface $request, ResponseInterface $response): bool
     {
         return ($response->getStatusCode() === self::HTTP_SUCCESSFUL_RESPONSE) && $request->getRequestTarget() !== '/';
     }

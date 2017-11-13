@@ -37,6 +37,7 @@ return [
     'phpErrorHandler' => \DI\object(ErrorHandler::class)
         ->constructor(\DI\get(LoggerInterface::class), getenv('DEBUG_MODE')),
     GoogleAnalyticsMiddleware::class => \DI\object()->constructor(
-        \DI\get(ClientInterface::class), \DI\get(LoggerInterface::class), getenv('GOOGLE_ANALYTICS_ID')
+        \DI\get(ClientInterface::class), \DI\get(LoggerInterface::class),
+        \DI\object(\CliFyi\Service\UuidGenerator::class), getenv('GOOGLE_ANALYTICS_ID')
     )
 ];
