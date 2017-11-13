@@ -16,7 +16,7 @@ This is the source-code for: https://cli.fyi
 - Media/URL Information
 - Client Information
 - Domain Name Information
- -Date/Time Information
+- Date/Time Information
 - Programming Language Links
 - Country Information
 - Popular Emojis
