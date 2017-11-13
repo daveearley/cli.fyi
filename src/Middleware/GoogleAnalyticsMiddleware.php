@@ -14,6 +14,7 @@ class GoogleAnalyticsMiddleware
 {
     const GOOGLE_URI = 'www.google-analytics.com/collect';
     const HTTP_SUCCESSFUL_RESPONSE = 200;
+    const HTTP_NOT_FOUND_RESPONSE = 404;
 
     /** @var string */
     private $googleAnalyticsId;
@@ -58,25 +59,23 @@ class GoogleAnalyticsMiddleware
         /** @var ResponseInterface $response */
         $response = $next($request, $response);
 
-        if ($this->shouldLogPageView($request, $response)) {
-            try {
-                $this->httpClient->request('POST', self::GOOGLE_URI, [
-                    'body' => $this->buildRequestBody($request)
-                ]);
-            } catch (GuzzleException $e) {
-                $this->logger->error('Failed to send data to Google Analytics', [$e]);
-            }
+        if ($this->isSuccessfulResponse($request, $response)) {
+            $this->handleSuccessfulResponse($request);
+        }
+
+        if ($this->isNotFoundResponse($response)) {
+            $this->handleNotFoundResponse($request);
         }
 
         return $response;
     }
 
     /**
-     * @param Request $request
+     * @param RequestInterface $request
      *
      * @return string
      */
-    private function buildRequestBody(Request $request): string
+    private function buildRequestBody(RequestInterface $request): string
     {
         $ip = $request->getAttribute('ip_address') ?: $request->getServerParam('REMOTE_ADDR');
         $userAgent = $request->getServerParam('HTTP_USER_AGENT') ?: null;
@@ -107,9 +106,19 @@ class GoogleAnalyticsMiddleware
      *
      * @return bool
      */
-    private function shouldLogPageView(RequestInterface $request, ResponseInterface $response): bool
+    private function isSuccessfulResponse(RequestInterface $request, ResponseInterface $response): bool
     {
         return ($response->getStatusCode() === self::HTTP_SUCCESSFUL_RESPONSE) && $request->getRequestTarget() !== '/';
+    }
+
+    /**
+     * @param ResponseInterface $response
+     *
+     * @return bool
+     */
+    private function isNotFoundResponse(ResponseInterface $response): bool
+    {
+        return ($response->getStatusCode() === self::HTTP_NOT_FOUND_RESPONSE);
     }
 
     /**
@@ -120,5 +129,23 @@ class GoogleAnalyticsMiddleware
     private function getReferer(RequestInterface $request): ?string
     {
         return !empty($request->getHeader('HTTP_REFERER')) ? $request->getHeader('HTTP_REFERER')[0] : null;
+    }
+
+    /**
+     * @param RequestInterface $request
+     */
+    private function handleSuccessfulResponse(RequestInterface $request): void
+    {
+        try {
+            $this->httpClient->request('POST', self::GOOGLE_URI, [
+                'body' => $this->buildRequestBody($request)
+            ]);
+        } catch (GuzzleException $e) {
+            $this->logger->error('Failed to send data to Google Analytics', [$e]);
+        }
+    }
+
+    private function handleNotFoundResponse($request): void
+    {
     }
 }
