@@ -80,7 +80,7 @@ class GoogleAnalyticsMiddleware
     {
         $ip = $request->getAttribute('ip_address') ?: $request->getServerParam('REMOTE_ADDR');
         $userAgent = $request->getServerParam('HTTP_USER_AGENT') ?: null;
-        $referer = $request->getHeader('HTTP_REFERER') ? array_shift($request->getHeader('HTTP_REFERER')) : null;
+        $referer = $this->getReferer($request);
         $userIdentifier = $this->uuidGenerator->v5(md5($ip . $userAgent));
 
 
@@ -110,5 +110,15 @@ class GoogleAnalyticsMiddleware
     private function shouldLogPageView(RequestInterface $request, ResponseInterface $response): bool
     {
         return ($response->getStatusCode() === self::HTTP_SUCCESSFUL_RESPONSE) && $request->getRequestTarget() !== '/';
+    }
+
+    /**
+     * @param RequestInterface $request
+     *
+     * @return null|string
+     */
+    private function getReferer(RequestInterface $request): ?string
+    {
+        return !empty($request->getHeader('HTTP_REFERER')) ? $request->getHeader('HTTP_REFERER')[0] : null;
     }
 }
