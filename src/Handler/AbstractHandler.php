@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace CliFyi\Handler;
 
+use CliFyi\Exception\NoDataReturnedFromHandlerException;
 use CliFyi\Transformer\TransformerInterface;
 use Psr\SimpleCache\CacheInterface;
 use Psr\SimpleCache\InvalidArgumentException;
 
 abstract class AbstractHandler
 {
+    private const NO_DATA_ERROR_MESSAGE = 'No data returned from handler.';
+
     protected const DEFAULT_CACHE_TTL_IN_SECONDS = 60 * 15;
 
     /** @var TransformerInterface */
@@ -58,6 +61,7 @@ abstract class AbstractHandler
 
     /**
      * @throws InvalidArgumentException
+     * @throws NoDataReturnedFromHandlerException
      *
      * @return array
      */
@@ -68,6 +72,16 @@ abstract class AbstractHandler
         }
 
         $data = $this->processSearchTerm($this->getSearchTerm());
+        $type = $this->getHandlerName();
+
+        if (empty($data)) {
+            throw new NoDataReturnedFromHandlerException(self::NO_DATA_ERROR_MESSAGE);
+        }
+
+        $data = [
+            'type' => $type,
+            'data' => $data
+        ];
 
         if ($this->transformer) {
             $data = $this->transformer->transform($data);

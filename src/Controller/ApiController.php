@@ -64,10 +64,10 @@ class ApiController
         $this->searchQuery = $this->getSearchTerm($request);
 
         if ($this->handler = $this->isHandlerAvailable()) {
-            if ($output = $this->buildOutputArray()) {
+            if ($output = $this->getParsedData()) {
                 return $this->responseBuilder
                     ->withResponse($response)
-                    ->withJsonArray($this->buildOutputArray())
+                    ->withJsonArray($output)
                     ->getBuiltResponse();
             }
         }
@@ -76,6 +76,9 @@ class ApiController
     }
 
     /**
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     *
      * @return null|AbstractHandler
      */
     private function isHandlerAvailable(): ?AbstractHandler
@@ -87,26 +90,6 @@ class ApiController
         }
 
         return null;
-    }
-
-    /**
-     * @throws \Psr\SimpleCache\InvalidArgumentException
-     * @throws ErrorParsingQueryException
-     *
-     * @return array
-     */
-    private function buildOutputArray(): array
-    {
-        $data = $this->getParsedData();
-
-        if (empty($data)) {
-            return [];
-        }
-
-        return [
-            'type' => $this->handler->getHandlerName(),
-            'data' => $data
-        ];
     }
 
     /**
