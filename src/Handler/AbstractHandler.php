@@ -71,17 +71,7 @@ abstract class AbstractHandler
             return $cachedValue;
         }
 
-        $data = $this->processSearchTerm($this->getSearchTerm());
-        $type = $this->getHandlerName();
-
-        if (empty($data)) {
-            throw new NoDataReturnedFromHandlerException(self::NO_DATA_ERROR_MESSAGE);
-        }
-
-        $data = [
-            'type' => $type,
-            'data' => $data
-        ];
+        $data = $this->buildTitleAndDataArray();
 
         if ($this->transformer) {
             $data = $this->transformer->transform($data);
@@ -156,6 +146,28 @@ abstract class AbstractHandler
         if ($this->cacheEnabled) {
             $this->cache->set($this->getCacheKey(), $data, $this->getCacheTtl());
         }
+
+        return $data;
+    }
+
+    /**
+     * @throws NoDataReturnedFromHandlerException
+     *
+     * @return array
+     */
+    private function buildTitleAndDataArray(): array
+    {
+        $data = $this->processSearchTerm($this->getSearchTerm());
+        $type = $this->getHandlerName();
+
+        if (empty($data)) {
+            throw new NoDataReturnedFromHandlerException(self::NO_DATA_ERROR_MESSAGE);
+        }
+
+        $data = [
+            'type' => $type,
+            'data' => $data
+        ];
 
         return $data;
     }
