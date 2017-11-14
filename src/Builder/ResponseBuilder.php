@@ -86,6 +86,9 @@ class ResponseBuilder
         );
     }
 
+    /**
+     * @return void
+     */
     private function buildHeaders(): void
     {
         if ($this->headers) {
