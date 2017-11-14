@@ -13,6 +13,8 @@ use Slim\Http\Request;
 class GoogleAnalyticsMiddleware
 {
     const GOOGLE_URI = 'www.google-analytics.com/collect';
+    const ERROR_MESSAGE = 'Failed to send data to Google Analytics';
+
     const HTTP_SUCCESSFUL_RESPONSE = 200;
     const HTTP_NOT_FOUND_RESPONSE = 404;
 
@@ -24,9 +26,8 @@ class GoogleAnalyticsMiddleware
 
     /** @var ClientInterface */
     private $httpClient;
-    /**
-     * @var UuidGenerator
-     */
+
+    /** @var UuidGenerator */
     private $uuidGenerator;
 
     /**
@@ -71,7 +72,7 @@ class GoogleAnalyticsMiddleware
     }
 
     /**
-     * @param RequestInterface $request
+     * @param RequestInterface|Request $request
      *
      * @return string
      */
@@ -141,11 +142,15 @@ class GoogleAnalyticsMiddleware
                 'body' => $this->buildRequestBody($request)
             ]);
         } catch (GuzzleException $e) {
-            $this->logger->error('Failed to send data to Google Analytics', [$e]);
+            $this->logger->error(self::ERROR_MESSAGE, [$e]);
         }
     }
 
+    /**
+     * @param $request
+     */
     private function handleNotFoundResponse($request): void
     {
+        //Don't log 404s to GA for the time being
     }
 }
