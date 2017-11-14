@@ -1,4 +1,4 @@
-.PHONY:test docker-up generate-data php-cs-fix deploy
+.PHONY:test docker-up generate-data php-cs-fix deploy rollback-deploy monitor-cache flush-cache
 
 phpunit:
 	docker-compose exec php ./vendor/bin/phpunit $(ARGS)
@@ -17,3 +17,12 @@ php-cs-fix:
 
 deploy:
 	dep --parallel deploy
+
+rollback-deploy:
+	dep rollback
+
+flush-cache:
+	docker-compose exec redis redis-cli flushall
+
+monitor-cache:
+	docker-compose exec redis redis-cli monitor
