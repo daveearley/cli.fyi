@@ -22,7 +22,7 @@ This is the source-code for: https://cli.fyi
 - Popular Emojis
 
 ## Contribution
-Contributions are more than welcome. If you think there's a query you think should be added please create an issue first. You can find more info on contributing [here](CONTRIBUTING.md).
+Contributions are more than welcome. If you think there's a query that could be added please create an issue first. You can find more info on contributing [here](CONTRIBUTING.md).
 
 ## License
 Cli.fyi is licenced under the [MIT License](https://tldrlegal.com/license/mit-license).
