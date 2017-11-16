@@ -540,6 +540,7 @@
                     </section>
                     <section class="command-section" id="credits">
                         <h2>Credits</h2>
+                        <h3>Data</h3>
                         <p>
                             <b>Cli.fyi</b> relies on the following services & projects for its data:
                         </p>
@@ -558,6 +559,12 @@
                                 <a target="_blank" href="http://cryptocompare.com/">Crypto Currency Data</a>
                             </li>
                         </ul>
+                        <h3>Hosting</h3>
+                        <p>
+                            Cli.fyi is hosted by
+                            <a href="https://www.linode.com/?r=9d988681aaef5c5a2a6754ba6b0d810c4b4af690" title="Linode">
+                                Linode
+                            </a>.
                         </p>
                     </section>
                     <section class="command-section" id="terms-of-use">
