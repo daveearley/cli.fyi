@@ -13,6 +13,19 @@ class DomainNameDataTransformer implements TransformerInterface
      */
     public function transform(array $data): array
     {
+        return [
+            'dns' => $this->transformDnsData($data),
+            'whois' => $this->transformWhoisData($data)
+        ];
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    private function transformWhoisData(array $data): array
+    {
         $whoisData = array_map(function ($whoisLine) {
             return trim($whoisLine);
         }, $data['whois']);
@@ -21,6 +34,16 @@ class DomainNameDataTransformer implements TransformerInterface
             return !empty($whoisLine);
         }));
 
+        return $whoisData;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    private function transformDnsData(array $data): array
+    {
         $dnsData = array_map(function ($dnsLine) {
             return str_replace("\t", " ", $dnsLine);
         }, $data['dns']);
@@ -29,9 +52,6 @@ class DomainNameDataTransformer implements TransformerInterface
             return !empty($dnsLine);
         }));
 
-        return [
-            'dns' => $dnsData,
-            'whois' => $whoisData
-        ];
+        return $dnsData;
     }
 }

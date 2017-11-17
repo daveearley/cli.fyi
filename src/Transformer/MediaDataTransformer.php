@@ -17,7 +17,6 @@ class MediaDataTransformer implements TransformerInterface
             return !empty($value);
         });
 
-
         if (isset($data['tags'])) {
             $data['tags'] = implode(', ', $data['tags']);
         }
