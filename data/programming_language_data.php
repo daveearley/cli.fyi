@@ -21,7 +21,7 @@ return [
             'Useful Links' => 'https://github.com/Vedenin/useful-java-links'
         ]
     ],
-    'javascript' => [
+    'javascript' => $js = [
         'links' => [
             'Mozilla JS Reference' => 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
             'React' => [
@@ -30,4 +30,18 @@ return [
             ]
         ]
     ],
+    'js' => $js,
+    'python' => [
+        'documentation' => [
+            '2.7' => 'https://docs.python.org/2.7/',
+            '3.5' => 'https://docs.python.org/3.5/',
+            '3.6' => 'https://docs.python.org/3.6/',
+            '3.7' => 'https://docs.python.org/3.7/',
+        ],
+        'links' => [
+            'Awesome Python' => 'https://github.com/vinta/awesome-python',
+            'Django Docs' => 'https://docs.djangoproject.com/en/1.11/',
+            'Flask Docs' => 'http://flask.pocoo.org/docs/0.12/'
+        ]
+    ]
 ];
