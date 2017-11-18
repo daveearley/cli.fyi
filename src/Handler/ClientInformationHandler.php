@@ -12,7 +12,8 @@ class ClientInformationHandler extends AbstractHandler
 {
     private const KEYWORDS = [
         'me',
-        'self'
+        'self',
+        'ip'
     ];
 
     /** @var IpAddressInfoProviderInterface */
@@ -65,8 +66,8 @@ class ClientInformationHandler extends AbstractHandler
     public function processSearchTerm(string $searchTerm): array
     {
         $data = [
-            'userAgent' => $this->clientParser->getUserAgent(),
             'iPAddress' => $this->clientParser->getIpAddress(),
+            'userAgent' => $this->clientParser->getUserAgent(),
             'browser' => $this->clientParser->getBrowserName(),
             'operatingSystem' => $this->clientParser->getOperatingSystemName()
         ];

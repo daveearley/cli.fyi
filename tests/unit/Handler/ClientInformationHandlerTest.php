@@ -69,8 +69,8 @@ class ClientInformationHandlerTest extends BaseHandlerTestCase
         $this->ipInfoService->shouldReceive('getLongitude')->andReturn('123');
 
         $expected = [
-            'userAgent' => 'curl',
             'iPAddress' => '123.123.123.123',
+            'userAgent' => 'curl',
             'browser' => 'curl',
             'operatingSystem' => 'Linux',
             'iPAddressInfo' => [
