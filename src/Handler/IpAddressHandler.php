@@ -9,7 +9,8 @@ use Psr\SimpleCache\CacheInterface;
 
 class IpAddressHandler extends AbstractHandler
 {
-    const IP_VALIDATION_FLAGS = FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6;
+    const IP_VALIDATION_FLAGS = FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6;
+    const RESERVED_OR_PRIVATE_IP_MESSAGE = '%s falls within a %s IP range and therefore no data is available.';
 
     /** @var IpAddressInfoProviderInterface */
     private $ipInfoService;
@@ -52,6 +53,10 @@ class IpAddressHandler extends AbstractHandler
      */
     public function processSearchTerm(string $searchQuery): array
     {
+        if ($reservedOrPrivateIpResponse = $this->getReservedOrPrivateIpResponse($searchQuery)) {
+            return [$reservedOrPrivateIpResponse];
+        }
+
         $this->ipInfoService->setIpAddress($searchQuery);
 
         return array_filter([
@@ -63,5 +68,23 @@ class IpAddressHandler extends AbstractHandler
             'latitude' => $this->ipInfoService->getLatitude(),
             'longitude' => $this->ipInfoService->getLongitude()
         ]);
+    }
+
+    /**
+     * @param string $ipAddress
+     *
+     * @return null|string
+     */
+    private function getReservedOrPrivateIpResponse(string $ipAddress): ?string
+    {
+        if (filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_NO_RES_RANGE) !== $ipAddress) {
+            return sprintf(self::RESERVED_OR_PRIVATE_IP_MESSAGE, $ipAddress, 'reserved');
+        }
+
+        if (filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE) !== $ipAddress) {
+            return sprintf(self::RESERVED_OR_PRIVATE_IP_MESSAGE, $ipAddress, 'private');
+        }
+
+        return null;
     }
 }

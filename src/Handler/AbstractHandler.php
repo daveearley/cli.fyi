@@ -159,7 +159,7 @@ abstract class AbstractHandler
         }
 
         if ($this->transformer) {
-           $handlerData = $this->transformer->transform($handlerData);
+            $handlerData = $this->transformer->transform($handlerData);
         }
 
         return [
