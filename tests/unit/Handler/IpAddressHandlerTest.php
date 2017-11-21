@@ -63,17 +63,40 @@ class IpAddressHandlerTest extends BaseHandlerTestCase
 
     public function testPrivateIpAddress()
     {
+        $this->ipAddressService->shouldReceive('setIpAddress', '192.168.2.1')->andReturn();
+        $this->ipAddressService->shouldReceive('getOrganisation')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getCountry')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getCountryCode')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getCity')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getContinent')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getLatitude')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getLongitude')->andReturn(null);
+
         $this->assertSame(
-            '192.168.2.1 falls within a private IP range and therefore no data is available.',
-            $this->ipHandler->processSearchTerm('192.168.2.1')[0]
+            [
+                'isIpInPrivateRange' => true
+            ],
+            $this->ipHandler->processSearchTerm('192.168.2.1')
         );
     }
 
     public function testReservedIpAddress()
     {
+        $this->ipAddressService->shouldReceive('setIpAddress', '0.0.0.6')->andReturn();
+        $this->ipAddressService->shouldReceive('getOrganisation')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getCountry')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getCountryCode')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getCity')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getContinent')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getLatitude')->andReturn(null);
+        $this->ipAddressService->shouldReceive('getLongitude')->andReturn(null);
+
+
         $this->assertSame(
-            '0.0.0.6 falls within a reserved IP range and therefore no data is available.',
-            $this->ipHandler->processSearchTerm('0.0.0.6')[0]
+            [
+                'isIpInReservedRange' => true
+            ],
+            $this->ipHandler->processSearchTerm('0.0.0.6')
         );
     }
 

@@ -53,10 +53,6 @@ class IpAddressHandler extends AbstractHandler
      */
     public function processSearchTerm(string $searchQuery): array
     {
-        if ($reservedOrPrivateIpResponse = $this->getReservedOrPrivateIpResponse($searchQuery)) {
-            return [$reservedOrPrivateIpResponse];
-        }
-
         $this->ipInfoService->setIpAddress($searchQuery);
 
         return array_filter([
@@ -66,25 +62,29 @@ class IpAddressHandler extends AbstractHandler
             'city' => $this->ipInfoService->getCity(),
             'continent' => $this->ipInfoService->getContinent(),
             'latitude' => $this->ipInfoService->getLatitude(),
-            'longitude' => $this->ipInfoService->getLongitude()
+            'longitude' => $this->ipInfoService->getLongitude(),
+            'isIpInPrivateRange' => $this->isInPrivateIpRange($searchQuery),
+            'isIpInReservedRange' => $this->isInReservedIpRange($searchQuery)
         ]);
     }
 
     /**
      * @param string $ipAddress
      *
-     * @return null|string
+     * @return bool
      */
-    private function getReservedOrPrivateIpResponse(string $ipAddress): ?string
+    private function isInPrivateIpRange(string $ipAddress): bool
     {
-        if (filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_NO_RES_RANGE) !== $ipAddress) {
-            return sprintf(self::RESERVED_OR_PRIVATE_IP_MESSAGE, $ipAddress, 'reserved');
-        }
+        return filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE) !== $ipAddress;
+    }
 
-        if (filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE) !== $ipAddress) {
-            return sprintf(self::RESERVED_OR_PRIVATE_IP_MESSAGE, $ipAddress, 'private');
-        }
-
-        return null;
+    /**
+     * @param string $ipAddress
+     *
+     * @return bool
+     */
+    private function isInReservedIpRange(string $ipAddress): bool
+    {
+        return filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_NO_RES_RANGE) !== $ipAddress;
     }
 }
