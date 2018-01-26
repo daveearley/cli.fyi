@@ -21,10 +21,10 @@ class TrailingSlash
         $uri = $request->getUri();
         $path = $uri->getPath();
 
-        if ($path != '/' && substr($path, -1) == '/') {
+        if ($path !== '/' && substr($path, -1) === '/') {
             $uri = $uri->withPath(substr($path, 0, -1));
 
-            return $request->getMethod() == 'GET'
+            return $request->getMethod() === 'GET'
                 ? $response->withRedirect((string)$uri, 301)
                 : $next($request->withUri($uri), $response);
         }
