@@ -8,6 +8,8 @@ use Psr\Http\Message\ResponseInterface;
 
 class keenTrackingMiddleware
 {
+    const HTTP_SUCCESSFUL_RESPONSE = 200;
+
     /** @var string */
     private $projectId;
 
@@ -19,8 +21,6 @@ class keenTrackingMiddleware
         $this->projectId = $keenWriteId;
         $this->writeId = $keenWriteId;
     }
-
-    const HTTP_SUCCESSFUL_RESPONSE = 200;
 
     /**
      * @param RequestInterface $request
