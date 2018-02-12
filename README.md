@@ -15,6 +15,7 @@ This is the source-code for: https://cli.fyi
 - IP Address Information
 - Media/URL Information
 - Client Information
+- String Hash Values
 - Domain Name Information
 - Date/Time Information
 - Programming Language Links
