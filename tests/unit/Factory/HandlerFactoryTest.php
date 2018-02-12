@@ -9,6 +9,7 @@ use CliFyi\Handler\CryptoCurrencyHandler;
 use CliFyi\Handler\DateTimeHandler;
 use CliFyi\Handler\DomainNameHandler;
 use CliFyi\Handler\EmojiHandler;
+use CliFyi\Handler\HashHandler;
 use CliFyi\Handler\HelpHandler;
 use CliFyi\Handler\IpAddressHandler;
 use CliFyi\Handler\MediaHandler;
@@ -16,6 +17,7 @@ use CliFyi\Handler\ProgrammingLanguageHandler;
 use CliFyi\Service\Client\ClientParser;
 use CliFyi\Service\CryptoCurrency\CryptoComparePriceFetcher;
 use CliFyi\Service\DomainName\DomainNameServiceProvider;
+use CliFyi\Service\Hash\HasherInterface;
 use CliFyi\Service\IpAddress\GeoIpProvider;
 use CliFyi\Service\Media\MediaExtractor;
 use CliFyi\Transformer\CountryDataTransformer;
@@ -127,7 +129,11 @@ class HandlerFactoryTest extends TestCase
             [
                 HelpHandler::class,
                 [CacheInterface::class]
-            ]
+            ],
+            [
+                HashHandler::class,
+                [CacheInterface::class, HasherInterface::class]
+            ],
         ];
     }
 }

@@ -3,6 +3,8 @@
 use CliFyi\ErrorHandler\ErrorHandler;
 use CliFyi\Middleware\GoogleAnalyticsMiddleware;
 use CliFyi\Service\CryptoCurrency\CryptoComparePriceFetcher;
+use CliFyi\Service\Hash\HasherInterface;
+use CliFyi\Service\Hash\HasherService;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface;
 use Monolog\Handler\RotatingFileHandler;
@@ -39,5 +41,6 @@ return [
     GoogleAnalyticsMiddleware::class => \DI\object()->constructor(
         \DI\get(ClientInterface::class), \DI\get(LoggerInterface::class),
         \DI\object(\CliFyi\Service\UuidGenerator::class), getenv('GOOGLE_ANALYTICS_ID')
-    )
+    ),
+    HasherInterface::class => DI\object(HasherService::class)
 ];

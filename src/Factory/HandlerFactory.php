@@ -13,6 +13,7 @@ use CliFyi\Handler\DateTimeHandler;
 use CliFyi\Handler\DomainNameHandler;
 use CliFyi\Handler\EmailHandler;
 use CliFyi\Handler\EmojiHandler;
+use CliFyi\Handler\HashHandler;
 use CliFyi\Handler\HelpHandler;
 use CliFyi\Handler\IpAddressHandler;
 use CliFyi\Handler\MediaHandler;
@@ -20,6 +21,7 @@ use CliFyi\Handler\ProgrammingLanguageHandler;
 use CliFyi\Service\Client\ClientParser;
 use CliFyi\Service\CryptoCurrency\CryptoComparePriceFetcher;
 use CliFyi\Service\DomainName\DomainNameServiceProvider;
+use CliFyi\Service\Hash\HasherInterface;
 use CliFyi\Service\IpAddress\GeoIpProvider;
 use CliFyi\Service\Media\MediaExtractor;
 use CliFyi\Transformer\CountryDataTransformer;
@@ -44,7 +46,8 @@ class HandlerFactory
         DomainNameHandler::class,
         MediaHandler::class,
         IpAddressHandler::class,
-        HelpHandler::class
+        HelpHandler::class,
+        HashHandler::class
     ];
 
     /** @var ContainerInterface */
@@ -119,6 +122,11 @@ class HandlerFactory
                 return new DateTimeHandler($this->container->get(CacheInterface::class));
             case HelpHandler::class:
                 return new HelpHandler($this->container->get(CacheInterface::class));
+            case HashHandler::class:
+                return new HashHandler(
+                    $this->container->get(CacheInterface::class),
+                    $this->container->get(HasherInterface::class)
+                );
         }
 
         throw new InvalidHandlerException(sprintf('%s is not a valid handler name', $handlerName));
