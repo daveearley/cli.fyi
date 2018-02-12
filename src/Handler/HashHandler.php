@@ -9,7 +9,7 @@ class HashHandler extends AbstractHandler
 {
     public const HANDLER_NAME = 'String Hash Values';
 
-    public const TRIGGER_KEYWORD = 'hash';
+    public const TRIGGER_KEYWORD = 'hash/';
 
     /** @var HasherInterface */
     private $hasher;
@@ -50,6 +50,16 @@ class HashHandler extends AbstractHandler
      */
     public function processSearchTerm(string $searchTerm): array
     {
-        return $this->hasher->getHashValuesFromString($searchTerm);
+        return $this->hasher->getHashValuesFromString($this->formatSearchTerm($searchTerm));
+    }
+
+    /**
+     * @param string $searchTerm
+     *
+     * @return string
+     */
+    private function formatSearchTerm(string $searchTerm): string
+    {
+        return str_replace(self::TRIGGER_KEYWORD, '', $searchTerm);
     }
 }

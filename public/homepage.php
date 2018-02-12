@@ -383,7 +383,8 @@
 </code></pre>
                         <p>
                             Available Hashes:
-                            <span class="codesnip"><?=implode('</span>, <span class="codesnip">', hash_algos())?></span>
+                            <span class="codesnip"><?= implode('</span>, <span class="codesnip">',
+                                    hash_algos()) ?></span>
                         </p>
 
                     </section>

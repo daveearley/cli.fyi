@@ -53,8 +53,10 @@ class ApiController
      * @param RequestInterface $request
      * @param ResponseInterface $response
      *
-     * @throws NoAvailableHandlerException
      * @throws ErrorParsingQueryException
+     * @throws NoAvailableHandlerException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      *
      * @return ResponseInterface
