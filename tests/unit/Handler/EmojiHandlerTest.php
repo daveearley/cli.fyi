@@ -3,6 +3,7 @@
 namespace Test\Handler;
 
 use CliFyi\Handler\EmojiHandler;
+use CliFyi\Value\SearchTerm;
 
 class EmojiHandlerTest extends BaseHandlerTestCase
 {
@@ -24,20 +25,20 @@ class EmojiHandlerTest extends BaseHandlerTestCase
     public function testIsHandlerEligibleForValidKeywords()
     {
         foreach (EmojiHandler::EMOJI_KEYWORDS as $keyword) {
-            $this->assertTrue(EmojiHandler::isHandlerEligible($keyword));
+            $this->assertTrue(EmojiHandler::ishandlerEligible((new SearchTerm($keyword))));
         }
     }
 
     public function testIsHandlerEligibleForInvalidKeywords()
     {
         foreach (['not', 'valid', 'keywords'] as $keyword) {
-            $this->assertFalse(EmojiHandler::isHandlerEligible($keyword));
+            $this->assertFalse(EmojiHandler::ishandlerEligible((new SearchTerm($keyword))));
         }
     }
 
     public function testProcessSearchTerm()
     {
-        $data = $this->emojiHandler->processSearchTerm('emoji');
+        $data = $this->emojiHandler->processSearchTerm((new SearchTerm('emoji')));
         $this->assertArrayHasKey('rofl', $data);
     }
 }

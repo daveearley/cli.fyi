@@ -3,6 +3,7 @@
 namespace Test\Handler;
 
 use CliFyi\Handler\DateTimeHandler;
+use CliFyi\Value\SearchTerm;
 
 class DateTimeHandlerTest extends BaseHandlerTestCase
 {
@@ -24,20 +25,20 @@ class DateTimeHandlerTest extends BaseHandlerTestCase
     public function testIsHandlerEligibleForValidKeywords()
     {
         foreach (DateTimeHandler::KEYWORDS as $keyword) {
-            $this->assertTrue(DateTimeHandler::isHandlerEligible($keyword));
+            $this->assertTrue(DateTimeHandler::ishandlerEligible((new SearchTerm($keyword))));
         }
     }
 
     public function testIsHandlerEligibleForInvalidKeywords()
     {
         foreach (['not', 'valid', 'keywords'] as $keyword) {
-            $this->assertFalse(DateTimeHandler::isHandlerEligible($keyword));
+            $this->assertFalse(DateTimeHandler::ishandlerEligible((new SearchTerm($keyword))));
         }
     }
 
     public function testProcessSearchTerm()
     {
-        $data = $this->dateTimeHandler->processSearchTerm('time');
+        $data = $this->dateTimeHandler->processSearchTerm((new SearchTerm('time')));
         $this->assertArrayHasKey('day', $data);
     }
 }

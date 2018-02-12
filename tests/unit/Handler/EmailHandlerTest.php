@@ -4,6 +4,7 @@ namespace Test\Handler;
 
 use CliFyi\Handler\EmailHandler;
 use CliFyi\Transformer\EmailDataTransformer;
+use CliFyi\Value\SearchTerm;
 use EmailValidation\EmailValidator;
 use EmailValidation\EmailValidatorFactory;
 use EmailValidation\ValidationResults;
@@ -59,7 +60,7 @@ class EmailHandlerTest extends BaseHandlerTestCase
             ->shouldReceive('asArray')
             ->andReturn($expected);
 
-        $actual = $this->emailHandler->processSearchTerm('dave@test.com');
+        $actual = $this->emailHandler->processSearchTerm((new SearchTerm('dave@test.com')));
 
         $this->assertSame($expected, $actual);
     }
@@ -72,7 +73,7 @@ class EmailHandlerTest extends BaseHandlerTestCase
      */
     public function testIsEligibleHandler($actual, $expected)
     {
-        $this->assertSame(EmailHandler::isHandlerEligible($actual), $expected);
+        $this->assertSame(EmailHandler::ishandlerEligible((new SearchTerm($actual))), $expected);
     }
 
     /**

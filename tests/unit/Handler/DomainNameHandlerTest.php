@@ -4,6 +4,7 @@ namespace Test\Handler;
 
 use CliFyi\Handler\DomainNameHandler;
 use CliFyi\Service\DomainName\DomainNameServiceProviderInterface;
+use CliFyi\Value\SearchTerm;
 use Mockery;
 use Mockery\MockInterface;
 
@@ -51,7 +52,7 @@ class DomainNameHandlerTest extends BaseHandlerTestCase
             ->shouldReceive('getDnsData', $domain)
             ->andReturn($expectedDns);
 
-        $actual = $this->domainNameHandler->processSearchTerm($domain);
+        $actual = $this->domainNameHandler->processSearchTerm((new SearchTerm($domain)));
 
         $this->assertSame($expectedResult, $actual);
     }
@@ -64,7 +65,7 @@ class DomainNameHandlerTest extends BaseHandlerTestCase
      */
     public function testIsEligibleHandler($actual, $expected)
     {
-        $this->assertSame(DomainNameHandler::isHandlerEligible($actual), $expected);
+        $this->assertSame(DomainNameHandler::ishandlerEligible((new SearchTerm($actual))), $expected);
     }
 
     /**

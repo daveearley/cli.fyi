@@ -5,6 +5,7 @@ namespace Test\Handler;
 use CliFyi\Handler\MediaHandler;
 use CliFyi\Service\Media\MediaExtractorInterface;
 use CliFyi\Transformer\MediaDataTransformer;
+use CliFyi\Value\SearchTerm;
 use Mockery;
 
 class MediaHandlerTest extends BaseHandlerTestCase
@@ -37,7 +38,7 @@ class MediaHandlerTest extends BaseHandlerTestCase
      */
     public function testIsEligibleHandler($actual, $expected)
     {
-        $this->assertSame(MediaHandler::isHandlerEligible($actual), $expected);
+        $this->assertSame(MediaHandler::ishandlerEligible((new SearchTerm($actual))), $expected);
     }
 
     public function testSetHandler()
@@ -46,7 +47,7 @@ class MediaHandlerTest extends BaseHandlerTestCase
             'providerName' => 'Dave'
         ]);
 
-        $this->mediaHandler->processSearchTerm('http://dave.com');
+        $this->mediaHandler->processSearchTerm((new SearchTerm('http://dave.com')));
 
         $this->assertSame('Dave URL', $this->mediaHandler->getHandlerName());
     }
@@ -56,7 +57,7 @@ class MediaHandlerTest extends BaseHandlerTestCase
         $expected = ['providerName' => 'Testy Mc Test', 'some' => 'data'];
         $this->mediaExtractor->shouldReceive('extract', 'http://dave.com')->andReturn($expected);
 
-        $actual = $this->mediaHandler->processSearchTerm('http://dave.com');
+        $actual = $this->mediaHandler->processSearchTerm((new SearchTerm('http://dave.com')));
 
         $this->assertSame($expected, $actual);
     }

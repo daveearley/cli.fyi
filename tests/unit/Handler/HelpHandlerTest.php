@@ -3,6 +3,7 @@
 namespace Test\Handler;
 
 use CliFyi\Handler\HelpHandler;
+use CliFyi\Value\SearchTerm;
 
 class HelpHandlerTest extends BaseHandlerTestCase
 {
@@ -18,7 +19,7 @@ class HelpHandlerTest extends BaseHandlerTestCase
 
     public function testIsHandlerEligible()
     {
-        $this->assertTrue(HelpHandler::isHandlerEligible('help'));
+        $this->assertTrue(HelpHandler::ishandlerEligible((new SearchTerm('help'))));
     }
 
     public function testHandlerName()
@@ -28,7 +29,7 @@ class HelpHandlerTest extends BaseHandlerTestCase
 
     public function testProcessSearchTerm()
     {
-        $actual = $this->helpHandler->processSearchTerm('help');
+        $actual = $this->helpHandler->processSearchTerm((new SearchTerm('help')));
 
         $this->assertArrayHasKey('IP Address Query', $actual);
     }

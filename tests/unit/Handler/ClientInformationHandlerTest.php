@@ -6,6 +6,7 @@ use CliFyi\Handler\ClientInformationHandler;
 use CliFyi\Handler\IpAddressHandler;
 use CliFyi\Service\Client\ClientParserInterface;
 use CliFyi\Service\IpAddress\IpAddressInfoProviderInterface;
+use CliFyi\Value\SearchTerm;
 use Mockery;
 use Mockery\MockInterface;
 
@@ -41,14 +42,14 @@ class ClientInformationHandlerTest extends BaseHandlerTestCase
     public function testIsHandlerEligibleForValidKeywords()
     {
         foreach (['ME', 'me', 'self'] as $keyword) {
-            $this->assertTrue(ClientInformationHandler::isHandlerEligible($keyword));
+            $this->assertTrue(ClientInformationHandler::ishandlerEligible((new SearchTerm($keyword))));
         }
     }
 
     public function testIsHandlerEligibleForInvalidKeywords()
     {
         foreach (['not', 'valid', 'keywords'] as $keyword) {
-            $this->assertFalse(ClientInformationHandler::isHandlerEligible($keyword));
+            $this->assertFalse(ClientInformationHandler::isHandlerEligible((new SearchTerm($keyword))));
         }
     }
 
@@ -84,6 +85,6 @@ class ClientInformationHandlerTest extends BaseHandlerTestCase
             ]
         ];
 
-        $this->assertSame($expected, $this->clientInfoHandler->processSearchTerm('me'));
+        $this->assertSame($expected, $this->clientInfoHandler->processSearchTerm((new SearchTerm('me'))));
     }
 }

@@ -3,6 +3,7 @@
 namespace Test\Handler;
 
 use CliFyi\Handler\CountryHandler;
+use CliFyi\Value\SearchTerm;
 
 class CountryHandlerTest extends BaseHandlerTestCase
 {
@@ -23,28 +24,28 @@ class CountryHandlerTest extends BaseHandlerTestCase
 
     public function testProcessSearchTerm()
     {
-        $data = $this->countryHandler->processSearchTerm('Ireland');
+        $data = $this->countryHandler->processSearchTerm((new SearchTerm('Ireland')));
         $this->assertSame('Ireland', $data['name']['common']);
     }
 
     public function testIsEligibleCountryForValidCountry()
     {
-        $this->assertTrue(CountryHandler::isHandlerEligible('Ireland'));
+        $this->assertTrue(CountryHandler::ishandlerEligible((new SearchTerm('Ireland'))));
     }
 
     public function testIsEligibleCountryForValidCountryWithSpaces()
     {
-        $this->assertTrue(CountryHandler::isHandlerEligible('UNITED-STATES'));
+        $this->assertTrue(CountryHandler::ishandlerEligible((new SearchTerm('UNITED-STATES'))));
     }
 
     public function testIsEligibleCountryForInvalidCountry()
     {
-        $this->assertFalse(CountryHandler::isHandlerEligible('Magicland'));
+        $this->assertFalse(CountryHandler::ishandlerEligible((new SearchTerm('Magicland'))));
     }
 
     public function testGetData()
     {
-        $data = $this->countryHandler->processSearchTerm('Ireland');
+        $data = $this->countryHandler->processSearchTerm((new SearchTerm('Ireland')));
         $this->assertArrayHasKey('name', $data);
     }
 }

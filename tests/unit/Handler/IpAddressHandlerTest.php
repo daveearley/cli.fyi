@@ -4,6 +4,7 @@ namespace Test\Handler;
 
 use CliFyi\Handler\IpAddressHandler;
 use CliFyi\Service\IpAddress\IpAddressInfoProviderInterface;
+use CliFyi\Value\SearchTerm;
 use Mockery;
 use Mockery\MockInterface;
 
@@ -36,7 +37,7 @@ class IpAddressHandlerTest extends BaseHandlerTestCase
      */
     public function testIsEligibleHandler($actual, $expected)
     {
-        $this->assertSame(IpAddressHandler::isHandlerEligible($actual), $expected);
+        $this->assertSame(IpAddressHandler::ishandlerEligible((new SearchTerm($actual))), $expected);
     }
 
     public function testProcessSearchTerm()
@@ -58,7 +59,7 @@ class IpAddressHandlerTest extends BaseHandlerTestCase
             'continent' => 'Europe',
             'latitude' => '123',
             'longitude' => '123'
-        ], $this->ipHandler->processSearchTerm('8.8.8.8'));
+        ], $this->ipHandler->processSearchTerm((new SearchTerm('8.8.8.8'))));
     }
 
     public function testPrivateIpAddress()
@@ -76,7 +77,7 @@ class IpAddressHandlerTest extends BaseHandlerTestCase
             [
                 'isIpInPrivateRange' => true
             ],
-            $this->ipHandler->processSearchTerm('192.168.2.1')
+            $this->ipHandler->processSearchTerm((new SearchTerm('192.168.2.1')))
         );
     }
 
@@ -96,7 +97,7 @@ class IpAddressHandlerTest extends BaseHandlerTestCase
             [
                 'isIpInReservedRange' => true
             ],
-            $this->ipHandler->processSearchTerm('0.0.0.6')
+            $this->ipHandler->processSearchTerm((new SearchTerm('0.0.0.6')))
         );
     }
 

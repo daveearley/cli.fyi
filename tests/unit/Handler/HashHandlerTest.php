@@ -5,6 +5,7 @@ namespace Test\Handler;
 use CliFyi\Handler\AbstractHandler;
 use CliFyi\Handler\HashHandler;
 use CliFyi\Service\Hash\HasherInterface;
+use CliFyi\Value\SearchTerm;
 use Mockery;
 
 class HashHandlerTest extends BaseHandlerTestCase
@@ -25,18 +26,18 @@ class HashHandlerTest extends BaseHandlerTestCase
 
     public function testGetHandlerName()
     {
-        $this->assertSame('String Hash Values', $this->hashHandler->getHandlerName());
+        $this->assertSame('String Hash Values For: ', $this->hashHandler->getHandlerName());
     }
 
     public function testIsHandlerEligibleForValidKeywords()
     {
-        $this->assertTrue(HashHandler::isHandlerEligible(HashHandler::TRIGGER_KEYWORD));
+        $this->assertTrue(HashHandler::isHandlerEligible((new SearchTerm(HashHandler::TRIGGER_KEYWORD))));
     }
 
     public function testIsHandlerEligibleForInvalidKeywords()
     {
         foreach (['not', 'valid', 'keywords'] as $keyword) {
-            $this->assertFalse(HashHandler::isHandlerEligible($keyword));
+            $this->assertFalse(HashHandler::ishandlerEligible((new SearchTerm($keyword))));
         }
     }
 
@@ -49,6 +50,6 @@ class HashHandlerTest extends BaseHandlerTestCase
 
         $this->hashService->shouldReceive('getHashValuesFromString')->andReturn($expected);
 
-        $this->assertSame($expected, $this->hashHandler->processSearchTerm(HashHandler::TRIGGER_KEYWORD));
+        $this->assertSame($expected, $this->hashHandler->processSearchTerm((new SearchTerm(HashHandler::TRIGGER_KEYWORD))));
     }
 }
