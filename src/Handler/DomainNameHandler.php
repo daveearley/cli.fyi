@@ -6,6 +6,7 @@ namespace CliFyi\Handler;
 
 use CliFyi\Service\DomainName\DomainNameServiceProviderInterface;
 use CliFyi\Transformer\TransformerInterface;
+use CliFyi\Value\SearchTerm;
 use Psr\SimpleCache\CacheInterface;
 
 class DomainNameHandler extends AbstractHandler
@@ -39,25 +40,25 @@ class DomainNameHandler extends AbstractHandler
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return bool
      */
-    public static function isHandlerEligible(string $searchQuery): bool
+    public static function isHandlerEligible(SearchTerm $searchQuery): bool
     {
-        return preg_match(self::DOMAIN_REGEX, trim($searchQuery)) === 1;
+        return preg_match(self::DOMAIN_REGEX, $searchQuery->toLowerCaseString()) === 1;
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return array
      */
-    public function processSearchTerm(string $searchQuery): array
+    public function processSearchTerm(SearchTerm $searchQuery): array
     {
         return [
-            'whois' => $this->domainNameServiceProvider->getWhoisData($searchQuery),
-            'dns' => $this->domainNameServiceProvider->getDnsData($searchQuery)
+            'whois' => $this->domainNameServiceProvider->getWhoisData($searchQuery->toLowerCaseString()),
+            'dns' => $this->domainNameServiceProvider->getDnsData($searchQuery->toLowerCaseString())
         ];
     }
 }

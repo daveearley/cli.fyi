@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace CliFyi\Handler;
 
+use CliFyi\Value\SearchTerm;
+
 class CountryHandler extends AbstractHandler
 {
     const COUNTRY_DATA_LOCATION = __DIR__ . '/../../data/countries_data.php';
@@ -20,13 +22,13 @@ class CountryHandler extends AbstractHandler
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return bool
      */
-    public static function isHandlerEligible(string $searchQuery): bool
+    public static function isHandlerEligible(SearchTerm $searchQuery): bool
     {
-        if (self::isCountry($searchQuery)) {
+        if (self::isCountry($searchQuery->toLowerCaseString())) {
             return true;
         }
 
@@ -40,7 +42,7 @@ class CountryHandler extends AbstractHandler
      */
     private static function isCountry(string $searchQuery): bool
     {
-        return isset(self::getCountryData()[trim(strtolower($searchQuery))]);
+        return isset(self::getCountryData()[trim($searchQuery)]);
     }
 
     /**
@@ -58,12 +60,12 @@ class CountryHandler extends AbstractHandler
     }
 
     /**
-     * @param string $searchTerm
+     * @param SearchTerm $searchTerm
      *
      * @return array
      */
-    public function processSearchTerm(string $searchTerm): array
+    public function processSearchTerm(SearchTerm $searchTerm): array
     {
-        return self::getCountryData()[trim(strtolower($searchTerm))];
+        return self::getCountryData()[trim($searchTerm->toLowerCaseString())];
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CliFyi\Handler;
 
 use CliFyi\Service\IpAddress\IpAddressInfoProviderInterface;
+use CliFyi\Value\SearchTerm;
 use Psr\SimpleCache\CacheInterface;
 
 class IpAddressHandler extends AbstractHandler
@@ -29,13 +30,13 @@ class IpAddressHandler extends AbstractHandler
     }
 
     /**
-     * @param string $ipAddress
+     * @param SearchTerm $ipAddress
      *
      * @return bool
      */
-    public static function isHandlerEligible(string $ipAddress): bool
+    public static function isHandlerEligible(SearchTerm $ipAddress): bool
     {
-        return filter_var($ipAddress, FILTER_VALIDATE_IP, self::IP_VALIDATION_FLAGS) !== false;
+        return filter_var($ipAddress->toString(), FILTER_VALIDATE_IP, self::IP_VALIDATION_FLAGS) !== false;
     }
 
     /**
@@ -47,13 +48,13 @@ class IpAddressHandler extends AbstractHandler
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return array|null
      */
-    public function processSearchTerm(string $searchQuery): array
+    public function processSearchTerm(SearchTerm $searchQuery): array
     {
-        $this->ipInfoService->setIpAddress($searchQuery);
+        $this->ipInfoService->setIpAddress($searchQuery->toString());
 
         return array_filter([
             'organisation' => $this->ipInfoService->getOrganisation(),
@@ -63,8 +64,8 @@ class IpAddressHandler extends AbstractHandler
             'continent' => $this->ipInfoService->getContinent(),
             'latitude' => $this->ipInfoService->getLatitude(),
             'longitude' => $this->ipInfoService->getLongitude(),
-            'isIpInPrivateRange' => $this->isInPrivateIpRange($searchQuery),
-            'isIpInReservedRange' => $this->isInReservedIpRange($searchQuery)
+            'isIpInPrivateRange' => $this->isInPrivateIpRange($searchQuery->toString()),
+            'isIpInReservedRange' => $this->isInReservedIpRange($searchQuery->toString())
         ]);
     }
 

@@ -6,6 +6,7 @@ namespace CliFyi\Handler;
 
 use CliFyi\Service\Client\ClientParserInterface;
 use CliFyi\Service\IpAddress\IpAddressInfoProviderInterface;
+use CliFyi\Value\SearchTerm;
 use Psr\SimpleCache\CacheInterface;
 
 class ClientInformationHandler extends AbstractHandler
@@ -49,21 +50,21 @@ class ClientInformationHandler extends AbstractHandler
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return bool
      */
-    public static function isHandlerEligible(string $searchQuery): bool
+    public static function isHandlerEligible(SearchTerm $searchQuery): bool
     {
-        return in_array(strtolower($searchQuery), self::KEYWORDS, true);
+        return in_array($searchQuery->toLowerCaseString(), self::KEYWORDS, true);
     }
 
     /**
-     * @param string $searchTerm
+     * @param SearchTerm $searchTerm
      *
      * @return array
      */
-    public function processSearchTerm(string $searchTerm): array
+    public function processSearchTerm(SearchTerm $searchTerm): array
     {
         $data = [
             'iPAddress' => $this->clientParser->getIpAddress(),

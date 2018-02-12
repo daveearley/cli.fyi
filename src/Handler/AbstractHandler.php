@@ -6,6 +6,7 @@ namespace CliFyi\Handler;
 
 use CliFyi\Exception\NoDataReturnedFromHandlerException;
 use CliFyi\Transformer\TransformerInterface;
+use CliFyi\Value\SearchTerm;
 use Psr\SimpleCache\CacheInterface;
 use Psr\SimpleCache\InvalidArgumentException;
 
@@ -18,7 +19,7 @@ abstract class AbstractHandler
     /** @var TransformerInterface */
     private $transformer;
 
-    /** @var string */
+    /** @var SearchTerm */
     private $searchTerm;
 
     /** @var CacheInterface */
@@ -46,18 +47,18 @@ abstract class AbstractHandler
     abstract public function getHandlerName(): string;
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return bool
      */
-    abstract public static function isHandlerEligible(string $searchQuery): bool;
+    abstract public static function isHandlerEligible(SearchTerm $searchQuery): bool;
 
     /**
-     * @param string $searchTerm
+     * @param SearchTerm $searchTerm
      *
      * @return array
      */
-    abstract public function processSearchTerm(string $searchTerm): array;
+    abstract public function processSearchTerm(SearchTerm $searchTerm): array;
 
     /**
      * @throws InvalidArgumentException
@@ -75,11 +76,11 @@ abstract class AbstractHandler
     }
 
     /**
-     * @param string $searchTerm
+     * @param SearchTerm $searchTerm
      *
      * @return AbstractHandler
      */
-    public function setSearchTerm(string $searchTerm): AbstractHandler
+    public function setSearchTerm(SearchTerm $searchTerm): AbstractHandler
     {
         $this->searchTerm = $searchTerm;
 
@@ -87,9 +88,9 @@ abstract class AbstractHandler
     }
 
     /**
-     * @return string
+     * @return SearchTerm
      */
-    public function getSearchTerm(): string
+    public function getSearchTerm(): SearchTerm
     {
         return $this->searchTerm;
     }
@@ -125,7 +126,7 @@ abstract class AbstractHandler
      */
     private function getCacheKey(): string
     {
-        return md5($this->searchTerm);
+        return md5($this->searchTerm->toString());
     }
 
     /**

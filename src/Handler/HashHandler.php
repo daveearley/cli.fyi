@@ -3,6 +3,7 @@
 namespace CliFyi\Handler;
 
 use CliFyi\Service\Hash\HasherInterface;
+use CliFyi\Value\SearchTerm;
 use Psr\SimpleCache\CacheInterface;
 
 class HashHandler extends AbstractHandler
@@ -34,23 +35,23 @@ class HashHandler extends AbstractHandler
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return bool
      */
-    public static function isHandlerEligible(string $searchQuery): bool
+    public static function isHandlerEligible(SearchTerm $searchQuery): bool
     {
-        return (stripos($searchQuery, self::TRIGGER_KEYWORD) === 0);
+        return (stripos($searchQuery->toLowerCaseString(), self::TRIGGER_KEYWORD) === 0);
     }
 
     /**
-     * @param string $searchTerm
+     * @param SearchTerm $searchTerm
      *
      * @return array
      */
-    public function processSearchTerm(string $searchTerm): array
+    public function processSearchTerm(SearchTerm $searchTerm): array
     {
-        return $this->hasher->getHashValuesFromString($this->formatSearchTerm($searchTerm));
+        return $this->hasher->getHashValuesFromString($this->formatSearchTerm($searchTerm->toLowerCaseString()));
     }
 
     /**

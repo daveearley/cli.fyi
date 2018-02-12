@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CliFyi\Handler;
 
 use CliFyi\Transformer\TransformerInterface;
+use CliFyi\Value\SearchTerm;
 use EmailValidation\EmailValidatorFactory as EmailDataExtractor;
 use Psr\SimpleCache\CacheInterface;
 
@@ -37,23 +38,23 @@ class EmailHandler extends AbstractHandler
     }
 
     /**
-     * @param string $value
+     * @param SearchTerm $value
      *
      * @return bool
      */
-    public static function isHandlerEligible(string $value): bool
+    public static function isHandlerEligible(SearchTerm $value): bool
     {
-        return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
+        return filter_var($value->toString(), FILTER_VALIDATE_EMAIL) !== false;
     }
 
     /**
-     * @param string $searchTerm
+     * @param SearchTerm $searchTerm
      *
      * @return array
      */
-    public function processSearchTerm(string $searchTerm): array
+    public function processSearchTerm(SearchTerm $searchTerm): array
     {
-        $emailData = $this->emailDataExtractor->create($searchTerm)->getValidationResults();
+        $emailData = $this->emailDataExtractor->create($searchTerm->toString())->getValidationResults();
 
         if ($emailData->hasResults()) {
             return $emailData->asArray();

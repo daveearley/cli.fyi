@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace CliFyi\Handler;
 
+use CliFyi\Value\SearchTerm;
+
 class ProgrammingLanguageHandler extends AbstractHandler
 {
     const PROGRAMMING_LANGUAGE_DATA_LOCATION = __DIR__ . '/../../data/programming_language_data.php';
@@ -19,25 +21,25 @@ class ProgrammingLanguageHandler extends AbstractHandler
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return bool
      */
-    public static function isHandlerEligible(string $searchQuery): bool
+    public static function isHandlerEligible(SearchTerm $searchQuery): bool
     {
-        return isset(self::getProgrammingLanguageData()[trim(strtolower($searchQuery))]);
+        return isset(self::getProgrammingLanguageData()[$searchQuery->toLowerCaseString()]);
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return array
      */
-    public function processSearchTerm(string $searchQuery): array
+    public function processSearchTerm(SearchTerm $searchQuery): array
     {
-        $this->handlerName = strtoupper($searchQuery) . ' Query';
+        $this->handlerName = strtoupper($searchQuery->toString()) . ' Query';
 
-        return self::getProgrammingLanguageData()[trim(strtolower($searchQuery))];
+        return self::getProgrammingLanguageData()[$searchQuery->toLowerCaseString()];
     }
 
     /**

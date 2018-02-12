@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CliFyi\Handler;
 
 use CliFyi\Service\CryptoCurrency\PriceFetchInterface;
+use CliFyi\Value\SearchTerm;
 use Psr\SimpleCache\CacheInterface;
 
 class CryptoCurrencyHandler extends AbstractHandler
@@ -40,24 +41,24 @@ class CryptoCurrencyHandler extends AbstractHandler
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return bool
      */
-    public static function isHandlerEligible(string $searchQuery): bool
+    public static function isHandlerEligible(SearchTerm $searchQuery): bool
     {
-        return in_array(strtoupper(trim($searchQuery)), array_keys(self::getCryptoCurrencyData()), true);
+        return in_array($searchQuery->toUpperCaseString(), array_keys(self::getCryptoCurrencyData()), true);
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return array
      */
-    public function processSearchTerm(string $searchQuery): array
+    public function processSearchTerm(SearchTerm $searchQuery): array
     {
-        if ($prices = $this->priceFetcher->getPrices($searchQuery)) {
-            $this->handlerName = self::getCryptoCurrencyData()[strtoupper(trim($searchQuery))] . ' Prices';
+        if ($prices = $this->priceFetcher->getPrices($searchQuery->toUpperCaseString())) {
+            $this->handlerName = self::getCryptoCurrencyData()[$searchQuery->toUpperCaseString()] . ' Prices';
 
             return $prices;
         }

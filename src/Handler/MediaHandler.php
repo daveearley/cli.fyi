@@ -6,6 +6,7 @@ namespace CliFyi\Handler;
 
 use CliFyi\Service\Media\MediaExtractorInterface;
 use CliFyi\Transformer\TransformerInterface;
+use CliFyi\Value\SearchTerm;
 use Psr\SimpleCache\CacheInterface;
 
 class MediaHandler extends AbstractHandler
@@ -40,23 +41,23 @@ class MediaHandler extends AbstractHandler
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return bool
      */
-    public static function isHandlerEligible(string $searchQuery): bool
+    public static function isHandlerEligible(SearchTerm $searchQuery): bool
     {
-        return filter_var($searchQuery, FILTER_VALIDATE_URL) !== false;
+        return filter_var($searchQuery->toString(), FILTER_VALIDATE_URL) !== false;
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return array
      */
-    public function processSearchTerm(string $searchQuery): array
+    public function processSearchTerm(SearchTerm $searchQuery): array
     {
-        if ($extractedData = $this->mediaExtractor->extract($searchQuery)) {
+        if ($extractedData = $this->mediaExtractor->extract($searchQuery->toString())) {
             $this->setHandlerName($extractedData['providerName']);
 
             return $extractedData;

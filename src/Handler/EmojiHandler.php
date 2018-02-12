@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace CliFyi\Handler;
 
+use CliFyi\Value\SearchTerm;
+
 class EmojiHandler extends AbstractHandler
 {
     const EMOJI_KEYWORDS = [
@@ -22,21 +24,21 @@ class EmojiHandler extends AbstractHandler
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return bool
      */
-    public static function isHandlerEligible(string $searchQuery): bool
+    public static function isHandlerEligible(SearchTerm $searchQuery): bool
     {
-        return in_array(trim($searchQuery), self::EMOJI_KEYWORDS, true);
+        return in_array($searchQuery->toLowerCaseString(), self::EMOJI_KEYWORDS, true);
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return array
      */
-    public function processSearchTerm(string $searchQuery): array
+    public function processSearchTerm(SearchTerm $searchQuery): array
     {
         return [
             'huggingFace' => '🤗',

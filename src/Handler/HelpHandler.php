@@ -2,6 +2,8 @@
 
 namespace CliFyi\Handler;
 
+use CliFyi\Value\SearchTerm;
+
 class HelpHandler extends AbstractHandler
 {
     const KEYWORD = 'help';
@@ -15,21 +17,21 @@ class HelpHandler extends AbstractHandler
     }
 
     /**
-     * @param string $searchQuery
+     * @param SearchTerm $searchQuery
      *
      * @return bool
      */
-    public static function isHandlerEligible(string $searchQuery): bool
+    public static function isHandlerEligible(SearchTerm $searchQuery): bool
     {
-        return trim($searchQuery) === self::KEYWORD;
+        return $searchQuery->toLowerCaseString() === self::KEYWORD;
     }
 
     /**
-     * @param string $searchTerm
+     * @param SearchTerm $searchTerm
      *
      * @return array
      */
-    public function processSearchTerm(string $searchTerm): array
+    public function processSearchTerm(SearchTerm $searchTerm): array
     {
         return [
             'IP Address Query' =>  [

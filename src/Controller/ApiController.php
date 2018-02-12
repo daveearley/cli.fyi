@@ -9,6 +9,7 @@ use CliFyi\Exception\ErrorParsingQueryException;
 use CliFyi\Exception\NoAvailableHandlerException;
 use CliFyi\Factory\HandlerFactory;
 use CliFyi\Handler\AbstractHandler;
+use CliFyi\Value\SearchTerm;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
@@ -19,7 +20,7 @@ class ApiController
     const UNABLE_TO_PARSE_MESSAGE = 'Sorry, we don\'t know how to parse \'%s\' at this time';
     const ERROR_WHILE_PARSING_MESSAGE = 'Sorry, we encountered an error while parsing \'%s\'';
 
-    /** @var string */
+    /** @var SearchTerm */
     private $searchQuery;
 
     /** @var HandlerFactory */
@@ -74,7 +75,7 @@ class ApiController
             }
         }
 
-        throw new NoAvailableHandlerException(sprintf(self::UNABLE_TO_PARSE_MESSAGE, urldecode($this->searchQuery)));
+        throw new NoAvailableHandlerException(sprintf(self::UNABLE_TO_PARSE_MESSAGE, urldecode($this->searchQuery->toString())));
     }
 
     /**
@@ -106,7 +107,7 @@ class ApiController
             return $this->handler->setSearchTerm($this->searchQuery)->getData();
         } catch (Throwable $exception) {
             throw new ErrorParsingQueryException(
-                sprintf(self::ERROR_WHILE_PARSING_MESSAGE, urldecode($this->searchQuery)),
+                sprintf(self::ERROR_WHILE_PARSING_MESSAGE, urldecode($this->searchQuery->toString())),
                 $exception
             );
         }
@@ -115,10 +116,10 @@ class ApiController
     /**
      * @param RequestInterface $request
      *
-     * @return string
+     * @return SearchTerm
      */
-    private function getSearchTerm(RequestInterface $request): string
+    private function getSearchTerm(RequestInterface $request): SearchTerm
     {
-        return strtolower(trim(ltrim($request->getRequestTarget(), '/')));
+        return new SearchTerm(trim(ltrim($request->getRequestTarget(), '/')));
     }
 }
