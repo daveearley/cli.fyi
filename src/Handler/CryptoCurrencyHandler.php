@@ -18,6 +18,9 @@ class CryptoCurrencyHandler extends AbstractHandler
     /** @var array */
     private static $cryptoCurrencyData;
 
+    /** @var string */
+    private $handlerName = 'Crypto Currency';
+
     /**
      * @param CacheInterface $cache
      * @param PriceFetchInterface $priceFetch
@@ -28,9 +31,6 @@ class CryptoCurrencyHandler extends AbstractHandler
 
         $this->priceFetcher = $priceFetch;
     }
-
-    /** @var */
-    private $handlerName = 'Crypto Currency';
 
     /**
      * @return string

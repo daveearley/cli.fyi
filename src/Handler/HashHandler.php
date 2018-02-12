@@ -8,12 +8,12 @@ use Psr\SimpleCache\CacheInterface;
 
 class HashHandler extends AbstractHandler
 {
-    public const HANDLER_NAME = 'String Hash Values';
-
     public const TRIGGER_KEYWORD = 'hash/';
 
     /** @var HasherInterface */
     private $hasher;
+
+    private $handlerName = 'String Hash Values For: ';
 
     /**
      * @param CacheInterface $cache
@@ -31,7 +31,7 @@ class HashHandler extends AbstractHandler
      */
     public function getHandlerName(): string
     {
-        return self::HANDLER_NAME;
+        return $this->handlerName;
     }
 
     /**
@@ -51,7 +51,10 @@ class HashHandler extends AbstractHandler
      */
     public function processSearchTerm(SearchTerm $searchTerm): array
     {
-        return $this->hasher->getHashValuesFromString($this->formatSearchTerm($searchTerm->toLowerCaseString()));
+        $valueToHash = $this->formatSearchTerm($searchTerm->toString());
+        $this->setHandlerName($valueToHash);
+
+        return $this->hasher->getHashValuesFromString($valueToHash);
     }
 
     /**
@@ -62,5 +65,13 @@ class HashHandler extends AbstractHandler
     private function formatSearchTerm(string $searchTerm): string
     {
         return str_replace(self::TRIGGER_KEYWORD, '', $searchTerm);
+    }
+
+    /**
+     * @param string $searchTerm
+     */
+    private function setHandlerName(string $searchTerm)
+    {
+        $this->handlerName .= ' ('. $searchTerm . ')';
     }
 }
