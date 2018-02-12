@@ -113,6 +113,7 @@
                         <li><a href="#ip-address">IP Address Information</a></li>
                         <li><a href="#media-information">Media/URL Information</a></li>
                         <li><a href="#client-information">Client Information</a></li>
+                        <li><a href="#string-hash-values">String Hash Values</a></li>
                         <li><a href="#domain-name-information">Domain Name Information</a></li>
                         <li><a href="#datatime-information">Date/Time Information</a></li>
                         <li><a href="#programming-lang-information">Programming Language Links</a></li>
@@ -351,6 +352,39 @@
         ]
     }
 }</code></pre>
+
+                    </section>
+                    <section class="command-section" id="string-hash-values">
+                        <h2>String Hash Values</h2>
+
+                        <p>
+                            Returns various hash values for a given string.
+                        </p>
+
+                        <h3>Example Request</h3>
+                        <pre class="highlight shell"><code>$ curl cli.fyi/hash/<b>HelloWorld</b></code></pre>
+
+                        <h3>Example Response</h3>
+                        <pre class="highlight json"><code>{
+    "type": "String Hash Values",
+    "data": {
+        "md2": "74655651e01700a25fff9c0127382098",
+        "md4": "f4e0ffdf5d6d530edb234b381805efc1",
+        "md5": "292e4a0acc0fb7179dcf58ef02cc2f76",
+        "sha1": "65cc79bfae2cf9f63475727ee35fd5b4fedeed38",
+        "sha224": "6a89b325fe53d631a92a75ba43ee8829d686cf135f129af24f9de0ba",
+        "sha256": "ddec6733cd3fd3fe0ffd13bb477cc28220e8fdbafb217eb16b586af2ea9baa8f",
+        "sha384": "c83fcbc94b784da0f3223e2c6c69dbc610de24697f7fe26597705af3b946a1dc8d8dcc7aca349579fbea8abab7ecd148",
+        "sha512/224": "5177294c0c14d3fd34672bb4cad4de3a82454247fcdb1b4b6800c4e6",
+        "sha512/256": "e373b3e9a3600b5bd7b9609fd0c0fd3cc47e192c0525cff7b197b683bc2b04f0",
+        .................
+    }
+}
+</code></pre>
+                        <p>
+                            Available Hashes:
+                            <span class="codesnip"><?=implode('</span>, <span class="codesnip">', hash_algos())?></span>
+                        </p>
 
                     </section>
                     <section class="command-section" id="datatime-information">
