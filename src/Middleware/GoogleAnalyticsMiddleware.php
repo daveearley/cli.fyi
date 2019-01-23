@@ -83,7 +83,6 @@ class GoogleAnalyticsMiddleware
         $referer = $this->getReferer($request);
         $userIdentifier = $this->uuidGenerator->v5(md5($ip . $userAgent));
 
-
         $fullUri = $request->getUri()->getScheme()
             . '://' . $request->getUri()->getHost()
             . $request->getRequestTarget();
