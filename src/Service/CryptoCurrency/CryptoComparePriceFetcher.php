@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace CliFyi\Service\CryptoCurrency;
 
+use CliFyi\Service\Env;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use InvalidArgumentException;
 
 class CryptoComparePriceFetcher implements PriceFetchInterface
 {
-    const API_END_POINT = 'https://min-api.cryptocompare.com/data/price?fsym=%s&tsyms=%s';
+    const API_KEY_ENV_NAME = 'CRYPTOCOMPARE_KEY';
+    const API_END_POINT = 'https://min-api.cryptocompare.com/data/price?fsym=%s&tsyms=%s&api_key=%s';
     const HTTP_STATUS_OK = 200;
 
     /** @var ClientInterface */
@@ -45,12 +47,17 @@ class CryptoComparePriceFetcher implements PriceFetchInterface
     /** @var string */
     private $cryptoCurrency;
 
+    /** @var Env */
+    private $env;
+
     /**
      * @param ClientInterface $client
+     * @param Env $env
      */
-    public function __construct(ClientInterface $client)
+    public function __construct(ClientInterface $client, Env $env)
     {
         $this->client = $client;
+        $this->env = $env;
     }
 
     /**
@@ -122,7 +129,8 @@ class CryptoComparePriceFetcher implements PriceFetchInterface
         return sprintf(
             self::API_END_POINT,
             strtoupper($this->cryptoCurrency),
-            implode(',', array_keys(self::getAvailableFiatCurrencies()))
+            implode(',', array_keys(self::getAvailableFiatCurrencies())),
+            $this->env->getStringValue(self::API_KEY_ENV_NAME)
         );
     }
 }
