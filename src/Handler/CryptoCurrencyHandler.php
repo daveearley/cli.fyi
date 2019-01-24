@@ -10,7 +10,7 @@ use Psr\SimpleCache\CacheInterface;
 
 class CryptoCurrencyHandler extends AbstractHandler
 {
-    const COUNTRY_DATA_LOCATION = __DIR__ . '/../../data/crypto_currency_data.php';
+    const CRYPTO_DATA_LOCATION = __DIR__ . '/../../data/crypto_currency_data.php';
 
     /** @var PriceFetchInterface */
     private $priceFetcher;
@@ -75,7 +75,7 @@ class CryptoCurrencyHandler extends AbstractHandler
             return self::$cryptoCurrencyData;
         }
 
-        self::$cryptoCurrencyData = include self::COUNTRY_DATA_LOCATION;
+        self::$cryptoCurrencyData = include self::CRYPTO_DATA_LOCATION;
 
         return self::$cryptoCurrencyData;
     }
