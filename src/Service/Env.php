@@ -31,7 +31,8 @@ class Env
      *
      * @return array|false|string
      */
-    private function getValue(string $key) {
+    private function getValue(string $key) 
+    {
         if ($value = getenv($key)) {
             return $value;
         }
